@@ -7,71 +7,71 @@ var PinsSimulators = require('PinsSimulators');
 var configure = exports.configure = function(configuration) {
 	this.pinsSimulator = shell.delegate("addSimulatorPart", {
 			header : { 
-				label : "RFID Sensors", 
-				name : "", 
+				label : "Weight Detectors", 
+				name : "Analog Inputs", 
 				iconVariant : PinsSimulators.SENSOR_MODULE 
 			},
 			axes : [
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 1",
-						valueID : "xPos",
+						valueLabel : "Hanger 1",
+						valueID : "hanger1",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 2",
-						valueID : "yPos",
+						valueLabel : "Hanger 2",
+						valueID : "hanger2",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 3",
-						valueID : "zPos",
+						valueLabel : "Hanger 3",
+						valueID : "hanger3",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 4",
-						valueID : "aPos",
+						valueLabel : "Hanger 4",
+						valueID : "hanger4",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 5",
-						valueID : "bPos",
+						valueLabel : "Hanger 5",
+						valueID : "hanger5",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 6",
-						valueID : "cPos",
+						valueLabel : "Hanger 6",
+						valueID : "hanger6",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 7",
-						valueID : "dPos",
+						valueLabel : "Hanger 7",
+						valueID : "hanger7",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
 				),
 				new PinsSimulators.AnalogInputAxisDescription(
 					{
-						valueLabel : "Clothing 8",
-						valueID : "ePos",
+						valueLabel : "Hanger 8",
+						valueID : "hanger8",
 						defaultControl : PinsSimulators.SLIDER,
 						speed : 0
 					}
@@ -89,12 +89,12 @@ var read = exports.read = function() {
 }
 //@line 58
 exports.pins = {
-			xPos: { type: "A2D" },
-			yPos: { type: "A2D" },
-			zPos: { type: "A2D" },
-			aPos: { type: "A2D" },
-			bPos: { type: "A2D" },
-			cPos: { type: "A2D" },
-			dPos: { type: "A2D" },
-			ePos: { type: "A2D" }
+			hanger1: { type: "A2D" },
+			hanger2: { type: "A2D" },
+			hanger3: { type: "A2D" },
+			hanger4: { type: "A2D" },
+			hanger5: { type: "A2D" },
+			hanger6: { type: "A2D" },
+			hanger7: { type: "A2D" },
+			hanger8: { type: "A2D" }
 		};
