@@ -73,6 +73,7 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
+            KEYBOARD.hide();
             application.remove(modal);
         }},
     })
@@ -84,6 +85,7 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
+            KEYBOARD.hide();
             application.remove(modal);
         }},
     })
