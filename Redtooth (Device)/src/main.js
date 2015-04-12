@@ -127,7 +127,13 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 		}}
 }));
 
-
+Handler.bind("/lightUp", Behavior({
+    onInvoke: function(handler, message) {
+        var query = parseQuery(message.query);
+        var hanger = query['hanger'];
+        var color = query['color'];
+    }
+}));
 
 hanger1Label = new Label({left:0, right:0, height:40, string: "0", style: labelStyle});
 hanger2Label = new Label({left:0, right:0, height:40, string: "0", style: labelStyle});
