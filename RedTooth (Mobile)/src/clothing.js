@@ -90,7 +90,7 @@ var imageDimension = 120;
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
-var ClothingPopulate = Container.template(function($) { return { left: 0, right: 0, top: 0, active: true, //skin: whiteSkin, //skin: THEME.lineSkin, 
+var ClothingSubContainer = Container.template(function($) { return { left: 0, right: 0, top: 0, active: true, //skin: whiteSkin, //skin: THEME.lineSkin, 
     behavior: Object.create(Behavior.prototype, {
     	/* Gives the user some visual feedback on which entry they have tapped.
     	 * note that the skin is reverted to white in onTouchEnded() */    	 
@@ -171,7 +171,11 @@ var screen = new ScreenContainer(data);
  * ProcessorLine() object to the Column named "menu" in the
  * screen object's SCROLLER */
 function ListBuilder(element, index, array) {
-	screen.first.menu.add(new ClothingPopulate(element));
+	screen.first.menu.add(new ClothingSubContainer(element));
+}
+
+function addNewClothingItem(element) {
+	screen.first.menu.add(new ClothingSubContainer(element));
 }
 
 exports.ListBuilder = ListBuilder;
