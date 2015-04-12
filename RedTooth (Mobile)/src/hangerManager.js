@@ -24,3 +24,19 @@ Handler.bind("/forget", Behavior({
 		deviceURL = "";
 	}
 }));
+
+function lightUp(hanger, color) {
+    application.invoke(new Message(deviceURL + "lightUp?" + serializeQuery({
+	    hanger: hanger,
+	    color: color
+	})), Message.JSON);
+}
+
+function dim(hanger) {
+    application.invoke(new Message(deviceURL + "dim?" + serializeQuery({
+        hanger: hanger
+    })), Message.JSON);
+}
+
+exports.lightUp = lightUp;
+exports.dim = dim;
