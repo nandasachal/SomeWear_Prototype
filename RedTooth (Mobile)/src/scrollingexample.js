@@ -86,7 +86,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
  * referencing any values from an object passed on creation,
  * an object is still required as the SCROLLER uses it internally. */
 var ScreenContainer = Container.template(function($) { return {
-	left:0, right:0, top:0, bottom:0,
+	left:0, right:0, top:40, bottom:0,
 	contents: [
 	   		/* Note that the scroller is declared as having only an empty
 	   		 * Column and a scrollbar.  All the entries will be added 
