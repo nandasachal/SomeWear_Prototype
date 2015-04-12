@@ -23,14 +23,6 @@ var productDescriptionStyle = new Style({  font: '18px', horizontal: 'left', ver
 var menuItems = [
     	{title: 'Pentium', button: 'P5'},
     	{title: 'Pentium MMX', button: 'Tillamook'},
-    	{title: 'Pentium Pro', button: 'P6'},
-    	{title: 'Pentium II', button: 'Klamath'},
-    	{title: 'Pentium III', button: 'Coppermine'},
-    	{title: 'Pentium IV', button: 'Prescott'},
-    	{title: 'Pentium M', button: 'Dothan'},
-    	{title: 'Core Duo', button: 'Yonah'},
-    	{title: 'Core 2 Duo', button: 'Penryn'},
-    	{title: 'Core i7', button: 'Sandy Bridge'}
     	];
 
 /* This is a template that will be used to for each entry populating the list. 
