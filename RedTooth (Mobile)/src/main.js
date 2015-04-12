@@ -12,7 +12,7 @@ var addClothingModal = require("addClothingModal.js");
 var navigationBar = require("navigationBar.js");
 var clothingScreen = require("clothing.js");
 
-navigationBar.navBar.titleWords.string = "CATEGORIES";
+navigationBar.navBar.titleWords.string = "CLOTHING";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
