@@ -16,6 +16,34 @@ application.behavior = Object.create(Object.prototype, {
 		// list items.
 		scrollingExample.menuItems.forEach(scrollingExample.ListBuilder);
 		application.add(scrollingExample.screen);
-	}}
+	}},
+	/*
+	onDisplayed: function(application) {
+		application.discover("redtooth_device.app");
+	},
+	onQuit: function(application) {
+		application.forget("redtooth_device.app");
+	},
+	*/
 });
+
+/*
+var deviceURL = "";
+
+//Device Interaction
+Handler.bind("/discover", Behavior({
+	onInvoke: function(handler, message){
+		deviceURL = JSON.parse(message.requestText).url;
+		//trace("HELLOOOOOO");
+	}
+}));
+
+Handler.bind("/forget", Behavior({
+	onInvoke: function(handler, message){
+		deviceURL = "";
+	}
+}));
+*/
+
+//BUTTONS
 
