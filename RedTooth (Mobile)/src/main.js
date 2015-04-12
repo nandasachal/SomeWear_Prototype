@@ -8,7 +8,7 @@ var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require('controls/buttons');
 
 var scrollingExample = require("scrollingexample.js");
-var addClothingModal = require("addCLothingModal.js");
+var addClothingModal = require("addClothingModal.js");
 var navigationBar = require("navigationBar.js");
 
 navigationBar.navBar.titleWords.string = "CATEGORIES";

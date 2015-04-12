@@ -2,7 +2,9 @@
 
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
-var BUTTONS = require('controls/buttons')
+var BUTTONS = require('controls/buttons');
+
+var addClothingModal = require("addClothingModal.js");
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var headerStyle = new Style({font: 'bold 24px', color: 'white', align: 'center, middle'});
@@ -17,7 +19,9 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
-			trace('tapped\n');
+			if (content == addButton && navBar.titleWords.string.toLowerCase() == 'categories') {
+			  application.add(addClothingModal.modal);
+			}
 		}}
 	}),
 	name: name
