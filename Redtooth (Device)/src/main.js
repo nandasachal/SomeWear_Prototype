@@ -16,29 +16,42 @@ var labelStyle = new Style( { font: "Roboto bold 30px", color:"black" } );
 //Pictures
 
 new_eff = new Effect();
-new_eff.mask(new Texture("./blackCircle.png"));
+new_eff.mask(new Texture("./yellowCircle.png"));
 
-var hanger1Con = new Container({
-	left: 0, right: 0, top: 0, bottom: 0,
-	skin:blueSkin,
-})
+var hanger1Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger2Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger3Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger4Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger5Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger6Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger7Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
+var hanger8Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
 
-var hanger1pic = new Layer({
-	left:0, right:0, top:15, bottom:0,
-})
+var hanger1pic = new Layer({ left:0, right:0, height: 80 });
+var hanger2pic = new Layer({ left:0, right:0, height: 80 });
+var hanger3pic = new Layer({ left:0, right:0, height: 80 });
+var hanger4pic = new Layer({ left:0, right:0, height: 80 });
+var hanger5pic = new Layer({ left:0, right:0, height: 80 });
+var hanger6pic = new Layer({ left:0, right:0, height: 80 });
+var hanger7pic = new Layer({ left:0, right:0, height: 80 });
+var hanger8pic = new Layer({ left:0, right:0, height: 80 });
 
-hanger1pic.add(hanger1Con);
-hanger1pic.effect = new_eff;
+var hangerContainers = [ hanger1Con, hanger2Con, hanger3Con, hanger4Con, hanger5Con, hanger6Con, hanger7Con, hanger8Con ];
+var layers = [ hanger1pic, hanger2pic, hanger3pic, hanger4pic, hanger5pic, hanger6pic, hanger7pic, hanger8pic ];
 
+for (var i = 0; i < layers.length; i++) {
+    layers[i].add(hangerContainers[i]);
+    layers[i].effect = new_eff;
+}
 
 //var hanger1pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger1pic"});
-var hanger2pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger2pic"});
-var hanger3pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger3pic"});
-var hanger4pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger4pic"});
-var hanger5pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger5pic"});
-var hanger6pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger6pic"});
-var hanger7pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger7pic"});
-var hanger8pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger8pic"});
+//var hanger2pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger2pic"});
+//var hanger3pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger3pic"});
+//var hanger4pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger4pic"});
+//var hanger5pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger5pic"});
+//var hanger6pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger6pic"});
+//var hanger7pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger7pic"});
+//var hanger8pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger8pic"});
 
 
 Handler.bind("/getCloset", Behavior({
@@ -53,14 +66,14 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 //@line 27
 	onInvoke: { value: function( handler, message ){
 			result = message.requestObject;
-			var hanger1Val = (result.hanger1.toFixed(4))*10000;
-			var hanger2Val = (result.hanger2.toFixed(4))*10000;
-			var hanger3Val = (result.hanger3.toFixed(4))*10000;
-			var hanger4Val = (result.hanger4.toFixed(4))*10000;
-			var hanger5Val = (result.hanger5.toFixed(4))*10000;
-			var hanger6Val = (result.hanger6.toFixed(4))*10000;		
-			var hanger7Val = (result.hanger7.toFixed(4))*10000;
-			var hanger8Val = (result.hanger8.toFixed(4))*10000;
+			var hanger1Val = Math.floor(result.hanger1.toFixed(4)*10000);
+			var hanger2Val = Math.floor(result.hanger2.toFixed(4)*10000);
+			var hanger3Val = Math.floor(result.hanger3.toFixed(4)*10000);
+			var hanger4Val = Math.floor(result.hanger4.toFixed(4)*10000);
+			var hanger5Val = Math.floor(result.hanger5.toFixed(4)*10000);
+			var hanger6Val = Math.floor(result.hanger6.toFixed(4)*10000);		
+			var hanger7Val = Math.floor(result.hanger7.toFixed(4)*10000);
+			var hanger8Val = Math.floor(result.hanger8.toFixed(4)*10000);
 			hanger1Label.string = hanger1Val;
 			hanger2Label.string = hanger2Val;
 			hanger3Label.string = hanger3Val;
@@ -69,86 +82,29 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 			hanger6Label.string = hanger6Val;
 			hanger7Label.string = hanger7Val;
 			hanger8Label.string = hanger8Val;
-			/*if (hanger1Val != hangerClothIDPairs.hanger1){
-				if (hanger1Val != 0 ){
-					hanger1pic.url="yellowCircle.png";
-				}
-				else{
-					hanger1pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger1=hanger1Val;
-			}*/
-			if (hanger2Val != hangerClothIDPairs.hanger2){
-				if (hanger2Val != 0 ){
-					hanger2pic.url="yellowCircle.png";
-				}
-				else{
-					hanger2pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger2=hanger2Val;
-			}
-			if (hanger3Val != hangerClothIDPairs.hanger3){
-				if (hanger3Val != 0 ){
-					hanger3pic.url="yellowCircle.png";
-				}
-				else{
-					hanger3pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger3=hanger3Val;
-			}
-			if (hanger4Val != hangerClothIDPairs.hanger4){
-				if (hanger4Val != 0 ){
-					hanger4pic.url="yellowCircle.png";
-				}
-				else{
-					hanger4pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger4=hanger4Val;
-			}
-			if (hanger5Val != hangerClothIDPairs.hanger5){
-				if (hanger5Val != 0 ){
-					hanger5pic.url="yellowCircle.png";
-				}
-				else{
-					hanger5pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger5=hanger5Val;
-			}
-			if (hanger6Val != hangerClothIDPairs.hanger6){
-				if (hanger6Val != 0 ){
-					hanger6pic.url="yellowCircle.png";
-				}
-				else{
-					hanger6pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger6=hanger6Val;
-			}
-			if (hanger7Val != hangerClothIDPairs.hanger7){
-				if (hanger7Val != 0 ){
-					hanger7pic.url="yellowCircle.png";
-				}
-				else{
-					hanger7pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger7=hanger7Val;
-			}
-			if (hanger8Val != hangerClothIDPairs.hanger8){
-				if (hanger8Val != 0 ){
-					hanger8pic.url="yellowCircle.png";
-				}
-				else{
-					hanger8pic.url="blackCircle.png";
-				}
-				hangerClothIDPairs.hanger8=hanger8Val;
-			}
 		}}
 }));
 
 Handler.bind("/lightUp", Behavior({
     onInvoke: function(handler, message) {
         var query = parseQuery(message.query);
-        var hanger = query['hanger'];
+        var hangerString = query['hanger'];
         var color = query['color'];
+
+        var index = parseInt(hangerString.replace('hanger', ''));
+        var container = hangerContainers[index];
+        container.skin = new Skin({ fill: color });
+    }
+}));
+
+Handler.bind("/dim", Behavior({
+    onInvoke: function(handler, message) {
+        var query = parseQuery(message.query);
+        var hangerString = query['hanger'];
+
+        var index = parseInt(hangerString.replace('hanger', ''));
+        var container = hangerContainers[index];
+        container.skin = blackSkin;
     }
 }));
 
