@@ -9,12 +9,15 @@ var BUTTONS = require('controls/buttons');
 
 var scrollingExample = require("scrollingexample.js");
 var addClothingModal = require("addCLothingModal.js");
+var navigationBar = require("navigationBar.js");
 
+navigationBar.navBar.titleWords.string = "CATEGORIES";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
 		scrollingExample.menuItems.forEach(scrollingExample.ListBuilder);
+		application.add(navigationBar.navBar);
 		application.add(scrollingExample.screen);
 	}},
 	/*
