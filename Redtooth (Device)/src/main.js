@@ -14,7 +14,24 @@ var blueSkin = new Skin({fill:"blue"});
 var labelStyle = new Style( { font: "Roboto bold 30px", color:"black" } );
 
 //Pictures
-var hanger1pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger1pic"});
+
+new_eff = new Effect();
+new_eff.mask(new Texture("./blackCircle.png"));
+
+var hanger1Con = new Container({
+	left: 0, right: 0, top: 0, bottom: 0,
+	skin:blueSkin,
+})
+
+var hanger1pic = new Layer({
+	left:0, right:0, top:15, bottom:0,
+})
+
+hanger1pic.add(hanger1Con);
+hanger1pic.effect = new_eff;
+
+
+//var hanger1pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger1pic"});
 var hanger2pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger2pic"});
 var hanger3pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger3pic"});
 var hanger4pic = new Picture({left:0, right:0, top:15, bottom:0, url:"blackCircle.png", name:"hanger4pic"});
@@ -52,7 +69,7 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 			hanger6Label.string = hanger6Val;
 			hanger7Label.string = hanger7Val;
 			hanger8Label.string = hanger8Val;
-			if (hanger1Val != hangerClothIDPairs.hanger1){
+			/*if (hanger1Val != hangerClothIDPairs.hanger1){
 				if (hanger1Val != 0 ){
 					hanger1pic.url="yellowCircle.png";
 				}
@@ -60,7 +77,7 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 					hanger1pic.url="blackCircle.png";
 				}
 				hangerClothIDPairs.hanger1=hanger1Val;
-			}
+			}*/
 			if (hanger2Val != hangerClothIDPairs.hanger2){
 				if (hanger2Val != 0 ){
 					hanger2pic.url="yellowCircle.png";
