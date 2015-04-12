@@ -7,6 +7,7 @@ var BUTTONS = require('controls/buttons');
 var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothing.js");
 var categoriesScreen = require("scrollingexample.js");
+var addCategory = require("addCategory.js");
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var headerStyle = new Style({font: 'bold 24px', color: 'white', align: 'center, middle'});
@@ -26,10 +27,14 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 		onTap: { value: function(content) {
 
 			trace("initial\n");
-			if (content == addButton && navBar.titleWords.string.toLowerCase() == 'clothing') {
-				
-			  application.add(addClothingModal.modal);
-			  application.remove(clothingScreen.screen);
+			if (content == addButton) {
+				if (navBar.titleWords.string == "CLOTHING") {
+					application.add(addClothingModal.modal);
+					application.remove(clothingScreen.screen);
+				} else {
+					application.add(addCategory.modal);
+					application.remove(categoriesScreen.screen);
+				}
 			}
 			
 			if (content == switchIcon) {
