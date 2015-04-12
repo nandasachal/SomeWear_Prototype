@@ -11,6 +11,8 @@ var whiteSkin = new Skin({fill:"transparent"});
 
 var title = ''
 
+var clothingScreen = require("clothing.js");
+
 function getClothingInfo() {
   return {
     title: title
@@ -79,6 +81,8 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
+
+            application.add(clothingScreen.screen);
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
         }},
     })
@@ -92,6 +96,8 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
+       		
+            application.add(clothingScreen.screen);
         }},
     })
 }});

@@ -17,7 +17,7 @@ application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
-		//scrollingExample.menuItems.forEach(scrollingExample.ListBuilder);
+		scrollingExample.menuItems.forEach(scrollingExample.ListBuilder);
 		//application.add(scrollingExample.screen);
 		clothingScreen.clothingList.forEach(clothingScreen.ListBuilder);
 		application.add(clothingScreen.screen);
@@ -32,6 +32,7 @@ application.behavior = Object.create(Object.prototype, {
 	},
 	*/
 });
+
 
 /*
 var deviceURL = "";
