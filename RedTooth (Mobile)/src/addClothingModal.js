@@ -17,6 +17,7 @@ function getClothingInfo() {
   }
 }
 
+var title = '';
 var TitleField = Container.template(function($) { return { 
   width: 250, height: 36, skin: nameInputSkin, contents: [
     Scroller($, { 
@@ -29,7 +30,8 @@ var TitleField = Container.template(function($) { return {
                 onEdited: { value: function(label){
                     var data = this.data;
                     data.name = label.string;
-                    label.container.titleHint.visible = ( data.name.length == 0 ); 
+                    label.container.titleHint.visible = ( data.name.length == 0 );
+                    title = label.string;
                 }}
             }),
          }),
@@ -41,6 +43,7 @@ var TitleField = Container.template(function($) { return {
   ]
 }});
 
+var categories = '';
 var CategoriesField = Container.template(function($) { return { 
   width: 250, height: 36, skin: nameInputSkin, contents: [
     Scroller($, { 
@@ -53,7 +56,8 @@ var CategoriesField = Container.template(function($) { return {
                 onEdited: { value: function(label){
                     var data = this.data;
                     data.name = label.string;
-                    label.container.categoriesHint.visible = ( data.name.length == 0 ); 
+                    label.container.categoriesHint.visible = ( data.name.length == 0 );
+                    categories = label.string; 
                 }}
             }),
          }),
@@ -75,6 +79,7 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
+            trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
         }},
     })
 }});
@@ -91,7 +96,7 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
     })
 }});
 
-var whiteSkin = new Skin( { fill:"green" } );
+var whiteSkin = new Skin('white');
 var labelStyle = new Style( { font: "bold 30px", color:"black" } );
 
 var buttons = new Line({
@@ -102,14 +107,14 @@ var buttons = new Line({
 });
 
 var modal = new Column({
-    left: 20, right: 20, top: 20, bottom: 20, skin: whiteSkin,
+    left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
     contents: [
         new Label({string:"Add Clothing", style: labelStyle, top: 20}),
         new Container({ height: 50 }),
         new TitleField({ name: '' }),
         new Container({ height: 10 }),
         new CategoriesField({ name: '' }),
-        new Container({ height: 30 }),
+        new Container({ height: 25 }),
         buttons,
     ]
 });
