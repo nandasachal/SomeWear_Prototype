@@ -55,12 +55,12 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			/*container.skin = whiteSkin;
 			trace(container.first.first.first.string+"\n");*/
 			if (!$.toggleOn) {
-				container.skin = onSkin;
+				container.first.skin = onSkin;
 				trace("toggled on!\n");
 				$.toggleOn = true;
 				selectedCategories.push($);
 			} else if ($.toggleOn) {
-				container.skin = whiteSkin;
+				container.first.skin = new Skin({fill: $.color});
 				trace("toggled off!\n");
 				$.toggleOn = false;
 				selectedCategories.splice(selectedCategories.indexOf($), 1);
@@ -68,7 +68,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 		}}
     }),
 	contents: [
-     	Column($, { left: 0, right: 0, contents: [
+     	Column($, { left: 0, right: 0, skin: new Skin({fill: $.color}), contents: [
      		Container($, { left: 4, right: 4, height: 52, 
      			contents: [
      			           /* This label expects that the object passed to ProcessorLine() 
@@ -78,7 +78,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
      			           Label($, { left: 10, style: productNameStyle, string: $.name,}),
      			           /* This label is expecting a value for button.  Note that this Label
      			            * is marked active.  Touches registered here will be handeled here */
-     			           Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.color,
+     			           Label($, { right: 10, style: productDescriptionStyle, active: true, 
      			               behavior: Object.create(Behavior.prototype, {
      			           		    	/* When this label is touched, simply trace out its string.
      			           		    	 * Note that no chain of "first" is needed here because the

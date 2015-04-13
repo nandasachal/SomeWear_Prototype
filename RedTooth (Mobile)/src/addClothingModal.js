@@ -5,6 +5,7 @@ var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var addCategoryToClothing = require("addCategoryToClothing.js");
 var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar.js");
+var category = require("category.js");
 
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
@@ -138,7 +139,7 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             clothingScreen.clothingList = clothing.clothingInCloset;
             clothingScreen.nextIdNum++;
             
-            
+            category.addClothingToCategories(addCategoryToClothing.selectedCategories, newAddedClothing);
             
             trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");
             
