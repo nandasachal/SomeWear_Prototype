@@ -2,11 +2,11 @@
 var limeGreenVariantColor = '#FFC4EE6F';
 var watermelonVariantColor = '#FFFF7777';
 var cremeBruleeVariantColor = '#FFFFD277';
-var purpleVariantColor = '#FF705DAF';
-var renaissanceBlueVariantColor = '#FF2F71A4';
-var orangeCreamsicleVariantColor = '#FFFF953D';
-var caterpieGreenVariantColor = '#D03285';
-var pikachuYellowVariantColor = '#FFFFFF3D';
+var purpleVariantColor = '#FF7E76B7';
+var renaissanceBlueVariantColor = '#FF4A9BCD';
+var orangeCreamsicleVariantColor = '#FFF3A05B';
+var caterpieGreenVariantColor = '#FFDA78B0';
+var pikachuYellowVariantColor = '#FFFEF493';
 
 var categorySkinColors = [limeGreenVariantColor, watermelonVariantColor, cremeBruleeVariantColor, 
 							purpleVariantColor, renaissanceBlueVariantColor, orangeCreamsicleVariantColor, 
@@ -15,9 +15,9 @@ var categorySkinColors = [limeGreenVariantColor, watermelonVariantColor, cremeBr
 var categories = [];
 
 var sampleCategories = [
-	    {name: 'Business', color: renaissanceBlueVariantColor, clothing: []},
+	    {name: 'Casual', color: limeGreenVariantColor, clothing: []},
     	{name: 'Date', color: watermelonVariantColor, clothing: []},
-    	{name: 'Casual', color: orangeCreamsicleVariantColor, clothing: []},
+    	{name: 'Business', color: cremeBruleeVariantColor, clothing: []},
 	];
 
 var Category = function(name, color, subcategories, clothing) {
