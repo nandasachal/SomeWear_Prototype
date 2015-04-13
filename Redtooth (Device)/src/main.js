@@ -115,6 +115,16 @@ Handler.bind("/dim", Behavior({
     }
 }));
 
+Handler.bind("/dimAll", Behavior({
+    onInvoke: function(handler, message) {
+        Object.keys(hangerClothIDPairs).forEach(function (hanger) {
+            application.invoke(new Message("dim?" + serializeQuery({
+		        hanger: hanger,
+		    })), Message.JSON);
+        });
+    }
+}));
+
 hanger1Label = new Label({left:0, right:0, height:40, string: "0", style: labelStyle});
 hanger2Label = new Label({left:0, right:0, height:40, string: "0", style: labelStyle});
 hanger3Label = new Label({left:0, right:0, height:40, string: "0", style: labelStyle});
