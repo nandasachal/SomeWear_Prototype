@@ -39,6 +39,19 @@ var Clothing = function(name, id, categories, hangerId, photo) {
 }
 
 
+function addCategoriesToClothing(selectedClothingArray, categoryObject) {
+	for (var i = 0; i < selectedClothingArray.length; i++) {
+		for (var j = 0; j < clothingInCloset.length; j++) {
+			if (selectedClothingArray[i].name == clothingInCloset[j].name) {
+				clothingInCloset[j].categories.push(categoryObject);
+				trace(categoryObject.name + " is being added to " + clothingInCloset[j].name + "\n");
+			}
+		}
+	}
+}
+
+
+
 //loading sample clothes into existing closet...
 
 for (var i = 0; i < sampleClothes.length; i++) {
@@ -46,7 +59,6 @@ for (var i = 0; i < sampleClothes.length; i++) {
 	newClothing.name = sampleClothes[i].name;
 	newClothing.idNum = sampleClothes[i].idNum;
 	newClothing.photo = sampleClothes[i].photo;
-	//hangeriDs start at 1
 	newClothing.hangerId = i + 1;
 	newClothing.categories = sampleClothes[i].categories;
 	clothingInCloset.push(newClothing);
@@ -59,3 +71,4 @@ trace("clothingInCloset = " + clothingInCloset+"\n");
 
 exports.Clothing = Clothing;
 exports.clothingInCloset = clothingInCloset;
+exports.addCategoriesToClothing = addCategoriesToClothing;
