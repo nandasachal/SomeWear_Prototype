@@ -20,13 +20,12 @@ application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
-		categoryScreen.menuItems.forEach(categoryScreen.ListBuilder);
+		categoryScreen.categories.forEach(categoryScreen.ListBuilder);
 		//application.add(scrollingExample.screen);
 		clothingScreen.clothingList.forEach(clothingScreen.ListBuilder);
 		application.add(clothingScreen.screen);
 		application.add(navigationBar.navBar);
 
-		sports = category.Category(name="Sports", color="orange", subcategories=["baseball", "soccer"], clothing=["sock", "pants"]);
 
 		trace("nextIdNum = " + clothingScreen.nextIdNum + "\n");
 
