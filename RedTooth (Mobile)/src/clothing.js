@@ -6,11 +6,11 @@ var clothingInCloset = [];
 
 
 var sampleClothes = [
-    	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt.png", toggleOn: false},
-    	{name: 'gray jacket', idNum: 2, photo:"../assets/shirt.png", toggleOn: false},
-    	{name: 'black dress', idNum: 3, photo: "../assets/shirt.png", toggleOn: false},
-    	{name: 'red hoodie', idNum: 4, photo: "../assets/shirt.png", toggleOn: false},
-    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/shirt.png", toggleOn: false},
+    	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt.png", toggleOn: false, categories: ["Business"]},
+    	{name: 'gray jacket', idNum: 2, photo:"../assets/shirt.png", toggleOn: false, categories: ["Business"]},
+    	{name: 'black dress', idNum: 3, photo: "../assets/shirt.png", toggleOn: false, categories: ["Date"]},
+    	{name: 'red hoodie', idNum: 4, photo: "../assets/shirt.png", toggleOn: false, categories: ["Date"]},
+    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/shirt.png", toggleOn: false, categories: ["Business", "Date"]},
 ];
 
 
@@ -48,6 +48,7 @@ for (var i = 0; i < sampleClothes.length; i++) {
 	newClothing.photo = sampleClothes[i].photo;
 	//hangeriDs start at 1
 	newClothing.hangerId = i + 1;
+	newClothing.categories = sampleClothes[i].categories;
 	clothingInCloset.push(newClothing);
 	
 	trace("newClothing.name = " + newClothing.name + "\n");
