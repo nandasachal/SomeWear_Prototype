@@ -118,7 +118,8 @@ Handler.bind("/dim", Behavior({
 Handler.bind("/dimAll", Behavior({
     onInvoke: function(handler, message) {
         Object.keys(hangerClothIDPairs).forEach(function (hanger) {
-            application.invoke(new Message("dim?" + serializeQuery({
+ 			trace('dim alls hanger is '+ hanger + '\n');
+            application.invoke(new Message("/dim?" + serializeQuery({
 		        hanger: hanger,
 		    })), Message.JSON);
         });
