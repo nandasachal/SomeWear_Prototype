@@ -85,23 +85,6 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
      	Column($, { left: 0, right: 0, contents: [
      		Container($, { left: 0, right: 0, height: 100, width: 100, skin: whiteSkin,
      			contents: [
-     			           /* This label expects that the object passed to ProcessorLine() 
-     			            * includes a value for title.  Note that this Label is not marked
-     			            * as active. Touches registered here will bubble back up to the
-     			            * nested objects until it hits one which is active. */
-     			           /* This label is expecting a value for button.  Note that this Label
-     			            * is marked active.  Touches registered here will be handeled here */
-     			           //Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.button,
-     			           //    behavior: Object.create(Behavior.prototype, {
-     			           		    	/* When this label is touched, simply trace out its string.
-     			           		    	 * Note that no chain of "first" is needed here because the
-     			           		    	 * touch happened in the object that contains the property
-     			           		    	 * we want to trace */
-     			           	//	    	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
-							//				trace(label.string+"\n");
-							//			}}
-							//	})
-     			           //}),
      			           new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
      			           Label($, { style: productNameStyle, string: $.name,}),
  			           ], 
@@ -184,7 +167,6 @@ function listRefresh() {
 }
 
 exports.ListBuilder = ListBuilder;
-exports.clothingList = clothingList;
 exports.screen = screen;
 exports.nextIdNum = nextIdNum;
 //exports.addNewClothingItem = addNewClothingItem;

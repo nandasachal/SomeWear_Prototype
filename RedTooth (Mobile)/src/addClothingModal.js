@@ -135,7 +135,10 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
            	newAddedClothing.photo = "../assets/shirt.png";
            	newAddedClothing.toggleOn = false;
-           	newAddedClothing.categories = addCategoryToClothing.selectedCategories;
+           	newAddedClothing.categories = [];
+           	for (var i = 0; i < addCategoryToClothing.selectedCategories.length; i++) {
+           		newAddedClothing.categories.push(addCategoryToClothing.selectedCategories[i]);
+           	}
            	trace("selectedCategories of this added clothing = " + addCategoryToClothing.selectedCategories + "\n");
             //clothingScreen.clothingList.unshift(newAddedClothing);
             clothing.clothingInCloset.unshift(newAddedClothing);

@@ -82,8 +82,12 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
            		return;
             }
             
-			newCategory = category.Category(name=categoryName, color=category.generateCategorySkinColor(), subcategories = categorySubcategories, clothing = addClothingToCategory.selectedClothing);
-			
+			newCategory = category.Category(name=categoryName, color=category.generateCategorySkinColor(), subcategories = categorySubcategories);
+			newCategory.clothing = [];
+			for (var i = 0; i < addClothingToCategory.selectedClothing.length; i++) {
+				newCategory.clothing.push(addClothingToCategory.selectedClothing);
+			}
+
 			trace(Object.keys(clothing) + "\n");
 			clothingFile.addCategoriesToClothing(addClothingToCategory.selectedClothing, newCategory);
 			/*trace("newCategory.clothing = " + newCategory.clothing + "\n");
