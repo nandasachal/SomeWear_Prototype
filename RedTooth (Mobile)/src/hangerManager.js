@@ -256,6 +256,10 @@ function dim(hanger) {
     })), Message.JSON);
 }
 
+function dimAll() {
+    application.invoke(new Message(deviceURL + "dimAll"));
+}
+
 exports.lightUp = lightUp;
 exports.dim = dim;
 exports.syncBar = syncBar;
