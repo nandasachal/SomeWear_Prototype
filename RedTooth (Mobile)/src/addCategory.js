@@ -53,17 +53,16 @@ var doneButton = BUTTONS.Button.template(function($) { return {
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
             KEYBOARD.hide();
-            application.remove(modal);
-            
+
 			newCategory = category.Category(name=categoryName, color=categoryColor, subcategories = categorySubcategories, clothing = categoryClothing);
 			newCategory.button = 'Hit';
-			
+
 			categoriesScreen.categories.push(newCategory);
 			categoriesScreen.ListBuilder(newCategory);
-
-            application.add(categoriesScreen.screen);
             
             titleField.first.first.string = '';
+            application.remove(modal);
+            application.replace(categoriesScreen.blankScreen, categoriesScreen.screen);
         }},
     })
 }});
