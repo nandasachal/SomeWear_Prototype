@@ -1,4 +1,5 @@
 //@module
+var clothing = require("clothing.js");
 var addClothingModal = require("addClothingModal.js");
 var addCategoryToClothing = require("addCategoryToClothing.js"); 
 
@@ -45,6 +46,18 @@ Handler.bind("/getCloset", {
     			count=count+1;
     		}
     	}
+    	clothing.clothingInCloset.forEach( function(obj) {
+    		var exists = false;
+			for (var key in closet) {
+				if (closet[key] == obj.idNum) {
+					obj.hangerId = key;
+					exists = true;
+				}
+			}
+			if (!exists) {
+				obj.hangerId = '';
+			}
+		});
     	if (count>0){
     		addText.string=count+" new";
     		application.add(addCon);

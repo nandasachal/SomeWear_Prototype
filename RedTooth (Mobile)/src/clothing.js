@@ -59,12 +59,13 @@ for (var i = 0; i < sampleClothes.length; i++) {
 	newClothing.name = sampleClothes[i].name;
 	newClothing.idNum = sampleClothes[i].idNum;
 	newClothing.photo = sampleClothes[i].photo;
-	newClothing.hangerId = i + 1;
 	newClothing.categories = sampleClothes[i].categories;
+	newClothing.hangerId = '';
 	clothingInCloset.push(newClothing);
 	
 	trace("newClothing.name = " + newClothing.name + "\n");
 }
+
 
 trace("clothingInCloset = " + clothingInCloset+"\n");
 
