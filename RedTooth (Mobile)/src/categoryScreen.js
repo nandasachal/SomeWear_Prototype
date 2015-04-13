@@ -9,13 +9,13 @@ var SCREEN = require('mobile/screen');
 /* ASSETS */
 var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
-var yellowSkin	= new Skin({ fill: 'yellow'});
+var onSkin	= new Skin({ fill: 'yellow'});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 
 /* STYLES */
-var productNameStyle = new Style({  font: 'bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
-var productDescriptionStyle = new Style({  font: '18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
+var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
+var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
 
 /* STATIC */
 /* A simple array of objects. Each will be used as a single
@@ -32,15 +32,24 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
     	/* Gives the user some visual feedback on which entry they have tapped.
     	 * note that the skin is reverted to white in onTouchEnded() */    	 
     	onTouchBegan: { value: function(container, id, x,  y, ticks) {
-    		container.skin = yellowSkin;
+    		//container.skin = yellowSkin;
     	}},
     	/* Traces out the value of the first Label's string. The
     	 * silly string of "first" in the trace can be thought of as
     	 * container.Column.Container.Label.string.  This pattern can
     	 * be seen reading down the contents of this object below */
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
-			container.skin = whiteSkin;
-			trace(container.first.first.first.string+"\n");
+			/*container.skin = whiteSkin;
+			trace(container.first.first.first.string+"\n");*/
+			if (!$.toggleOn) {
+				container.skin = onSkin;
+				trace("toggled on!\n");
+				$.toggleOn = true;
+			} else if ($.toggleOn) {
+				container.skin = whiteSkin;
+				trace("toggled off!\n");
+				$.toggleOn = false;
+			}
 		}}
     }),
 	contents: [
