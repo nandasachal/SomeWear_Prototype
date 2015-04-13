@@ -42,6 +42,9 @@ application.behavior = Object.create(Object.prototype, {
 
 		trace("nextIdNum = " + clothingScreen.nextIdNum + "\n");
 
+		application.add(hangerManager.syncBar);
+
+
 	}},
 	onDisplayed: { value: function(application) {
 		application.discover("redtooth_device.app");

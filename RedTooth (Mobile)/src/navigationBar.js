@@ -31,10 +31,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 		onTap: { value: function(content) {
 			if (content == addButton) {
 				if (navBar.titleWords.string.trim() == "CLOTHING") {
-					addCategoryToClothing.initialize();
-					addClothingModal.clear();
-					application.add(addClothingModal.modal);
-					application.replace(clothingScreen.screen, clothingScreen.blankScreen);
+					application.invoke(new Message("/getCloset"));
 				} else {
 					application.add(addCategory.modal);
 					application.replace(categoriesScreen.screen, categoriesScreen.blankScreen);
