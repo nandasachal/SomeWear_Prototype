@@ -6,6 +6,10 @@ var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 
+var category = require('category.js');
+var clothing = require('clothing.js');
+var hangerManager = require('hangerManager.js');
+
 /* ASSETS */
 var onColor = "#FFD599";
 var blackSkin = new Skin({ fill: 'black',});
@@ -64,6 +68,7 @@ var categorySkinColors = [limeGreenVariantColor, watermelonVariantColor, cremeBr
     	{name: 'Dessert Date', color:cremeBruleeVariantColor},*/
 //	];
 
+
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
 var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin: THEME.lineSkin, 
@@ -82,7 +87,13 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			trace(container.first.first.first.string+"\n");*/
 			if (!$.toggleOn) {
 				container.first.skin = onSkin;
-				trace("toggled on!\n");
+				//Below WORKS, assumes a category object has an array of clothing
+				//$.clothing = clothing.clothingInCloset;
+				$.clothing.forEach(function(obj) {
+					var hangerId = obj.hangerId;
+					var hanger = 'hanger' + hangerId.toString();
+					hangerManager.lightUp(hanger, $.color);
+				});
 				$.toggleOn = true;
 			} else if ($.toggleOn) {
 				container.first.skin = new Skin({fill: $.color});

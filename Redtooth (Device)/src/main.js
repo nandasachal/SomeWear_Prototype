@@ -90,7 +90,6 @@ Handler.bind("/lightUp", Behavior({
         var query = parseQuery(message.query);
         var hangerString = query['hanger'];
         var color = query['color'];
-
         var index = parseInt(hangerString.replace('hanger', ''));
         var container = hangerContainers[index - 1];
         container.skin = new Skin({ fill: color });

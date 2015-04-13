@@ -54,6 +54,7 @@ for (var i = 0; i < sampleCategories.length; i++) {
 	newCategory.name = sampleCategories[i].name;
 	newCategory.color = sampleCategories[i].color;
 	newCategory.clothing = sampleCategories[i].clothing;
+	newCategory.toggleOn = false;
 	categories.push(newCategory);
 }
 

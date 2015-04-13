@@ -46,6 +46,8 @@ for (var i = 0; i < sampleClothes.length; i++) {
 	newClothing.name = sampleClothes[i].name;
 	newClothing.idNum = sampleClothes[i].idNum;
 	newClothing.photo = sampleClothes[i].photo;
+	//hangeriDs start at 1
+	newClothing.hangerId = i + 1;
 	clothingInCloset.push(newClothing);
 	
 	trace("newClothing.name = " + newClothing.name + "\n");
