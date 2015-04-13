@@ -259,8 +259,10 @@ function dim(hanger) {
 
 function dimAll() {
     application.invoke(new Message(deviceURL + "dimAll"));
+    trace('reached dimAll\n');
 }
 
 exports.lightUp = lightUp;
+exports.dimAll = dimAll;
 exports.dim = dim;
 exports.syncBar = syncBar;
