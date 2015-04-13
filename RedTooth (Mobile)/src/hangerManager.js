@@ -61,6 +61,7 @@ Handler.bind("/getCloset", {
     		var exists = false;
 			for (var key in closet) {
 				if (closet[key] == obj.idNum) {
+				    trace('Found ' + obj.name + '\n');
 					obj.hangerId = key;
 					exists = true;
 				}

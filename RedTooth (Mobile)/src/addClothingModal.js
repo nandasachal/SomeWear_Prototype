@@ -127,7 +127,7 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             
             var newAddedClothing = clothing.Clothing();
            	newAddedClothing.name = title;
-           	newAddedClothing.id = id;
+           	newAddedClothing.idNum = id;
 
            	newAddedClothing.hangerId = hanger_name; 
 
