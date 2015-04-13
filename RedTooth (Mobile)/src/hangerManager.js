@@ -3,12 +3,23 @@ var clothing = require("clothing.js");
 var addClothingModal = require("addClothingModal.js");
 var addCategoryToClothing = require("addCategoryToClothing.js"); 
 
-var bigText = new Style({font:"bold 50px", color:"#333333"});
-var largeText = new Style({font:"bold 60px", color:"#333333"});
-var smallText = new Style({font:"20px", color:"#333333"});
+var bigText = new Style({font:"bold 30px", color:"white"});
+var largeText = new Style({font:"bold 30px", color:"white"});
+var smallText = new Style({font:"20px", color:"white"});
 var whiteS = new Skin({fill:"white"});
 var grayS = new Skin({fill:"gray"});
 var blueS = new Skin({fill:"blue"});
+
+//common colors
+var darkerTealColorLightOpacity = "#bb144644";
+var darkerTealColorHeavy = "#FF347A75";
+var tealColor = "#FF52b0b0";
+var lighterTealColor = "#ff84D3D1";
+var lightestTealColor = "#ffDEFCFA";
+
+var tealSkin = new Skin({fill: darkerTealColorLightOpacity});
+
+var syncSkin = new Skin({fill: darkerTealColorHeavy });
 
 var closet = {"hanger1":0, "hanger2":0, "hanger3":0, "hanger4":0,
 			          "hanger5":0, "hanger6":0, "hanger7":0, "hanger8":0}	
@@ -134,45 +145,85 @@ var addBehavior = Object.create(Behavior.prototype, {
 });
 
 var syncCon = new Container({
-	left:0, right:0, height:50, bottom:0,
-	skin: grayS,
+	left:0, right:0, height:40, bottom:0,
+	skin: syncSkin,
 	contents:[
-		new Text({left:100, right:0, top: 5, height: 40, string: "SYNC", style: bigText}),
+		new Text({left:100, right:0, top: 5, height: 40, string: "   SYNC", style: bigText}),
 	],
 	behavior:touchBehavior,
 	active:true
 });
 
-var ok = new Label({left:80, right:0, bottom: 20, height: 40, string: "OK", style: largeText}),
-var add = new Label({left:80, right:0, bottom: 20, height: 40, string: "ADD", style: largeText}),
+var addButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0,
+    behavior: addBehavior
+}});
+
+var okButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0,
+    behavior: closeBehavior
+}});
+
+var syncButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0,
+    behavior: touchBehavior
+}});
+
+
+
+
+var syncTexture = new Texture("../assets/syncButtonGraphic.png");
+var syncButtonSkin = new Skin({ texture: syncTexture, width: 311, height: 42});
+
+syncButton = new syncButtonTemplate();
+syncButton.skin = syncButtonSkin;
+
+var addTexture = new Texture('../assets/largeAddButtonGraphic.png');
+var addButtonSkin = new Skin({ texture: addTexture, width: 90, height: 51});
+
+var addButton = new addButtonTemplate();
+addButton.skin = addButtonSkin;
+
+var okTexture = new Texture('../assets/okLargeButtonGraphic.png');
+var okButtonSkin = new Skin({ texture: okTexture, width: 90, height: 51 });
+
+var okButton = new okButtonTemplate();
+okButton.skin = okButtonSkin;
+
+//var ok = new Label({left:80, right:0, bottom: 20, height: 40, string: "OK", style: largeText}),
+var ok = okButton;
+//var add = new Label({left:80, right:0, bottom: 20, height: 40, string: "ADD", style: largeText}),
+var add = addButton;
 var addText = new Label({left:20, right:10, top: 10, height: 40, string: "", style: bigText}),
 var addText2 = new Text({left:20, right:10, top: 50, height: 40, string: "items detected", style: bigText}),
 
 var syncBar = new Line({left:0, right:0, bottom:0, height: 50, skin: tealVariantSkin, name: 'syncBar', contents:[
-	syncCon
+	//syncCon
+	syncButton
 	]
 });
 
+
 var finishCon = new Container({
 	left:30, right:30, height:250, bottom:100,
-	skin: blueS,
+	skin: tealSkin,
 	contents:[
 		new Text({left:20, right:10, top: 10, height: 40, string: "All items synced!", style: largeText}),
 		ok
 	],
-	behavior: closeBehavior,
+	//behavior: closeBehavior,
 	active: true
 });
 
 var addCon = new Container({
 	left:30, right:30, height:250, bottom:100,
-	skin: blueS,
+	skin: tealSkin,
 	contents:[
 		addText,
 		addText2,
 		add
 	],
-	behavior: addBehavior,
+	//behavior: addBehavior,
 	active: true
 });
 
