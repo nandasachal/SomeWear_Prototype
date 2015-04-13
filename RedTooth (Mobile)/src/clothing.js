@@ -73,7 +73,7 @@ var productDescriptionStyle = new Style({  font: '18px', horizontal: 'left', ver
     	{title: 'Core i7', button: 'Sandy Bridge'}
     	];*/
     	
-    	
+var nextIdNum = 8;
     	
 var clothingList = [
     	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt.png", toggleOn: false},
@@ -178,9 +178,48 @@ function addNewClothingItem(element) {
 	screen.first.menu.add(new ClothingSubContainer(element));
 }
 
+function listRefresh() {
+	//application.remove(screen);
+	var data = new Object();
+	screen = new ScreenContainer(data);
+	clothingList.forEach(ListBuilder);
+	application.add(screen);
+	
+	return screen;
+	
+	
+	//screen.first.remove(screen.first.menu);
+	/*var newScreenContainer = Container.template(function($) { return {
+	left:0, right:0, top:40, bottom:0,
+	contents: [
+	   		/* Note that the scroller is declared as having only an empty
+	   		 * Column and a scrollbar.  All the entries will be added 
+	   		 * programmatically. 
+	   		SCROLLER.VerticalScroller($, { 
+	   			contents: [
+              			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
+              			SCROLLER.VerticalScrollbar($, { }),
+              			]
+	   		})
+	   		]
+	}});
+	screen.first.add(newScreenContainer);*/
+	
+	
+	/* = SCROLLER.VerticalScroller($, { 
+	   			contents: [
+              			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
+              			SCROLLER.VerticalScrollbar($, { }),
+              			]
+	   		});*/
+}
+
 exports.ListBuilder = ListBuilder;
 exports.clothingList = clothingList;
 exports.screen = screen;
+exports.nextIdNum = nextIdNum;
+exports.addNewClothingItem = addNewClothingItem;
+exports.listRefresh = listRefresh;
 
 
 

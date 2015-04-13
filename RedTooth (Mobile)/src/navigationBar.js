@@ -25,6 +25,12 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
+<<<<<<< HEAD
+=======
+
+			trace("initial\n");
+//<<<<<<< HEAD
+>>>>>>> can add new clothing, and they'll appear at the top of the list
 			if (content == addButton) {
 				if (navBar.titleWords.string == "CLOTHING") {
 					application.add(addClothingModal.modal);
@@ -34,6 +40,12 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					application.add(addCategory.modal);
 					application.remove(categoriesScreen.screen);
 				}
+/*=======
+			if (content == addButton && navBar.titleWords.string.toLowerCase() == 'clothing') {
+		      //application.remove(navigationBar.navBar);
+			  application.add(addClothingModal.modal);
+			  application.remove(clothingScreen.screen);
+>>>>>>> can add new clothing, and they'll appear at the top of the list*/
 			}
 			
 			if (content == switchIcon) {
@@ -52,19 +64,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				}
 			}
 			
-			/*if (content == switchIcon && navBar.titleWords.string == 'CLOTHING') {
-			  application.add(categoriesScreen.screen);
-			  application.remove(clothingScreen.screen);
-		      trace("title is currently equal to" + navBar.titleWords.string + "and should be equal to clothing\n");
-			  navBar.titleWords.string = "CATEGORIES";
-			  trace("title was equal to clothing, will be changed to " + navBar.titleWords.string + "\n");
-			}
-			if (content == switchIcon && navBar.titleWords.string == 'CATEGORIES') {
-			  application.add(clothingScreen.screen);
-			  application.remove(categoriesScreen.screen);
-			  navBar.titleWords.string = "CLOTHING";
-			  
-			}*/
+
 		}}
 	}),
 	name: name

@@ -12,6 +12,7 @@ var whiteSkin = new Skin({fill:"transparent"});
 var title = ''
 
 var clothingScreen = require("clothing.js");
+//var navigationBar = require("navigationBar.js");
 
 function getClothingInfo() {
   return {
@@ -88,9 +89,34 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
-
-            application.add(clothingScreen.screen);
+            //application.add(clothingScreen.screen);
+            //application.add(navigationBar.navBar);
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
+           	
+           	if (title == "") {
+           		return;
+           	}
+           	
+           	//var newDict = {name: title, idNum = clothingScreen.nextIdNum, photo: "../assets/shirt.png", toggleOn: "false"};
+           	var newDict = Object();
+           	newDict.name = title;
+           	newDict.idNum = clothingScreen.nextIdNum;
+           	newDict.photo = "../assets/shirt.png";
+           	newDict.toggleOn = false;
+            clothingScreen.clothingList.unshift(newDict);
+            clothingScreen.nextIdNum++;
+            trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");
+            
+            var newScreen = clothingScreen.listRefresh();
+            clothingScreen.screen = newScreen;
+ 			//clothingScreen.addNewClothingItem(newDict);
+ 			//application.add(clothingScreen.screen);
+ 			
+            for (var i = 0; i < clothingScreen.clothingList.length; i++) {
+            	trace(clothingScreen.clothingList[i].name + "\n");
+            	trace(clothingScreen.clothingList[i].idNum + "\n");
+            }
+            title = "";
         }},
     })
 }});
@@ -103,8 +129,8 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
-       		
             application.add(clothingScreen.screen);
+            title = "";
         }},
     })
 }});

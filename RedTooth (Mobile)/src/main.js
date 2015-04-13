@@ -24,7 +24,11 @@ application.behavior = Object.create(Object.prototype, {
 		clothingScreen.clothingList.forEach(clothingScreen.ListBuilder);
 		application.add(clothingScreen.screen);
 		application.add(navigationBar.navBar);
+
 		sports = category.Category(name="Sports", color="orange", subcategories=["baseball", "soccer"], clothing=["sock", "pants"]);
+
+		trace("nextIdNum = " + clothingScreen.nextIdNum + "\n");
+
 	}},
 	onDisplayed: { value: function(application) {
 		application.discover("redtooth_device.app");
