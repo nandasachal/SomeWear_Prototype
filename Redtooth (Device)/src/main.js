@@ -16,7 +16,7 @@ var labelStyle = new Style( { font: "Roboto bold 30px", color:"black" } );
 //Pictures
 
 new_eff = new Effect();
-new_eff.mask(new Texture("./yellowCircle.png"));
+new_eff.mask(new Texture("./blackCircle.png"));
 
 var hanger1Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
 var hanger2Con = new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:blackSkin });
@@ -92,7 +92,7 @@ Handler.bind("/lightUp", Behavior({
         var color = query['color'];
 
         var index = parseInt(hangerString.replace('hanger', ''));
-        var container = hangerContainers[index];
+        var container = hangerContainers[index - 1];
         container.skin = new Skin({ fill: color });
     }
 }));
@@ -103,7 +103,7 @@ Handler.bind("/dim", Behavior({
         var hangerString = query['hanger'];
 
         var index = parseInt(hangerString.replace('hanger', ''));
-        var container = hangerContainers[index];
+        var container = hangerContainers[index - 1];
         container.skin = blackSkin;
     }
 }));
