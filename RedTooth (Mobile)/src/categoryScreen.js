@@ -20,11 +20,48 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
 /* STATIC */
 /* A simple array of objects. Each will be used as a single
  * entry in our scrollable list. */
+ 
+/*
+var limeGreenVariantColor = '#FFC4EE6F';
+var watermelonVariantColor = '#FFFF7777';
+var cremeBruleeVariantColor = '#FFFFD277';
+var purpleVariantColor = '#FF705DAF';
+var renaissanceBlueVariantColor = '#FF2F71A4';
+var orangeCreamsicleVariantColor = '#FFFF953D';
+var caterpieGreenVariantColor = '#D03285';
+var pikachuYellowVariantColor = '#FFFFFF3D';
 
-var categories = [
-	    {name: 'Business', color:"orange"},
-    	{name: 'Date', color:"blue"},
-	];
+var selectedSkin = new Skin({fil:'#FFFFFFF6'});
+
+var categorySkinColors = [limeGreenVariantColor, watermelonVariantColor, cremeBruleeVariantColor, 
+							purpleVariantColor, renaissanceBlueVariantColor, orangeCreamsicleVariantColor, 
+							caterpieGreenVariantColor, pikachuYellowVariantColor];
+*/
+						
+//var generateCategorySkinColor = function() {
+/*
+	var colorIndex = 0;
+	if (categories.length >= categorySkinColors.length) {
+		colorIndex = categories.length % 8;
+	} else if (categories.length > 0) {
+		colorIndex = categories.length;	
+	}
+	return categorySkinColors[colorIndex];
+*/
+//	return categorySkinColors[categories.length % 8];
+//};
+
+//var categories = [
+		//The following placeholder categories test all available colors
+	    /*{name: 'Business', color:limeGreenVariantColor},
+    	{name: 'Date', color:watermelonVariantColor},
+    	{name: 'Moneymaker Fit', color:purpleVariantColor},
+    	{name: 'Pokemon Gear', color:pikachuYellowVariantColor},
+    	{name: 'Artsy', color:renaissanceBlueVariantColor},
+    	{name: 'Halloween', color:orangeCreamsicleVariantColor},
+    	{name: 'Hiking', color:caterpieGreenVariantColor},
+    	{name: 'Dessert Date', color:cremeBruleeVariantColor},*/
+//	];
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
@@ -43,19 +80,19 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			/*container.skin = whiteSkin;
 			trace(container.first.first.first.string+"\n");*/
 			if (!$.toggleOn) {
-				container.skin = onSkin;
+				container.first.skin = onSkin;
 				trace("toggled on!\n");
 				$.toggleOn = true;
 			} else if ($.toggleOn) {
-				container.skin = whiteSkin;
+				container.first.skin = new Skin({fill: $.color});
 				trace("toggled off!\n");
 				$.toggleOn = false;
 			}
 		}}
     }),
 	contents: [
-     	Column($, { left: 0, right: 0, contents: [
-     		Container($, { left: 4, right: 4, height: 52, 
+     	Column($, { left: 0, right: 0, skin: new Skin({fill: $.color}), contents: [
+     		Container($, { left: 4, right: 4, height: 52,
      			contents: [
      			           /* This label expects that the object passed to ProcessorLine() 
      			            * includes a value for title.  Note that this Label is not marked
@@ -64,17 +101,13 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
      			           Label($, { left: 10, style: productNameStyle, string: $.name,}),
      			           /* This label is expecting a value for button.  Note that this Label
      			            * is marked active.  Touches registered here will be handeled here */
-     			           Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.color,
+     			           /*Label($, { right: 10, style: productDescriptionStyle, skin: generateCategorySkinColor(), active: true, string: '',
      			               behavior: Object.create(Behavior.prototype, {
-     			           		    	/* When this label is touched, simply trace out its string.
-     			           		    	 * Note that no chain of "first" is needed here because the
-     			           		    	 * touch happened in the object that contains the property
-     			           		    	 * we want to trace */
      			           		    	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
 											trace(label.string+"\n");
 										}}
 								})
-     			           }), 
+     			           }),*/ 
  			           ], 
 	           }),
      		Line($, { left: 0, right: 0, height: 1, skin: separatorSkin, }),
@@ -126,6 +159,7 @@ function ListBuilder(element, index, array) {
 
 exports.ListBuilder = ListBuilder;
 //exports.menuItems = menuItems;
-exports.categories = categories;
+//exports.categories = categories;
+//exports.generateCategorySkinColor = generateCategorySkinColor;
 exports.screen = screen;
 exports.blankScreen = new Container({});

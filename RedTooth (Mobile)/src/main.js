@@ -20,7 +20,7 @@ application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
-		categoryScreen.categories.forEach(categoryScreen.ListBuilder);
+		category.categories.forEach(categoryScreen.ListBuilder);
 		//application.add(scrollingExample.screen);
 		clothingScreen.clothingList.forEach(clothingScreen.ListBuilder);
 		application.add(clothingScreen.screen);

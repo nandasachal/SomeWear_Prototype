@@ -53,11 +53,9 @@ var doneButton = BUTTONS.Button.template(function($) { return {
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
             KEYBOARD.hide();
+			newCategory = category.Category(name=categoryName, color=category.generateCategorySkinColor(), subcategories = categorySubcategories, clothing = categoryClothing);
 
-			newCategory = category.Category(name=categoryName, color=categoryColor, subcategories = categorySubcategories, clothing = categoryClothing);
-			newCategory.button = 'Hit';
-
-			categoriesScreen.categories.push(newCategory);
+			category.categories.push(newCategory);
 			categoriesScreen.ListBuilder(newCategory);
             
             titleField.first.first.string = '';
@@ -74,7 +72,7 @@ var modal = new Column({
     contents: [
         new Label({string:"Add Catty", style: labelStyle, top: 20}),
         new Container({ height: 50 }),
-        titleField,
+        titleField,	
         new Container({ height: 10 }),
         new Container({ height: 25 }),
         new doneButton(),
