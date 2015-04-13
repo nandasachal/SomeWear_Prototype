@@ -46,18 +46,8 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
     	 * container.Column.Container.Label.string.  This pattern can
     	 * be seen reading down the contents of this object below */
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
-			/*container.skin = whiteSkin;
-			trace(container.first.first.first.string+"\n");*/
-			$.clothing.forEach(function(obj) {
-				var hangerId = obj.hangerId;
-				if (hangerId != null && hangerId != '') {
-					hangerManager.lightUp(hangerId, $.color);
-				}
-			});
-			trace("Clicked!\n");
 			toggledOnCategory = $.name; //name of the category that is toggled on
 			//application.remove(screen);
-			trace($.name);
 			detailViewStatus = true
 			detailView.setCategory(toggledOnCategory);
 			detailView.refresh();
