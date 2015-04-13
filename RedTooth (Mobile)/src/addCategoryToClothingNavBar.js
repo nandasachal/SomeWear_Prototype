@@ -3,12 +3,12 @@
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
 var BUTTONS = require('controls/buttons');
+var addCategoryToClothing = require('addCategoryToClothing.js');
 
-var addClothingModal = require("addClothingModal.js");
+/*var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothingScreen.js");
 var categoriesScreen = require("categoryScreen.js");
-var addCategory = require("addCategory.js");
-var addCategoryToClothing = require('addCategoryToClothing.js');
+var addCategory = require("addCategory.js");*/
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});
@@ -16,7 +16,7 @@ var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'mi
 var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
 var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
-var addTexture = new Texture('../assets/addButtonGraphic.png');
+var addTexture = new Texture('../assets/okayButtonGraphic.png');
 var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
 var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
 var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 70, aspect: 'fit', });
@@ -30,28 +30,33 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
 			if (content == addButton) {
-				if (navBar.titleWords.string.trim() == "CLOTHING") {
-					addCategoryToClothing.initialize();
-					addClothingModal.clear();
+				/*if (navBar.titleWords.string.trim() == "CLOTHING") {
 					application.add(addClothingModal.modal);
-					application.replace(clothingScreen.screen, clothingScreen.blankScreen);
+					addClothingModal.clear();
+					application.remove(clothingScreen.screen);
 				} else {
-					application.add(categoriesScreen.modal);
-					application.replace(categoriesScreen.screen, categoriesScreen.blankScreen);
-				}
-
+					application.add(addCategory.modal);
+					application.remove(categoriesScreen.screen);
+				}*/
+				application.remove(navBar);
+				application.remove(addCategoryToClothing.screen);
+				application.remove(addCategoryToClothing.bg);
 			}
 			
 			if (content == switchIcon) {
-				if (navBar.titleWords.string.trim() == "CLOTHING") {
-			  		application.replace(clothingScreen.screen, categoriesScreen.screen);
+				/*if (navBar.titleWords.string.trim() == "CLOTHING") {
+
+			 	    application.add(categoriesScreen.screen);
+			  		application.remove(clothingScreen.screen);
 					navBar.titleWords.string = "CATEGORIES";
 					navBar.first.skin = clothingIconSkin;
 				} else {
-			  		application.replace(categoriesScreen.screen, clothingScreen.screen);
+
+					application.add(clothingScreen.screen);
+			  		application.remove(categoriesScreen.screen);
 					navBar.titleWords.string = " CLOTHING";
 					navBar.first.skin = briefcaseIconSkin;
-				}
+				}*/
 			}
 			
 
@@ -69,11 +74,13 @@ var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'
 switchIcon.skin = briefcaseIconSkin;
 
 var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
-	switchIcon,
+	//switchIcon,
 	new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	addButton, 
 	]
 });
+
+navBar.titleWords.string = "ADD CATEGORIES";
 
 //External Items
 

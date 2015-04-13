@@ -1,39 +1,4 @@
 //@module
-
-//Category objects should have a name, color, its subcategories, and the clothing within its category
-var categories = [
-		//The following placeholder categories test all available colors
-	    /*{name: 'Business', color:limeGreenVariantColor},
-    	{name: 'Date', color:watermelonVariantColor},
-    	{name: 'Moneymaker Fit', color:purpleVariantColor},
-    	{name: 'Pokemon Gear', color:pikachuYellowVariantColor},
-    	{name: 'Artsy', color:renaissanceBlueVariantColor},
-    	{name: 'Halloween', color:orangeCreamsicleVariantColor},
-    	{name: 'Hiking', color:caterpieGreenVariantColor},
-    	{name: 'Dessert Date', color:cremeBruleeVariantColor},*/
-	];
-	
-//
-//Example usage:
-//
-//		ASSUME: baseball, basketball, soccer are Category objects
-//  	ASSUME: blueShirt, whitePants are Clothing objects
-//
-//		subcatoriesArray = [baseball, basketball, soccer];
-//  	clothingArray = [blueShirt, whitePants]
-//		sports = category.Category(name="Sports", color="orange", subcategories=subcategoriesArray, clothing=clothingArray);
-
-var Category = function(name, color, subcategories, clothing) {
-	var returnCategory = Object();
-	returnCategory.name = name;
-	returnCategory.color = color;
-	returnCategory.subcategories = subcategories;
-	returnCategory.clothing = clothing;
-	//returnCategory.skin;
-	return returnCategory;
-};
-
-
 var limeGreenVariantColor = '#FFC4EE6F';
 var watermelonVariantColor = '#FFFF7777';
 var cremeBruleeVariantColor = '#FFFFD277';
@@ -47,10 +12,38 @@ var categorySkinColors = [limeGreenVariantColor, watermelonVariantColor, cremeBr
 							purpleVariantColor, renaissanceBlueVariantColor, orangeCreamsicleVariantColor, 
 							caterpieGreenVariantColor, pikachuYellowVariantColor];
 
+var categories = [];
+
+var sampleCategories = [
+	    {name: 'Business', color:"orange"},
+    	{name: 'Date', color:"blue"},
+    	{name: 'Casual', color:"white"},
+	];
+
+var Category = function(name, color, subcategories, clothing) {
+	var returnCategory = Object();
+	returnCategory.name = name;
+	returnCategory.color = color;
+	returnCategory.subcategories = subcategories;
+	returnCategory.clothing = clothing;
+	//returnCategory.skin;
+	return returnCategory;
+};
+
 
 var generateCategorySkinColor = function() {
 	return categorySkinColors[categories.length % 8];
 };
+
+exports.Category = Category;
+exports.categories = categories;
+
+for (var i = 0; i < sampleCategories.length; i++) {
+	var newCategory = new Category();
+	newCategory.name = sampleCategories[i].name;
+	newCategory.color = sampleCategories[i].color;
+	categories.push(newCategory);
+}
 
 exports.Category = Category;
 exports.categories = categories;

@@ -44,7 +44,7 @@ var Clothing = function(name, id, categories, hangerId, photo) {
 for (var i = 0; i < sampleClothes.length; i++) {
 	var newClothing = new Clothing();
 	newClothing.name = sampleClothes[i].name;
-	newClothing.id = sampleClothes[i].idNum;
+	newClothing.idNum = sampleClothes[i].idNum;
 	newClothing.photo = sampleClothes[i].photo;
 	clothingInCloset.push(newClothing);
 	

@@ -6,9 +6,10 @@ var SCREEN = require('mobile/screen');
 var clothing = require("clothing.js");
 
 /* ASSETS */
+var onColor = "#FFD599";
 var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
-var onSkin	= new Skin({ fill: 'yellow'});
+var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 
@@ -70,18 +71,18 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
     	 * be seen reading down the contents of this object below */
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
 			if (!$.toggleOn) {
-				container.first.skin = onSkin;
+				container.first.first.skin = onSkin;
 				$.toggleOn = true;
-				trace(container.first.last.string+"\n");
+				trace(container.first.first.last.string+"\n");
 			} else if ($.toggleOn) {
-				container.first.skin = whiteSkin;
+				container.first.first.skin = whiteSkin;
 				$.toggleOn = false;
-				trace(container.first.last.string+"\n");
+				trace(container.first.first.last.string+"\n");
 			}
 		}}
     }),
 	contents: [
-     	//Column($, { left: 0, right: 0, contents: [
+     	Column($, { left: 0, right: 0, contents: [
      		Container($, { left: 0, right: 0, height: 100, width: 100, skin: whiteSkin,
      			contents: [
      			           /* This label expects that the object passed to ProcessorLine() 
@@ -105,8 +106,8 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
      			           Label($, { style: productNameStyle, string: $.name,}),
  			           ], 
 	           }),
-     		//Line($, { left: 0, right: 0, top: 50, height: 1, skin: separatorSkin, }),
-     	//], }),
+     		Line($, { left: 0, right: 0, top: 0, height: 1, skin: separatorSkin, }),
+     	], }),
      ], 
  }});
 
