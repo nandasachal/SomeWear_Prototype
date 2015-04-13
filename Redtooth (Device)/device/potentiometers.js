@@ -16,32 +16,30 @@
 */
 
 exports.pins = {
-    xPos: { type: "A2D" },
-    yPos: { type: "A2D" },
-    zPos: { type: "A2D" },
-	aPos: { type: "A2D" },
-	bPos: { type: "A2D" },
-	cPos: { type: "A2D" },
-	dPos: { type: "A2D" },
-	ePos: { type: "A2D" }
+    hanger1: { type: "A2D" },
+    hanger2: { type: "A2D" },
+    hanger3: { type: "A2D" },
+    hanger4: { type: "A2D" },
+    hanger5: { type: "A2D" },
+    hanger6: { type: "A2D" },
+    hanger7: { type: "A2D" },
+    hanger8: { type: "A2D" },
 };
 
 exports.configure = function(){
-	this.xPos.init();
-    this.yPos.init();
-    this.zPos.init();
-    this.aPos.init();
-    this.bPos.init();
-    this.cPos.init();
-    this.dPos.init();
-    this.ePos.init(); 
+	this.hanger1.init();
+	this.hanger2.init();
+	this.hanger3.init();
+	this.hanger4.init();
+	this.hanger5.init();
+	this.hanger6.init();
+	this.hanger7.init();
+	this.hanger8.init();
 }
 
 exports.read = function() {
-    return { xPos: this.xPos.read(), yPos: this.yPos.read(),
-    		 zPos: this.zPos.read(), aPos: this.aPos.read(),
-    		 bPos: this.bPos.read(), cPos: this.cPos.read(),
-    		 dPos: this.dPos.read(), ePos: this.ePos.read()
-     };
+    return { hanger1: this.hanger1.read(), hanger2: this.hanger2.read(), 
+    hanger3: this.hanger3.read(), hanger4: this.hanger4.read(), hanger5: this.hanger5.read(),
+    hanger6: this.hanger6.read(), hanger7: this.hanger1.read(), hanger8: this.hanger8.read(),};
 }
 

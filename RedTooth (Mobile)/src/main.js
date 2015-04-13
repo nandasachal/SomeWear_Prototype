@@ -12,6 +12,7 @@ var addClothingModal = require("addClothingModal.js");
 var navigationBar = require("navigationBar.js");
 var clothingScreen = require("clothing.js");
 var category = require("category.js");
+var hangerManager = require("hangerManager.js");
 
 navigationBar.navBar.titleWords.string = "CLOTHING";
 application.behavior = Object.create(Object.prototype, {
@@ -25,14 +26,12 @@ application.behavior = Object.create(Object.prototype, {
 		application.add(navigationBar.navBar);
 		sports = category.Category(name="Sports", color="orange", subcategories=["baseball", "soccer"], clothing=["sock", "pants"]);
 	}},
-	/*
-	onDisplayed: function(application) {
+	onDisplayed: { value: function(application) {
 		application.discover("redtooth_device.app");
-	},
-	onQuit: function(application) {
+	}},
+	onQuit: { value: function(application) {
 		application.forget("redtooth_device.app");
-	},
-	*/
+	}},
 });
 
 
