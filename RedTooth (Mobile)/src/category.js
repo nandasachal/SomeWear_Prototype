@@ -1,11 +1,5 @@
 //@module
 
-//All Categories
-
-var categories = [];
-
-
-
 //Category objects should have a name, color, its subcategories, and the clothing within its category
 //
 //Example usage:
@@ -24,7 +18,6 @@ var Category = function(name, color, subcategories, clothing) {
 	returnCategory.subcategories = subcategories;
 	returnCategory.clothing = clothing;
 	return returnCategory;
-}
+};
 
 exports.Category = Category;
-exports.categories = categories;
