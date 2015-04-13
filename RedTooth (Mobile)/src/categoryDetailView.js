@@ -1,40 +1,26 @@
 //@program
 
-// testing scroller
-
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var detailView = require('categoryDetailView');
-var detailViewNavBar = require('categoryDetailViewNavBar.js');
-
+var clothingScreen = require('clothingScreen.js');
 var category = require('category.js');
-var clothing = require('clothing.js');
-var hangerManager = require('hangerManager.js');
 
 /* ASSETS */
-var onColor = "#FFD599";
 var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
-var onSkin	= new Skin({ fill: onColor});
+var onSkin	= new Skin({ fill: 'yellow'});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
+var lightestTealColor = "#ffDEFCFA";
+var tealSkin = new Skin({fill:lightestTealColor});
 
 /* STYLES */
 var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
 var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
+var alertStyle = new Style({font: 'Roboto 10px', color: 'white'});
 
-/* STATIC */
-/* A simple array of objects. Each will be used as a single
- * entry in our scrollable list. */
- 
-var toggledOnCategory = null;
-var detailViewStatus = false;
-
-
-/* This is a template that will be used to for each entry populating the list. 
- * Note that it is anticipating an object each time in is instanciated */
-var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin: THEME.lineSkin, 
+var ClothingSubContainer = Container.template(function($) { return { left: 0, right: 0, top: 0, active: true, //skin: whiteSkin, //skin: THEME.lineSkin, 
     behavior: Object.create(Behavior.prototype, {
     	/* Gives the user some visual feedback on which entry they have tapped.
     	 * note that the skin is reverted to white in onTouchEnded() */    	 
@@ -46,44 +32,35 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
     	 * container.Column.Container.Label.string.  This pattern can
     	 * be seen reading down the contents of this object below */
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
-			/*container.skin = whiteSkin;
-			trace(container.first.first.first.string+"\n");*/
-			$.clothing.forEach(function(obj) {
-				var hangerId = obj.hangerId;
-				var hanger = 'hanger' + hangerId.toString();
-				hangerManager.lightUp(hanger, $.color);
-			});
-			trace("Clicked!\n");
-			toggledOnCategory = $.name; //name of the category that is toggled on
-			//application.remove(screen);
-			trace($.name);
-			detailViewStatus = true
-			detailView.setCategory(toggledOnCategory);
-			detailView.refresh();
-			application.add(detailViewNavBar.navBar);
+				container.first.first.skin = categorySkin;
 		}}
     }),
 	contents: [
-     	Column($, { left: 0, right: 0, skin: new Skin({fill: $.color}), contents: [
-     		Container($, { left: 4, right: 4, height: 52,
+     	Column($, { left: 0, right: 0, contents: [
+     		Container($, { left: 0, right: 0, height: 100, width: 100, skin:categorySkin, name: "clothContainer",
      			contents: [
      			           /* This label expects that the object passed to ProcessorLine() 
      			            * includes a value for title.  Note that this Label is not marked
      			            * as active. Touches registered here will bubble back up to the
      			            * nested objects until it hits one which is active. */
-     			           Label($, { left: 10, style: productNameStyle, string: $.name,}),
      			           /* This label is expecting a value for button.  Note that this Label
      			            * is marked active.  Touches registered here will be handeled here */
-     			           /*Label($, { right: 10, style: productDescriptionStyle, skin: generateCategorySkinColor(), active: true, string: '',
-     			               behavior: Object.create(Behavior.prototype, {
-     			           		    	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
-											trace(label.string+"\n");
-										}}
-								})
-     			           }),*/ 
+     			           //Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.button,
+     			           //    behavior: Object.create(Behavior.prototype, {
+     			           		    	/* When this label is touched, simply trace out its string.
+     			           		    	 * Note that no chain of "first" is needed here because the
+     			           		    	 * touch happened in the object that contains the property
+     			           		    	 * we want to trace */
+     			           	//	    	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
+							//				trace(label.string+"\n");
+							//			}}
+							//	})
+     			           //}),
+     			           new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+     			           Label($, { style: productNameStyle, string: $.name,}),
  			           ], 
 	           }),
-     		Line($, { left: 0, right: 0, height: 1, skin: separatorSkin, }),
+     		Line($, { left: 0, right: 0, top: 0, height: 1, skin: separatorSkin, }),
      	], }),
      ], 
  }});
@@ -93,12 +70,13 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
  * the SCROLLER.VerticalScroller.  Although we are not
  * referencing any values from an object passed on creation,
  * an object is still required as the SCROLLER uses it internally. */
-var ScreenContainer = Container.template(function($) { return {
+var ScreenContainer = Column.template(function($) { return {
 	left:0, right:0, top:40, bottom:0,
 	contents: [
 	   		/* Note that the scroller is declared as having only an empty
 	   		 * Column and a scrollbar.  All the entries will be added 
 	   		 * programmatically. */ 
+	   		
 	   		SCROLLER.VerticalScroller($, { 
 	   			contents: [
               			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
@@ -108,36 +86,57 @@ var ScreenContainer = Container.template(function($) { return {
 	   		]
 	}});
 
+var bg = new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin });
+var categoryChecked;
+var categorySkin;
+
+function setCategory(categoryName) {
+	categoryChecked = categoryName;
+	var categoryColor;
+	for (i = 0; i < category.categories.length; i++) {
+		if (category.categories[i].name == categoryChecked) {
+			categoryColor = category.categories[i].color;
+		}
+	}
+	trace(categoryColor + "\n");
+	categorySkin = new Skin({fill:categoryColor});
+	//trace(categorySkin.fill + "\n");
+	
+}
+
 var data = new Object();
 var screen = new ScreenContainer(data);
+
+//trace(categoryChecked);
+function refresh() {
+	application.add(bg);
+	screen = new ScreenContainer(data);
+	alertLabel = new Label({left:0, right:0, top:0, bottom:0, string: "", style:alertStyle, name:"YOUR CLOTHES ARE NOW LIT!"});
+	var clothesLightedUp = [alertLabel];
+	for (i = 0; i < clothingScreen.clothingList.length; i++) {
+		tempCloth = clothingScreen.clothingList[i];
+		tempCategories = tempCloth.categories;
+		for (j = 0; j < tempCategories.length; j++) {
+			if (tempCategories[j] == categoryChecked) {
+				clothesLightedUp.push(tempCloth);
+			}
+		}
+	}
+	clothesLightedUp.forEach(ListBuilder);
+	application.add(screen);
+	exports.screen = screen;
+}
 
 /* This simple function exists so we can call "forEach" on
  * our array of list entries (menuItems).  It adds a new 
  * ProcessorLine() object to the Column named "menu" in the
  * screen object's SCROLLER */
 function ListBuilder(element, index, array) {
-	screen.first.menu.add(new ProcessorLine(element));
+	screen.first.menu.add(new ClothingSubContainer(element));
 }
 
-function detailViewOn() {
-	return detailViewStatus;
-}
-
-
-
-/*application.behavior = Object.create(Object.prototype, {
-	onLaunch: { value: function(application) {
-		// Call ListBuilder for each element in our array of
-		// list items.
-		
-		application.add(screen);
-	}}
-});*/
-
-exports.ListBuilder = ListBuilder;
-//exports.menuItems = menuItems;
-//exports.categories = categories;
-//exports.generateCategorySkinColor = generateCategorySkinColor;
+exports.setCategory = setCategory;
+exports.refresh = refresh;
 exports.screen = screen;
+exports.bg = bg;
 exports.blankScreen = new Container({});
-exports.detailViewOn = detailViewOn;
