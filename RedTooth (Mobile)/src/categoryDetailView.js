@@ -91,6 +91,7 @@ var categoryChecked;
 var categorySkin;
 
 function setCategory(categoryName) {
+	trace("category.categories = " + category.categories + "\n");
 	categoryChecked = categoryName;
 	var categoryColor;
 	for (i = 0; i < category.categories.length; i++) {
@@ -122,7 +123,9 @@ function refresh() {
 			}
 		}
 	}
+	trace("clothesLightedUp = " + clothesLightedUp + "\n");
 	clothesLightedUp.forEach(ListBuilder);
+	
 	application.add(screen);
 	exports.screen = screen;
 }
