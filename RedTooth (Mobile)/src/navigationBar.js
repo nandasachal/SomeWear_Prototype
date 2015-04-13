@@ -36,7 +36,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					application.add(addClothingModal.modal);
 					application.replace(clothingScreen.screen, clothingScreen.blankScreen);
 				} else {
-					application.add(categoriesScreen.modal);
+					application.add(addCategory.modal);
 					application.replace(categoriesScreen.screen, categoriesScreen.blankScreen);
 				}
 
