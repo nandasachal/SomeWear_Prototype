@@ -7,19 +7,20 @@ var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require('controls/buttons');
 
-var scrollingExample = require("scrollingexample.js");
+var categoryScreen = require("categoryScreen.js");
 var addClothingModal = require("addClothingModal.js");
 var navigationBar = require("navigationBar.js");
-var clothingScreen = require("clothing.js");
+var clothingScreen = require("clothingScreen.js");
 var category = require("category.js");
 var hangerManager = require("hangerManager.js");
+var clothing = require("clothing.js");
 
-navigationBar.navBar.titleWords.string = "CLOTHING";
+navigationBar.navBar.titleWords.string = " CLOTHING";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
-		scrollingExample.menuItems.forEach(scrollingExample.ListBuilder);
+		categoryScreen.menuItems.forEach(categoryScreen.ListBuilder);
 		//application.add(scrollingExample.screen);
 		clothingScreen.clothingList.forEach(clothingScreen.ListBuilder);
 		application.add(clothingScreen.screen);

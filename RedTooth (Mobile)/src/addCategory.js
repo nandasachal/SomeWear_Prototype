@@ -6,12 +6,12 @@ var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 
 var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray',});
-var fieldStyle = new Style({ color: 'black', font: 'bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
-var fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
+var fieldStyle = new Style({ color: 'black', font: 'Roboto bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
+var fieldHintStyle = new Style({ color: '#aaa', font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var whiteSkin = new Skin({fill:"white"});
 
 
-var categoriesScreen = require("scrollingexample.js");
+var categoriesScreen = require("categoryScreen.js");
 var category = require("category.js");
 
 var categoryName = '';

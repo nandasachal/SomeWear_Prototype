@@ -5,17 +5,20 @@
 var BUTTONS = require('controls/buttons');
 
 var addClothingModal = require("addClothingModal.js");
-var clothingScreen = require("clothing.js");
-var categoriesScreen = require("scrollingexample.js");
+var clothingScreen = require("clothingScreen.js");
+var categoriesScreen = require("categoryScreen.js");
 var addCategory = require("addCategory.js");
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
-var headerStyle = new Style({font: 'bold 24px', color: 'white', align: 'center, middle'});
-var buttonStyle = new Style({font: 'bold 50px', color: 'white', align:'center, middle'});
-var briefcaseTexture = new Texture('briefcaseWHITE.png');
-var clothingTexture = new Texture('tShirtMockNEW.png');
-var clothingIconSkin = new Skin({ texture: clothingTexture, width: 50, height: 50, aspect: 'fit', });
-var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, width: 50, height: 50, aspect: 'fit', });
+var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});
+var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'middle'});
+var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
+//var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
+var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
+var addTexture = new Texture('../assets/addButtonGraphic.png');
+var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
+var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
+var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 70, aspect: 'fit', });
 
 
 var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
@@ -25,14 +28,8 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
-<<<<<<< HEAD
-=======
-
-			trace("initial\n");
-//<<<<<<< HEAD
->>>>>>> can add new clothing, and they'll appear at the top of the list
 			if (content == addButton) {
-				if (navBar.titleWords.string == "CLOTHING") {
+				if (navBar.titleWords.string.trim() == "CLOTHING") {
 					application.add(addClothingModal.modal);
 					addClothingModal.clear();
 					application.remove(clothingScreen.screen);
@@ -40,16 +37,11 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					application.add(addCategory.modal);
 					application.remove(categoriesScreen.screen);
 				}
-/*=======
-			if (content == addButton && navBar.titleWords.string.toLowerCase() == 'clothing') {
-		      //application.remove(navigationBar.navBar);
-			  application.add(addClothingModal.modal);
-			  application.remove(clothingScreen.screen);
->>>>>>> can add new clothing, and they'll appear at the top of the list*/
+
 			}
 			
 			if (content == switchIcon) {
-				if (navBar.titleWords.string == "CLOTHING") {
+				if (navBar.titleWords.string.trim() == "CLOTHING") {
 
 			 	    application.add(categoriesScreen.screen);
 			  		application.remove(clothingScreen.screen);
@@ -59,7 +51,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 
 					application.add(clothingScreen.screen);
 			  		application.remove(categoriesScreen.screen);
-					navBar.titleWords.string = "CLOTHING";
+					navBar.titleWords.string = " CLOTHING";
 					navBar.first.skin = briefcaseIconSkin;
 				}
 			}
@@ -72,14 +64,15 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 
 //UI Elements
  
-var addButton = buttonTemplate({textForLabel:'+', name: 'addButton'});
+var addButton = new buttonTemplate({top: 5, textForLabel:'', name: 'addButton'});
+addButton.skin = addButtonSkin;
 
-var switchIcon = new buttonTemplate({textForLabel:'', name: 'switchIcon'});
+var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
 switchIcon.skin = briefcaseIconSkin;
 
 var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
 	switchIcon,
-	new Label({left:0, right:0, top:0, bottom:0, height: 30, width: 60, name:"titleWords", string:"", style:headerStyle}),
+	new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	addButton, 
 	]
 });
