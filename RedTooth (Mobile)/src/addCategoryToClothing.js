@@ -141,6 +141,8 @@ function ListBuilder(element, index, array) {
 var bg = new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin });
 
 function initialize() {
+	selectedCategories = [];
+	exports.selectedCategories = selectedCategories;
 	data = new Object();
 	screen = new ScreenContainer(data);
 	categories.forEach(ListBuilder);
