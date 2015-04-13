@@ -30,27 +30,23 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 		onTap: { value: function(content) {
 			if (content == addButton) {
 				if (navBar.titleWords.string.trim() == "CLOTHING") {
-					application.add(addClothingModal.modal);
 					addClothingModal.clear();
-					application.remove(clothingScreen.screen);
+					application.add(addClothingModal.modal);
+					application.replace(clothingScreen.screen, clothingScreen.blankScreen);
 				} else {
 					application.add(addCategory.modal);
-					application.remove(categoriesScreen.screen);
+					application.replace(categoryScreen.screen, categoryScreen.blankScreen);
 				}
-
 			}
 			
 			if (content == switchIcon) {
 				if (navBar.titleWords.string.trim() == "CLOTHING") {
 
-			 	    application.add(categoriesScreen.screen);
-			  		application.remove(clothingScreen.screen);
+			 	    application.replace(clothingScreen.screen, categoriesScreen.screen);
 					navBar.titleWords.string = "CATEGORIES";
 					navBar.first.skin = clothingIconSkin;
 				} else {
-
-					application.add(clothingScreen.screen);
-			  		application.remove(categoriesScreen.screen);
+			  		application.replace(categoriesScreen.screen, clothingScreen.screen);
 					navBar.titleWords.string = " CLOTHING";
 					navBar.first.skin = briefcaseIconSkin;
 				}

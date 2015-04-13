@@ -150,7 +150,8 @@ function listRefresh() {
 	var data = new Object();
 	screen = new ScreenContainer(data);
 	clothingList.forEach(ListBuilder);
-	application.add(screen);
+
+	exports.screen = screen;
 	
 	return screen;
 	
@@ -187,6 +188,7 @@ exports.screen = screen;
 exports.nextIdNum = nextIdNum;
 //exports.addNewClothingItem = addNewClothingItem;
 exports.listRefresh = listRefresh;
+exports.blankScreen = new Container({});
 
 
 

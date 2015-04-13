@@ -91,12 +91,14 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
             KEYBOARD.hide();
-            application.remove(modal);
             //application.add(clothingScreen.screen);
             //application.add(navigationBar.navBar);
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
-           	
+
            	if (title == "") {
+	           	var oldScreen = clothingScreen.blankScreen;
+	            application.replace(oldScreen, clothingScreen.listRefresh());
+	            application.remove(modal);
            		return;
            	}
            	
@@ -121,11 +123,10 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
             clothingScreen.nextIdNum++;
             trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");
             
-            var newScreen = clothingScreen.listRefresh();
-            clothingScreen.screen = newScreen;
- 			//clothingScreen.addNewClothingItem(newDict);
- 			//application.add(clothingScreen.screen);
- 			
+            var oldScreen = clothingScreen.blankScreen;
+            application.replace(oldScreen, clothingScreen.listRefresh());
+            application.remove(modal);
+
             for (var i = 0; i < clothingScreen.clothingList.length; i++) {
             	trace(clothingScreen.clothingList[i].name + "\n");
             	trace(clothingScreen.clothingList[i].idNum + "\n");
@@ -143,8 +144,7 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
-            application.add(clothingScreen.screen);
-           
+            application.replace(clothingScreen.blankScreen, clothingScreen.screen);
         }},
     })
 }});

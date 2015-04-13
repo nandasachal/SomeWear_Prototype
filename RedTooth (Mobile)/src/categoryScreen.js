@@ -128,4 +128,4 @@ exports.ListBuilder = ListBuilder;
 //exports.menuItems = menuItems;
 exports.categories = categories;
 exports.screen = screen;
-
+exports.blankScreen = new Container({});
