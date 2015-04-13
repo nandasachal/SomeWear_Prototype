@@ -59,7 +59,7 @@ for (var i = 0; i < sampleClothes.length; i++) {
 	newClothing.name = sampleClothes[i].name;
 	newClothing.idNum = sampleClothes[i].idNum;
 	newClothing.photo = sampleClothes[i].photo;
-	newClothing.categories = sampleClothes[i].categories;
+	newClothing.categories = [];
 	newClothing.hangerId = '';
 	clothingInCloset.push(newClothing);
 	

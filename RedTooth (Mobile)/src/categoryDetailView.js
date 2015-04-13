@@ -3,7 +3,7 @@
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var clothingScreen = require('clothingScreen.js');
+var clothing = require('clothing.js');
 var category = require('category.js');
 
 /* ASSETS */
@@ -114,11 +114,11 @@ function refresh() {
 	screen = new ScreenContainer(data);
 	alertLabel = new Label({left:0, right:0, top:0, bottom:0, string: "", style:alertStyle, name:"YOUR CLOTHES ARE NOW LIT!"});
 	var clothesLightedUp = [alertLabel];
-	for (i = 0; i < clothingScreen.clothingList.length; i++) {
-		tempCloth = clothingScreen.clothingList[i];
+	for (i = 0; i < clothing.clothingInCloset.length; i++) {
+		tempCloth = clothing.clothingInCloset[i];
 		tempCategories = tempCloth.categories;
 		for (j = 0; j < tempCategories.length; j++) {
-			if (tempCategories[j] == categoryChecked) {
+			if (tempCategories[j].name == categoryChecked) {
 				clothesLightedUp.push(tempCloth);
 			}
 		}
