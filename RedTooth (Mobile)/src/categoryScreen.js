@@ -20,10 +20,11 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
 /* STATIC */
 /* A simple array of objects. Each will be used as a single
  * entry in our scrollable list. */
-var menuItems = [
-    	{title: 'Pentium', button: 'P5'},
-    	{title: 'Pentium MMX', button: 'Tillamook'},
-    	];
+
+var categories = [
+	    {name: 'Business', color:"orange"},
+    	{name: 'Date', color:"blue"},
+	];
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
@@ -60,10 +61,10 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
      			            * includes a value for title.  Note that this Label is not marked
      			            * as active. Touches registered here will bubble back up to the
      			            * nested objects until it hits one which is active. */
-     			           Label($, { left: 10, style: productNameStyle, string: $.title,}),
+     			           Label($, { left: 10, style: productNameStyle, string: $.name,}),
      			           /* This label is expecting a value for button.  Note that this Label
      			            * is marked active.  Touches registered here will be handeled here */
-     			           Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.button,
+     			           Label($, { right: 10, style: productDescriptionStyle, skin: blueSkin, active: true, string: $.color,
      			               behavior: Object.create(Behavior.prototype, {
      			           		    	/* When this label is touched, simply trace out its string.
      			           		    	 * Note that no chain of "first" is needed here because the
@@ -112,16 +113,19 @@ function ListBuilder(element, index, array) {
 	screen.first.menu.add(new ProcessorLine(element));
 }
 
+
+
 /*application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 		// Call ListBuilder for each element in our array of
 		// list items.
-		menuItems.forEach(ListBuilder);
+		
 		application.add(screen);
 	}}
 });*/
 
 exports.ListBuilder = ListBuilder;
-exports.menuItems = menuItems;
+//exports.menuItems = menuItems;
+exports.categories = categories;
 exports.screen = screen;
 
