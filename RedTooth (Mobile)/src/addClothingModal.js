@@ -128,6 +128,7 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             var newAddedClothing = clothing.Clothing();
            	newAddedClothing.name = title;
            	newAddedClothing.id = id;
+           	newAddedClothing.hangerId = hanger_name; 
            	newAddedClothing.photo = "../assets/shirt.png";
            	newAddedClothing.toggleOn = false;
            	newAddedClothing.categories = addCategoryToClothing.selectedCategories;

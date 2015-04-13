@@ -50,8 +50,9 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			trace(container.first.first.first.string+"\n");*/
 			$.clothing.forEach(function(obj) {
 				var hangerId = obj.hangerId;
-				var hanger = 'hanger' + hangerId.toString();
-				hangerManager.lightUp(hanger, $.color);
+				if (hangerId != null && hangerId != '') {
+					hangerManager.lightUp(hangerId, $.color);
+				}
 			});
 			trace("Clicked!\n");
 			toggledOnCategory = $.name; //name of the category that is toggled on
