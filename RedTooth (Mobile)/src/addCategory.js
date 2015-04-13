@@ -54,27 +54,28 @@ var doneButton = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
+            
 			newCategory = category.Category(name=categoryName, color=categoryColor, subcategories = categorySubcategories, clothing = categoryClothing);
-			category.categories.push(newCategory);
+			newCategory.button = 'Hit';
 			
-			var someObj = Object();
-			someObj.title = categoryName;
-			someObj.button = 'Hit';
-			categoriesScreen.menuItems.push(someObj);
-			
-			trace("new category has a name of " + newCategory.name + '\n');
+			categoriesScreen.categories.push(newCategory);
+			categoriesScreen.ListBuilder(newCategory);
+
             application.add(categoriesScreen.screen);
+            
+            titleField.first.first.string = '';
         }},
     })
 }});
 
+var titleField = new TitleField({ name: '' }),
 
 var modal = new Column({
     left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
     contents: [
         new Label({string:"Add Catty", style: labelStyle, top: 20}),
         new Container({ height: 50 }),
-        new TitleField({ name: '' }),
+        titleField,
         new Container({ height: 10 }),
         new Container({ height: 25 }),
         new doneButton(),
