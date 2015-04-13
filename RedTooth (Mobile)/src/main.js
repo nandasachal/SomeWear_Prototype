@@ -7,6 +7,12 @@ var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require('controls/buttons');
 
+//common colors
+var tealColor = "#FF52b0b0";
+var lighterTealColor = "#ff84D3D1";
+var lightestTealColor = "#ffDEFCFA";
+
+//file dependencies
 var categoryScreen = require("categoryScreen.js");
 var addClothingModal = require("addClothingModal.js");
 var navigationBar = require("navigationBar.js");
@@ -15,9 +21,16 @@ var category = require("category.js");
 var hangerManager = require("hangerManager.js");
 var clothing = require("clothing.js");
 
+//skins
+var tealSkin = new Skin({ fill: lightestTealColor});
+
+
 navigationBar.navBar.titleWords.string = " CLOTHING";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
+	
+		application.add(new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin}))
+	
 		// Call ListBuilder for each element in our array of
 		// list items.
 		category.categories.forEach(categoryScreen.ListBuilder);

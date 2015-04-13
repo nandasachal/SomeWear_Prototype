@@ -3,13 +3,27 @@
 var THEME = require('themes/sample/theme');
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
+var addCategoryToClothing = require("addCategoryToClothing.js");
+var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar.js");
 
-var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray',});
+var tealColor = "#FF52b0b0";
+var lighterTealColor = "#ff84D3D1";
+var lightestTealColor = "#ffDEFCFA";
+
+var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: lightestTealColor,});
 var fieldStyle = new Style({ color: 'black', font: 'Roboto bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
-var fieldHintStyle = new Style({ color: '#aaa', font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
-var labelStyle = new Style( { font: "Roboto bold 30px", color:"black" } );
-var titleStyle = new Style( { font: "bold 30px", color:"black" } );
-var whiteSkin = new Skin({fill:"transparent"});
+var fieldHintStyle = new Style({ color: lighterTealColor, font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
+var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
+var titleStyle = new Style( { font: "bold 30px", color:"white" } );
+var whiteSkin = new Skin({fill:tealColor});
+
+var addCategoriesTexture = new Texture('../assets/addToCategoriesButtonGraphic.png');
+var addCategoriesButtonSkin = new Skin({ texture: addCategoriesTexture, width: 252.5, height: 41.75});//height:55, width: 70, aspect: 'fit', });
+
+var cancelTexture = new Texture('../assets/cancelButtonGraphic.png');
+var okayTexture = new Texture('../assets/okayButtonGraphic.png');
+var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 66, height: 43});
+var okayButtonSkin = new Skin({ texture: okayTexture, width: 66, height: 43});
 
 
 var title = ''
@@ -83,10 +97,10 @@ var CategoriesField = Container.template(function($) { return {
 }});
 var categoriesField = new CategoriesField({ name: '' });
 
-var OkayButton = BUTTONS.Button.template(function($) { return {
-    left: 0, right: 0, height: 50, width: 100,
+var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0, //height: 50, width: 100,
     contents: [
-        new Label({left:0, right:0, height:40, string: "Okay", style: labelStyle})
+        new Label({left:0, right:0, height:40, string: "", style: labelStyle})
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
@@ -117,10 +131,15 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
            	newAddedClothing.id = clothingScreen.nextIdNum;
            	newAddedClothing.photo = "../assets/shirt.png";
            	newAddedClothing.toggleOn = false;
+           	newAddedClothing.categories = addCategoryToClothing.selectedCategories;
+           	trace("selectedCategories of this added clothing = " + addCategoryToClothing.selectedCategories + "\n");
             //clothingScreen.clothingList.unshift(newAddedClothing);
             clothing.clothingInCloset.unshift(newAddedClothing);
             clothingScreen.clothingList = clothing.clothingInCloset;
             clothingScreen.nextIdNum++;
+            
+            
+            
             trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");
             
             var oldScreen = clothingScreen.blankScreen;
@@ -135,10 +154,10 @@ var OkayButton = BUTTONS.Button.template(function($) { return {
         }},
     })
 }});
-var CancelButton = BUTTONS.Button.template(function($) { return {
-    left: 0, right: 0, height: 50, width: 100,
+var CancelButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0, //height: 50, width: 100,
     contents: [
-        new Label({left:0, right:0, height:40, string: "Cancel", style: labelStyle})
+        new Label({left:0, right:0, height:40, string: "", style: labelStyle})
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
@@ -149,13 +168,41 @@ var CancelButton = BUTTONS.Button.template(function($) { return {
     })
 }});
 
-var whiteSkin = new Skin('white');
+var addCategoriesButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0, //height: 50, width: 100,
+    contents: [
+        //new Label({left:0, right:0, height:40, string: "Cancel", style: labelStyle})
+    ],
+    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+        onTap: { value: function(content) {
+        	KEYBOARD.hide();
+            trace("trying to add categories...\n");
+            application.add(addCategoryToClothing.bg);
+            application.add(addCategoryToClothing.screen);
+            application.add(addCategoryToClothingNavBar.navBar);
+           
+        }},
+    })
+}});
 
+var addCategoriesButton = new addCategoriesButtonTemplate();
+addCategoriesButton.skin = addCategoriesButtonSkin;
+var cancelButton = new CancelButtonTemplate();
+cancelButton.skin = cancelButtonSkin;
+var okayButton = new OkayButtonTemplate();
+okayButton.skin = okayButtonSkin;
+
+var addCategoriesButtonLine = new Line({
+	contents: [
+		addCategoriesButton
+	]
+});
 
 var buttons = new Line({
     contents: [
-      new CancelButton(),
-      new OkayButton(),
+      cancelButton,
+      new Container({ width: 50 }),
+      okayButton
     ]
 });
 
@@ -166,8 +213,9 @@ var modal = new Column({
         new Container({ height: 50 }),
         titleField,
         new Container({ height: 10 }),
-        categoriesField,
-        new Container({ height: 25 }),
+        //categoriesField,
+        addCategoriesButtonLine,
+        new Container({ height: 40 }),
         buttons,
     ]
 });
