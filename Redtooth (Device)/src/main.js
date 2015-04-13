@@ -74,6 +74,14 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 			var hanger6Val = Math.floor(result.hanger6.toFixed(4)*10000);		
 			var hanger7Val = Math.floor(result.hanger7.toFixed(4)*10000);
 			var hanger8Val = Math.floor(result.hanger8.toFixed(4)*10000);
+			hangerClothIDPairs.hanger1 = hanger1Val;
+			hangerClothIDPairs.hanger2 = hanger2Val;
+			hangerClothIDPairs.hanger3 = hanger3Val;
+			hangerClothIDPairs.hanger4 = hanger4Val;
+			hangerClothIDPairs.hanger5 = hanger5Val;
+			hangerClothIDPairs.hanger6 = hanger6Val;
+			hangerClothIDPairs.hanger7 = hanger7Val;
+			hangerClothIDPairs.hanger8 = hanger8Val;
 			hanger1Label.string = hanger1Val;
 			hanger2Label.string = hanger2Val;
 			hanger3Label.string = hanger3Val;

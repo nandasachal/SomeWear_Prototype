@@ -26,7 +26,9 @@ var okayTexture = new Texture('../assets/okayButtonGraphic.png');
 var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 66, height: 43});
 var okayButtonSkin = new Skin({ texture: okayTexture, width: 66, height: 43});
 
-
+var add_queue={};
+var id= 0;
+var hanger_name="hanger1";
 var title = ''
 
 var clothingScreen = require("clothingScreen.js");
@@ -42,6 +44,12 @@ function getClothingInfo() {
 function clear() {
   titleField.scroller.label.string = '';
   categoriesField.scroller.label.string = '';
+}
+
+
+function update(hanger,id_num) {
+	hanger_name=hanger;
+	id=id_num;
 }
 
 var title = '';
@@ -106,30 +114,20 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
             KEYBOARD.hide();
-            //application.add(clothingScreen.screen);
-            //application.add(navigationBar.navBar);
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
-
            	if (title == "") {
 	           	var oldScreen = clothingScreen.blankScreen;
 	            application.replace(oldScreen, clothingScreen.listRefresh());
 	            application.remove(modal);
+	            application.invoke(new Message("/skipClothing?" + serializeQuery({
+		    		hanger: hanger_name
+				})), Message.JSON);
            		return;
            	}
-           	
-           	//var newDict = {name: title, idNum = clothingScreen.nextIdNum, photo: "../assets/shirt.png", toggleOn: "false"};
-           	/*var newDict = Object();
-           	newDict.name = title;
-           	newDict.idNum = clothingScreen.nextIdNum;
-           	newDict.photo = "../assets/shirt.png";
-           	newDict.toggleOn = false;
-            clothingScreen.clothingList.unshift(newDict);
-            clothingScreen.nextIdNum++;
-            trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");*/
             
             var newAddedClothing = clothing.Clothing();
            	newAddedClothing.name = title;
-           	newAddedClothing.id = clothingScreen.nextIdNum;
+           	newAddedClothing.id = id;
            	newAddedClothing.photo = "../assets/shirt.png";
            	newAddedClothing.toggleOn = false;
            	newAddedClothing.categories = addCategoryToClothing.selectedCategories;
@@ -137,21 +135,17 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             //clothingScreen.clothingList.unshift(newAddedClothing);
             clothing.clothingInCloset.unshift(newAddedClothing);
             clothingScreen.clothingList = clothing.clothingInCloset;
-            clothingScreen.nextIdNum++;
-            
+
             category.addClothingToCategories(addCategoryToClothing.selectedCategories, newAddedClothing);
-            
-            trace("nextIdNum should be 9 " + clothingScreen.nextIdNum + "\n");
-            
+
             var oldScreen = clothingScreen.blankScreen;
             application.replace(oldScreen, clothingScreen.listRefresh());
             application.remove(modal);
-
-            for (var i = 0; i < clothingScreen.clothingList.length; i++) {
-            	trace(clothingScreen.clothingList[i].name + "\n");
-            	trace(clothingScreen.clothingList[i].idNum + "\n");
-            }
             title = "";
+			application.invoke(new Message("/newClothingAdded?" + serializeQuery({
+	    		id: id,
+	    		hanger: hanger_name
+			})), Message.JSON);
         }},
     })
 }});
@@ -165,6 +159,9 @@ var CancelButtonTemplate = BUTTONS.Button.template(function($) { return {
             KEYBOARD.hide();
             application.remove(modal);
             application.replace(clothingScreen.blankScreen, clothingScreen.screen);
+            application.invoke(new Message("/skipClothing?" + serializeQuery({
+	    		hanger: hanger_name
+			})), Message.JSON);
         }},
     })
 }});
@@ -224,3 +221,4 @@ var modal = new Column({
 exports.modal = modal;
 exports.getClothingInfo = getClothingInfo;
 exports.clear = clear;
+exports.update=update;
