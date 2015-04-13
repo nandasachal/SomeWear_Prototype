@@ -19,14 +19,19 @@ function getClothingInfo() {
   }
 }
 
+function clear() {
+  titleField.scroller.label.string = '';
+  categoriesField.scroller.label.string = '';
+}
+
 var title = '';
 var TitleField = Container.template(function($) { return { 
   width: 250, height: 36, skin: nameInputSkin, contents: [
     Scroller($, { 
-      left: 4, right: 4, top: 4, bottom: 4, active: true, 
+      name: 'scroller', left: 4, right: 4, top: 4, bottom: 4, active: true, 
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
         Label($, { 
-          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'TITLE',
+          name: 'label', left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'TITLE',
           editable: true, string: $.name,
             behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
                 onEdited: { value: function(label){
@@ -44,15 +49,16 @@ var TitleField = Container.template(function($) { return {
     })
   ]
 }});
+var titleField = new TitleField({ name: '' });
 
 var categories = '';
 var CategoriesField = Container.template(function($) { return { 
   width: 250, height: 36, skin: nameInputSkin, contents: [
     Scroller($, { 
       left: 4, right: 4, top: 4, bottom: 4, active: true, 
-      behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
+      name: 'scroller', behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
         Label($, { 
-          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'CATEGORIES',
+          name: 'label', left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'CATEGORIES',
           editable: true, string: $.name,
             behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
                 onEdited: { value: function(label){
@@ -70,6 +76,7 @@ var CategoriesField = Container.template(function($) { return {
     })
   ]
 }});
+var categoriesField = new CategoriesField({ name: '' });
 
 var labelStyle = new Style( { font: "bold 30px", color:"black" } );
 var OkayButton = BUTTONS.Button.template(function($) { return {
@@ -117,9 +124,9 @@ var modal = new Column({
     contents: [
         new Label({string:"Add Clothing", style: labelStyle, top: 20}),
         new Container({ height: 50 }),
-        new TitleField({ name: '' }),
+        titleField,
         new Container({ height: 10 }),
-        new CategoriesField({ name: '' }),
+        categoriesField,
         new Container({ height: 25 }),
         buttons,
     ]
@@ -127,3 +134,4 @@ var modal = new Column({
 
 exports.modal = modal;
 exports.getClothingInfo = getClothingInfo;
+exports.clear = clear;

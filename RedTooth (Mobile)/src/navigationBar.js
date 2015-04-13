@@ -25,11 +25,10 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
-
-			trace("initial\n");
 			if (content == addButton) {
 				if (navBar.titleWords.string == "CLOTHING") {
 					application.add(addClothingModal.modal);
+					addClothingModal.clear();
 					application.remove(clothingScreen.screen);
 				} else {
 					application.add(addCategory.modal);
