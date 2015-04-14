@@ -7,8 +7,8 @@ var PinsSimulators = require('PinsSimulators');
 var configure = exports.configure = function(configuration) {
 	this.pinsSimulator = shell.delegate("addSimulatorPart", {
 			header : { 
-				label : "Weight Detectors", 
-				name : "Analog Inputs", 
+				label : "Clothes Hangers", 
+				name : "Unique RFID Numbers", 
 				iconVariant : PinsSimulators.SENSOR_MODULE 
 			},
 			axes : [
