@@ -6,11 +6,11 @@ var clothingInCloset = [];
 
 
 var sampleClothes = [
-    	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt.png", toggleOn: false, categories: ["Business"]},
-    	{name: 'gray jacket', idNum: 2, photo:"../assets/shirt.png", toggleOn: false, categories: ["Business"]},
-    	{name: 'black dress', idNum: 3, photo: "../assets/shirt.png", toggleOn: false, categories: ["Date"]},
-    	{name: 'red hoodie', idNum: 4, photo: "../assets/shirt.png", toggleOn: false, categories: ["Date"]},
-    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/shirt.png", toggleOn: false, categories: ["Business", "Date"]},
+    	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt-lighter.png", toggleOn: false, categories: ["Business"]},
+    	{name: 'gray jacket', idNum: 2, photo:"../assets/shirt-lighter.png", toggleOn: false, categories: ["Business"]},
+    	{name: 'black dress', idNum: 3, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Date"]},
+    	{name: 'red hoodie', idNum: 4, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Date"]},
+    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Business", "Date"]},
 ];
 
 

@@ -133,7 +133,7 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
            	//newAddedClothing.hangerId = 'hanger1';
 
-           	newAddedClothing.photo = "../assets/shirt.png";
+           	newAddedClothing.photo = "../assets/shirt-lighter.png";
            	newAddedClothing.toggleOn = false;
            	newAddedClothing.categories = [];
            	for (var i = 0; i < addCategoryToClothing.selectedCategories.length; i++) {

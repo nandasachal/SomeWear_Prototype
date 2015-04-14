@@ -139,7 +139,7 @@ var mainContainer = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-    new Line({left:0, right:0, top:0, bottom:0, skin: redSkin,
+    new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin,
     	contents: [
     		new Column({left:0, right:0, top:10, bottom:0,
     			contents: [
@@ -167,7 +167,7 @@ var mainContainer = new Column({
     		})
     	]
     }),
-    new Line({left:0, right:0, top:0, bottom:0, skin: blueSkin,
+    new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin,
     	contents: [
     		new Column({left:0, right:0, top:10, bottom:0,
     			contents: [
