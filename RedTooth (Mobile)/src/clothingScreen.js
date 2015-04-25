@@ -13,6 +13,11 @@ var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 
+/* SIZES */
+var tabBarSize = 30;
+var navBarSize = 40;
+var topMargin = tabBarSize + navBarSize;
+
 /* STYLES */
 var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
 var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
@@ -100,7 +105,7 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
  * referencing any values from an object passed on creation,
  * an object is still required as the SCROLLER uses it internally. */
 var ScreenContainer = Container.template(function($) { return {
-	left:0, right:0, top:40, bottom:0,
+	left:0, right:0, top:topMargin, bottom:0,
 	contents: [
 	   		/* Note that the scroller is declared as having only an empty
 	   		 * Column and a scrollbar.  All the entries will be added 
