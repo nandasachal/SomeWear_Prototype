@@ -35,7 +35,8 @@ application.behavior = Object.create(Object.prototype, {
 		// list items.
 		category.categories.forEach(categoryScreen.ListBuilder);
 		//application.add(scrollingExample.screen);
-		clothing.clothingInCloset.forEach(clothingScreen.ListBuilder);
+		//clothing.clothingInCloset.forEach(clothingScreen.ListBuilder);
+		clothingScreen.gridBuilder(clothing.clothingInCloset);
 		application.add(clothingScreen.screen);
 		application.add(navigationBar.navBar);
 		application.add(navigationBar.tabBar);

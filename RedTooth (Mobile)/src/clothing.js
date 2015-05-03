@@ -6,11 +6,13 @@ var clothingInCloset = [];
 
 
 var sampleClothes = [
-    	{name: 'blue shirt', idNum: 1, photo:"../assets/shirt-lighter.png", toggleOn: false, categories: ["Business"]},
-    	{name: 'gray jacket', idNum: 2, photo:"../assets/shirt-lighter.png", toggleOn: false, categories: ["Business"]},
-    	{name: 'black dress', idNum: 3, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Date"]},
-    	{name: 'red hoodie', idNum: 4, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Date"]},
-    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/shirt-lighter.png", toggleOn: false, categories: ["Business", "Date"]},
+    	{name: 'blue shirt', idNum: 1, photo:"../assets/blue-shirt-photo.jpg", toggleOn: false, categories: ["Business"]},
+    	{name: 'gray jacket', idNum: 2, photo:"../assets/gray-jacket-photo.jpg", toggleOn: false, categories: ["Business"]},
+    	{name: 'black dress', idNum: 3, photo: "../assets/black-dress-photo.jpg", toggleOn: false, categories: ["Date"]},
+    	{name: 'red hoodie', idNum: 4, photo: "../assets/red-hoodie-photo.jpg", toggleOn: false, categories: ["Date"]},
+    	{name: 'purple t-shirt', idNum: 5, photo: "../assets/purple-tshirt-photo.jpg", toggleOn: false, categories: ["Business", "Date"]},
+    	{name: 'blue cal t-shirt', idNum: 5, photo: "../assets/blue-caltshirt-photo.jpg", toggleOn: false, categories: ["Business", "Date"]},
+    	{name: 'black dress pants', idNum: 5, photo: "../assets/black-dress-pants.jpg", toggleOn: false, categories: ["Business", "Date"]}
 ];
 
 

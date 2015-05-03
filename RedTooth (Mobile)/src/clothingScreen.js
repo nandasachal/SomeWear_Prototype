@@ -19,7 +19,7 @@ var navBarSize = 40;
 var topMargin = tabBarSize + navBarSize;
 
 /* STYLES */
-var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
+var productNameStyle = new Style({  font: 'Roboto 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
 var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
 
 /* STATIC */
@@ -58,8 +58,92 @@ var nextIdNum = 8;
 
 
 var clothingList = clothing.clothingInCloset;
-
 var imageDimension = 120;
+
+/* test test */
+
+var clothingGridItemTemplate = Container.template(function($) {
+	return {
+		left: 0, right: 0, top: 0, bottom: 0, active: true,
+		behavior: Object.create(Behavior.prototype, {
+			onTouchBegan: { value : function(container, id, x, y, ticks)  {
+			}},
+			onTouchEnded: { value: function(container, id, y, x, ticks) {
+				trace("clothing was toggled on!\n");
+
+			}}
+		}),
+		contents: [
+			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
+     			new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+     			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
+     			]
+     		})
+		],
+		/*effects: [
+			outer-shadow: 1;
+		]*/
+	}
+});
+
+var emptyGridItemTemplate = Container.template(function ($) {
+	return {
+		left: 10, right: 10, top: 10, bottom: 10, width: 130, active: false,
+	}
+});
+
+var clothingLineInGridTemplate = Line.template(function ($) {
+	return {
+		left: 0, right: 0, top: 0, bottom: 0,
+		contents:[],
+	}
+});
+
+var clothingScreenContainer = Container.template(function($) { return {
+	left:10, right:10, top:topMargin+10, bottom: 50,
+	contents: [
+	   		/* Note that the scroller is declared as having only an empty
+	   		 * Column and a scrollbar.  All the entries will be added 
+	   		 * programmatically. */ 
+	   		SCROLLER.VerticalScroller($, { 
+	   			contents: [
+              			Column($, { left: 0, right: 0, top: 0, name: 'clothingColumn', }),
+              			SCROLLER.VerticalScrollbar($, { }),
+              			]
+	   		})
+	   		]
+	}});
+	
+function gridBuilder(inputClothingList) {
+	for (var i = 0; i < inputClothingList.length; i+=2) {
+		newGridLine = new clothingLineInGridTemplate();
+		newGridLine.add(new clothingGridItemTemplate(inputClothingList[i]));
+		if (inputClothingList.length%2 == 1 && i == inputClothingList.length - 1){ // if the input clothing list length is odd, only add 1 item
+			newGridLine.add(new emptyGridItemTemplate());
+			clothingScreen.first.clothingColumn.add(newGridLine);
+			trace("added 1 item\n");
+			return;
+		} else {
+			newGridLine.add(new clothingGridItemTemplate(inputClothingList[i+1]));
+			clothingScreen.first.clothingColumn.add(newGridLine);
+			trace("added 2 item\n");
+		}
+	}
+}
+
+	
+function refreshClothingScreen() {
+	var data = new Object();
+	clothingScreen = new clothingScreenContainer(data);
+	gridBuilder(clothingList);
+
+	exports.screen = clothingScreen;
+	
+	return clothingScreen;
+
+}
+
+
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
@@ -118,9 +202,11 @@ var ScreenContainer = Container.template(function($) { return {
 	   		})
 	   		]
 	}});
-
+	
 var data = new Object();
 var screen = new ScreenContainer(data);
+var clothingScreen = new clothingScreenContainer(data);
+
 
 /* This simple function exists so we can call "forEach" on
  * our array of list entries (menuItems).  It adds a new 
@@ -172,11 +258,15 @@ function listRefresh() {
 }
 
 exports.ListBuilder = ListBuilder;
-exports.screen = screen;
+//exports.screen = screen;
 exports.nextIdNum = nextIdNum;
 //exports.addNewClothingItem = addNewClothingItem;
 exports.listRefresh = listRefresh;
 exports.blankScreen = new Container({});
+
+exports.screen = clothingScreen;
+exports.gridBuilder = gridBuilder;
+exports.refreshClothingScreen = refreshClothingScreen;
 
 
 

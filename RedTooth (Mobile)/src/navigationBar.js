@@ -18,8 +18,8 @@ var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var whiteSkin = new Skin({fill:'white'});
 var yellowSkin = new Skin({fill:'yellow'});
 var greenSkin = new Skin({fill:'green'});
-var tabUpSkin = new Skin({fill: "#F2F4F4"});
-var tabDownSkin = new Skin({fill :"#B7D6D7"});
+var tabUpSkin = new Skin({fill: "#B7D6D7"});
+var tabDownSkin = new Skin({fill :"#F2F4F4"}); 
 
 var logoImage = new Texture("../assets/somewear-logo-small.png");
 
