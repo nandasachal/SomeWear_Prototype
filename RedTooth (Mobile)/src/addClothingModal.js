@@ -147,7 +147,9 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             category.addClothingToCategories(addCategoryToClothing.selectedCategories, newAddedClothing);
 
             var oldScreen = clothingScreen.blankScreen;
-            application.replace(oldScreen, clothingScreen.listRefresh());
+
+            application.replace(oldScreen, clothingScreen.refreshClothingScreen());
+
             application.remove(modal);
             title = "";
 			application.invoke(new Message("/newClothingAdded?" + serializeQuery({

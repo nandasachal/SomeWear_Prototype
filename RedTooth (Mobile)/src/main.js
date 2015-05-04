@@ -25,7 +25,7 @@ var clothing = require("clothing.js");
 var tealSkin = new Skin({ fill: lightestTealColor});
 
 
-navigationBar.navBar.titleWords.string = " CLOTHING";
+//navigationBar.navBar.titleWords.string = " CLOTHING";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 	
@@ -35,9 +35,11 @@ application.behavior = Object.create(Object.prototype, {
 		// list items.
 		category.categories.forEach(categoryScreen.ListBuilder);
 		//application.add(scrollingExample.screen);
-		clothing.clothingInCloset.forEach(clothingScreen.ListBuilder);
+		//clothing.clothingInCloset.forEach(clothingScreen.ListBuilder);
+		clothingScreen.gridBuilder(clothing.clothingInCloset);
 		application.add(clothingScreen.screen);
 		application.add(navigationBar.navBar);
+		application.add(navigationBar.tabBar);
 
 
 		trace("nextIdNum = " + clothingScreen.nextIdNum + "\n");
