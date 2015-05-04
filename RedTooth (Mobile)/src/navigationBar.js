@@ -49,7 +49,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 		onTap: { value: function(content) {
 			if (content == addButton) {
 				//if (navBar.titleWords.string.trim() == "CLOTHING") {
-				if (clothingTab.skin = tabDownSkin) {
+				if (clothingTab.skin == tabDownSkin) {
 					application.invoke(new Message("/getCloset"));
 				} else {
 					addClothingToCategory.initialize();
