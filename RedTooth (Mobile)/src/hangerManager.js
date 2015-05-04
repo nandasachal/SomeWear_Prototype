@@ -2,6 +2,7 @@
 var clothing = require("clothing.js");
 var addClothingModal = require("addClothingModal.js");
 var addCategoryToClothing = require("addCategoryToClothing.js"); 
+var lightManager = require("lightManager.js");
 
 var bigText = new Style({font:"bold 30px", color:"white"});
 var largeText = new Style({font:"bold 30px", color:"white"});
@@ -41,15 +42,17 @@ Handler.bind("/getCloset", {
     	if (finishCon.container!=null){
     		application.remove(finishCon);
     	}
-    	closet.hanger1=json.closet.hanger1;
-    	closet.hanger2=json.closet.hanger2;
-    	closet.hanger3=json.closet.hanger3;
-    	closet.hanger4=json.closet.hanger4;
-    	closet.hanger5=json.closet.hanger5;
-    	closet.hanger6=json.closet.hanger6;
-    	closet.hanger7=json.closet.hanger7;
-    	closet.hanger8=json.closet.hanger8;
-    	count=0;
+    	if (json){
+    		closet.hanger1=json.closet.hanger1;
+    		closet.hanger2=json.closet.hanger2;
+    		closet.hanger3=json.closet.hanger3;
+    		closet.hanger4=json.closet.hanger4;
+    		closet.hanger5=json.closet.hanger5;
+    		closet.hanger6=json.closet.hanger6;
+    		closet.hanger7=json.closet.hanger7;
+    		closet.hanger8=json.closet.hanger8;
+    		count=0;
+    	}
     	for (var key in closet){
     		if (clothes.indexOf(closet[key])==-1){
     			hanger_names.push(key);
@@ -103,7 +106,7 @@ Handler.bind("/newClothingDetected", {
     	if (count > 0) {
 			addClothingModal.clear();
 			addClothingModal.update(hanger_names[count-1],id_nums[count-1]);
-			lightUp(hanger_names[count-1],"#FFFF00");
+			lightManager.lightUp(hanger_names[count-1],"#FFFF00");
 			addCategoryToClothing.initialize();
 			addClothingModal.clear();
 			application.add(addClothingModal.modal);
@@ -117,8 +120,7 @@ Handler.bind("/skipClothing", {
     onInvoke: function(handler, message){
     	var query = parseQuery(message.query);
         var hanger = query['hanger'];
-
-    	dim(hanger);
+    	lightManager.dim(hanger);
     	application.invoke(new Message("/newClothingDetected"));
     },
 });
@@ -128,9 +130,8 @@ Handler.bind("/newClothingAdded", {
     	var query = parseQuery(message.query);
         var id = parseInt(query['id']);
         var hanger = query['hanger'];
-
     	clothes.push(id);
-    	dim(hanger);
+    	lightManager.dim(hanger);
     	application.invoke(new Message("/newClothingDetected"));
     },
 });
@@ -244,25 +245,4 @@ Handler.bind("/forget", Behavior({
 	}
 }));
 
-function lightUp(hanger, color) {
-    application.invoke(new Message(deviceURL + "lightUp?" + serializeQuery({
-	    hanger: hanger,
-	    color: color
-	})), Message.JSON);
-}
-
-function dim(hanger) {
-    application.invoke(new Message(deviceURL + "dim?" + serializeQuery({
-        hanger: hanger
-    })), Message.JSON);
-}
-
-function dimAll() {
-    application.invoke(new Message(deviceURL + "dimAll"));
-    trace('reached dimAll\n');
-}
-
-exports.lightUp = lightUp;
-exports.dimAll = dimAll;
-exports.dim = dim;
 exports.syncBar = syncBar;

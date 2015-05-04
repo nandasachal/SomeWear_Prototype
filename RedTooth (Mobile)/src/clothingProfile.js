@@ -74,11 +74,13 @@ var okCon = new Container({ height: 40, left: 15, bottom: 30, width: 100, skin: 
     			//trace(clothing.clothingInCloset[i].idNum);
     			if (clothing.clothingInCloset[i].idNum == id){
     				clothing.clothingInCloset.splice(i, 1);
-    				//trace("removed");
+    				trace("removed");
+    				application.invoke(new Message("/clothingDeleted"));
     			}
     		}
     		//trace(JSON.stringify(clothing.clothingInCloset));
     		holder = 1;
+    		newCon.remove(deleteCon);
     		lightManager.dimAll();
     		application.remove(newCon);
     	}},

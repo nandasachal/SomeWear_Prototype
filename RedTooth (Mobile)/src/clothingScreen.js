@@ -4,6 +4,9 @@ var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 var clothing = require("clothing.js");
+var lightManager = require('lightManager.js');
+var clothingProfile = require('clothingProfile.js');
+var clothingProfileNavBar = require('clothingProfileNavBar.js');
 
 /* ASSETS */
 var onColor = "#FFD599";
@@ -67,16 +70,19 @@ var clothingGridItemTemplate = Container.template(function($) {
 		left: 0, right: 0, top: 0, bottom: 0, active: true,
 		behavior: Object.create(Behavior.prototype, {
 			onTouchBegan: { value : function(container, id, x, y, ticks)  {
-			}},
-			onTouchEnded: { value: function(container, id, y, x, ticks) {
-				trace("clothing was toggled on!\n");
-
-			}}
-		}),
+				lightManager.lightUp($.hangerId, onColor);
+				clothingProfile.store($.name, $.photo, $.categories, $.idNum);
+				clothingProfile.refresh();
+				application.add(clothingProfileNavBar.navBar);
+				//application.remove(clothingScreen);
+				//refreshClothingScreen();*/
+		}}
+	}),
 		contents: [
 			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
      			new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
-     			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
+     			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,})], 
+     			})
      			]
      		})
 		],
@@ -85,6 +91,7 @@ var clothingGridItemTemplate = Container.template(function($) {
 		]*/
 	}
 });
+
 
 var emptyGridItemTemplate = Container.template(function ($) {
 	return {
@@ -134,16 +141,22 @@ function gridBuilder(inputClothingList) {
 	
 function refreshClothingScreen() {
 	var data = new Object();
+	clothingList = clothing.clothingInCloset;
+	trace(JSON.stringify(clothingList))
 	clothingScreen = new clothingScreenContainer(data);
 	gridBuilder(clothingList);
-
 	exports.screen = clothingScreen;
-	
 	return clothingScreen;
-
 }
 
 
+Handler.bind("/clothingDeleted", {
+    onInvoke: function(handler, message){
+    	trace("updating");
+    	application.replace(clothingScreen, refreshClothingScreen());
+    	application.remove(clothingProfileNavBar.navBar);
+	}
+})
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
@@ -163,10 +176,12 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
 				container.first.first.skin = onSkin;
 				$.toggleOn = true;
 				trace(container.first.first.last.string+"\n");
+				trace("done");
 			} else if ($.toggleOn) {
 				container.first.first.skin = whiteSkin;
 				$.toggleOn = false;
 				trace(container.first.first.last.string+"\n");
+				lightManager.dim($.hangerId)
 			}
 		}}
     }),

@@ -4,7 +4,7 @@
 
 var BUTTONS = require('controls/buttons');
 var categoryDetailView = require('categoryDetailView.js');
-var hangerManager = require('hangerManager.js');
+var lightManager = require('lightManager.js');
 
 /*var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothingScreen.js");
@@ -45,7 +45,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				application.remove(categoryDetailView.screen);
 				trace("HAY 3\n");
 				application.remove(categoryDetailView.bg);
-				hangerManager.dimAll();
+				lightManager.dimAll();
 			}
 			
 			if (content == switchIcon) {

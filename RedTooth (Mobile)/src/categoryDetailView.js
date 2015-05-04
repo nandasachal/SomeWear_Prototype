@@ -5,6 +5,7 @@ var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 var clothing = require('clothing.js');
 var category = require('category.js');
+var lightManager = require('lightManager.js');
 
 /* ASSETS */
 var blackSkin = new Skin({ fill: 'black',});
@@ -123,7 +124,7 @@ function refresh() {
 				clothesLightedUp.push(tempCloth);
 				//lighting up here
 				if (tempCloth.hangerId != null && tempCloth.hangerId != '') {
-					hangerManager.lightUp(tempCloth.hangerId, tempCategories[j].color);
+					lightManager.lightUp(tempCloth.hangerId, tempCategories[j].color);
 				}
 			}
 		}
