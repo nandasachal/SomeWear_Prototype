@@ -66,12 +66,13 @@ var clothingGridItemTemplate = Container.template(function($) {
 	return {
 		left: 0, right: 0, top: 0, bottom: 0, active: true,
 		behavior: Object.create(Behavior.prototype, {
-			onTouchBegan: { value : function(container, id, x, y, ticks)  {
+			onTouchEnded: { value : function(container, id, x, y, ticks)  {
+				if ($.hangerId != ''){
+					hangerManager.lightUp($.hangerId,onColor);
+				}
+				clothingProfile.store($.name,$.photo,$.categories,$.idNum);
+				clothingProfile.refresh();
 			}},
-			onTouchEnded: { value: function(container, id, y, x, ticks) {
-				trace("clothing was toggled on!\n");
-
-			}}
 		}),
 		contents: [
 			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
@@ -121,12 +122,12 @@ function gridBuilder(inputClothingList) {
 		if (inputClothingList.length%2 == 1 && i == inputClothingList.length - 1){ // if the input clothing list length is odd, only add 1 item
 			newGridLine.add(new emptyGridItemTemplate());
 			clothingScreen.first.clothingColumn.add(newGridLine);
-			trace("added 1 item\n");
+			//trace("added 1 item\n");
 			return;
 		} else {
 			newGridLine.add(new clothingGridItemTemplate(inputClothingList[i+1]));
 			clothingScreen.first.clothingColumn.add(newGridLine);
-			trace("added 2 item\n");
+			//trace("added 2 item\n");
 		}
 	}
 }

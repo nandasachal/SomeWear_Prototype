@@ -61,7 +61,7 @@ Handler.bind("/getCloset", {
     		var exists = false;
 			for (var key in closet) {
 				if (closet[key] == obj.idNum) {
-				    trace('Found ' + obj.name + '\n');
+				    //trace('Found ' + obj.name + '\n');
 					obj.hangerId = key;
 					exists = true;
 				}
@@ -259,7 +259,7 @@ function dim(hanger) {
 
 function dimAll() {
     application.invoke(new Message(deviceURL + "dimAll"));
-    trace('reached dimAll\n');
+    //trace('reached dimAll\n');
 }
 
 exports.lightUp = lightUp;

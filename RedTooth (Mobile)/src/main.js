@@ -16,6 +16,8 @@ var lightestTealColor = "#ffDEFCFA";
 
 	var category = require("category.js");
 	var clothing = require("clothing.js");
+	var clothingProfile = require("clothingProfile.js");
+	var clothingProfileNavBar = require("clothingProfileNavBar.js");
 	var clothingScreen = require("clothingScreen.js");
 
 	var categoryDetailView = require("categoryDetailView.js");
