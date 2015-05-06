@@ -15,6 +15,7 @@ var separatorSkin = new Skin({ fill: 'silver',});
 var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill:lightestTealColor});
 
+var categoryNameStyle = new Style({font: 'Roboto bold 15px', color: 'black'});
 
 var currentCategory;
 
@@ -157,17 +158,33 @@ function refresh() {
 	}
 	
 	
-	categoryNameLabel = new Label({left: 0, right:0, bottom: 0, top:0, string: categoryChecked, name: "categoryNameLabel"});
-	var nameLine = new Line ({ left: 0, right: 0, top:0, height: 40, contents: [
+	
+	categoryNameLabel = new Label({string: categoryChecked.toUpperCase(), name: "categoryNameLabel", style:categoryNameStyle});
+	
+	var nameLine = new Line ({top: 9, contents: [
 		categoryNameLabel
 	]});
-	nameLine.skin = categorySkin;
 	
-	var alertLine = new Line( {left: 20, right: 20, top: 10, bottom: 10, height: 100, skin: whiteSkin, contents: [
+	var nameLineContainer = new Column({ left: 0, right: 0, height: 35, top: 8, skin: whiteSkin, contents: [
+		nameLine,
+	]});
+	//nameLine.skin = categorySkin;
+	
+	var borderCategorySkin = new Skin({ fill: currentCategory.color, borders: {left: 0.5, right: 2, bottom: 2, top: 0.5}, stroke: greyBorderColor});
+	
+	var alertLine = new Line( {left: 15, right: 15, top: 18, bottom: 10, height: 70, skin: borderCategorySkin, contents: [
 		alertLabel
 	]} );
 	
-	screen.first.add(nameLine);
+	/*new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#FF535454"})}),
+	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#997A7A7A"}),}),
+	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#88B5B5B5"}),})
+	
+	screen.first.add(new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#FF535454"})}),);
+	screen.first.add(new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#997A7A7A"}),}));
+	screen.first.add(*/
+	
+	screen.first.add(nameLineContainer);
 	screen.first.menu.add(alertLine);
 	//clothesLightedUp.forEach(ListBuilder);
 	refreshClothingScreen(clothesLightedUp);
@@ -205,17 +222,35 @@ function update(newCategory) {
 	}
 	
 	
-	categoryNameLabel = new Label({left: 0, right:0, bottom: 0, top:0, string: currentCategory.name, name: "categoryNameLabel"});
+	
+	categoryNameLabel = new Label({string: categoryChecked.toUpperCase(), name: "categoryNameLabel", style:categoryNameStyle});
+	
+	var nameLine = new Line ({contents: [
+		categoryNameLabel
+	]});
+	
+	var nameLineContainer = new Container({ left: 0, right: 0, height: 35, top: 8, skin: whiteSkin, contents: [
+		nameLine
+	]});
+	//nameLine.skin = categorySkin;
+	
+	var borderCategorySkin = new Skin({ fill: currentCategory.color, borders: {left: 2, right: 2, bottom: 2, top: 2}, stroke: greyBorderColor});
+	
+	var alertLine = new Line( {left: 15, right: 15, top: 18, bottom: 10, height: 70, skin: borderCategorySkin, contents: [
+		alertLabel
+	]} );
+	
+	/*categoryNameLabel = new Label({left: 0, right:0, bottom: 0, top:0, string: currentCategory.name, name: "categoryNameLabel"});
 	var nameLine = new Line ({ left: 0, right: 0, top:0, height: 40, contents: [
 		categoryNameLabel
 	]});
 	nameLine.skin = new Skin({ fill: currentCategory.color });
 	
-	var alertLine = new Line( {left: 20, right: 20, top: 10, bottom: 10, height: 100, skin: whiteSkin, contents: [
+	var alertLine = new Line( {left: 15, right: 15, top: 15, bottom: 15, height: 100, skin: whiteSkin, contents: [
 		alertLabel
-	]} );
+	]} );*/
 	
-	screen.first.add(nameLine);
+	screen.first.add(nameLineContainer);
 	screen.first.menu.add(alertLine);
 	//clothesLightedUp.forEach(ListBuilder);
 	refreshClothingScreen(clothesLightedUp);
@@ -236,6 +271,8 @@ function ListBuilder(element, index, array) {
 
 /* GRID VIEW COPY PASTED FROM CLOTHING SCREEN */
 
+var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 2, right: 2, bottom: 2, top: 2}, stroke: greyBorderColor});
+
 var clothingGridItemTemplate = Container.template(function($) {
 	return {
 		left: 0, right: 0, top: 0, bottom: 0, active: true,
@@ -248,8 +285,8 @@ var clothingGridItemTemplate = Container.template(function($) {
 			}}
 		}),
 		contents: [
-			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
-     			new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: borderWhiteSkin, contents: [ 
+     			new Picture( {left:0, right:0, top:5, width: 100, height: 100, name: 'picture', url: $.photo,}),
      			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
      			]
      		})

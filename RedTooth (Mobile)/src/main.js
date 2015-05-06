@@ -6,12 +6,27 @@ var SCREEN = require('mobile/screen');
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require('controls/buttons');
+var TRANSITIONS = require("transitions");
 
 //common colors
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
 var brightestTealColor = "#FF4CAFB0";
+var lightGrey = "#E0F2F4";
+var greyBorderColor = "#AAAAAA";
+
+//skins
+var bgGreySkin = new Skin({fill: lightGrey});
+var tealSkin = new Skin({ fill: lightestTealColor});
+var onSkin	= new Skin({ fill: 'white', borders: { left:5, right:5, top:5, bottom:5 }, stroke: brightestTealColor});
+var borderSkin = new Skin({fill: '#535454'});
+
+//sizes 
+var navBarSize = 42;
+var navBarBottom = 412;
+var tabBarSize = 35;
+var topMargin = navBarSize + tabBarSize;
 
 //file dependencies
 
@@ -35,16 +50,14 @@ var brightestTealColor = "#FF4CAFB0";
 	var addCategory = require("addCategory.js");
 	var navigationBar = require("navigationBar.js");
 
-//skins
-var tealSkin = new Skin({ fill: lightestTealColor});
-var onSkin	= new Skin({ fill: 'white', borders: { left:5, right:5, top:5, bottom:5 }, stroke: brightestTealColor});
 
+//var tabBarBottom = 387;
 
 //navigationBar.navBar.titleWords.string = " CLOTHING";
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
 	
-		application.add(new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin}))
+		application.add(new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: bgGreySkin}))
 	
 	
 		/* adding sample clothes to sample categories */
@@ -73,6 +86,8 @@ application.behavior = Object.create(Object.prototype, {
 		application.add(clothingScreen.screen);
 		application.add(navigationBar.navBar);
 		application.add(navigationBar.tabBar);
+		
+		//application.add(navigationBar.navigation);
 
 
 		trace("nextIdNum = " + clothingScreen.nextIdNum + "\n");

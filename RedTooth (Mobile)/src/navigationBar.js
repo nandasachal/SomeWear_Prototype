@@ -12,7 +12,8 @@ var addCategoryToClothing = require('addCategoryToClothing.js');
 var categoryDetailView = require("categoryDetailView.js");
 var addClothingToCategory = require('addClothingToCategory.js');*/
 
-var tabBarSize = 30;
+/*var tabBarSize = 35;
+var navBarSize = 45;*/
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var whiteSkin = new Skin({fill:'white'});
@@ -56,6 +57,8 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					addClothingToCategory.refreshClothingScreen();
 					application.add(addCategory.modal);
 					application.replace(categoryScreen.screen, categoryScreen.blankScreen);
+					//application.run(new TRANSITIONS.CrossFade(), categoryScreen.screen, categoryScreen.blankScreen, {duration: 500});
+					trace("transitions are running? \n");
 				}
 
 			}
@@ -86,7 +89,7 @@ addButton.skin = addButtonSkin;
 var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
 switchIcon.skin = briefcaseIconSkin;
 
-var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 40, skin: tealVariantSkin, name: 'titleBar', contents:[
+var navBar = new Line({left:0, right:0, top:0, bottom:415, height: navBarSize, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
 	//new Label({left:120, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"SomeWear", style:headerStyle}),
 	new Container({left: 75, right: 0, top: 0, bottom: 0, height: 25, width: 80, skin: logoSkin, 
@@ -146,7 +149,7 @@ var clothingTab = new Container({left: 0, right: 0, top: 0, bottom: 0, skin: tab
 	],
 });
 
-var tabBar = new Line({left: 0, right: 0, top: 40, bottom: 390, height: tabBarSize, skin: whiteSkin, name:'tabBar', contents: [
+var tabBar = new Line({left: 0, right: 0, top: navBarSize, /*bottom: 390,*/ height: tabBarSize, skin: whiteSkin, name:'tabBar', contents: [
 	categoriesTab, clothingTab
 	],
 	behavior: {
@@ -156,6 +159,13 @@ var tabBar = new Line({left: 0, right: 0, top: 40, bottom: 390, height: tabBarSi
 	}
 });
 
+var tabBarColumn = new Column({top: 0, bottom: 387, left: 0, right: 0, contents:[
+	tabBar,
+	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#FF535454"})}),
+	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#997A7A7A"}),}),
+	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#88B5B5B5"}),})
+]});
+
 trace("lalala\n");
 
 
@@ -164,4 +174,4 @@ trace("lalala\n");
 exports.navBar = navBar;
 exports.addButton = addButton;
 exports.switchIcon = switchIcon;
-exports.tabBar = tabBar;
+exports.tabBar = tabBarColumn;
