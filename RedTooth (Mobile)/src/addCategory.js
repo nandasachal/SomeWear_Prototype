@@ -66,6 +66,18 @@ var TitleField = Container.template(function($) { return {
   ]
 }});
 
+var nextCatColorIndex = category.categories.length;
+var nextCatColor = category.categorySkinColors[nextCatColorIndex];
+
+var setNextCategoryColor = function() {
+
+	if (nextCatColorIndex >= category.categorySkinColors.length) {
+		nextCatColorIndex = 0;
+	} else {
+		nextCatColorIndex = nextCatColorIndex + 1;
+	}
+	nextCatColor = category.categorySkinColors[nextCatColorIndex];
+}
 
 var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
     left: 0, right: 0, //height: 50, width: 100,
@@ -82,14 +94,14 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
            		return;
             }
             
-			newCategory = category.Category(name=categoryName, color=category.generateCategorySkinColor(), subcategories = categorySubcategories);
+			newCategory = category.Category(name=categoryName, color=nextCatColor, subcategories = categorySubcategories);
 			newCategory.clothing = [];
 			for (var i = 0; i < addClothingToCategory.selectedClothing.length; i++) {
 				newCategory.clothing.push(addClothingToCategory.selectedClothing);
 			}
 
 			trace(Object.keys(clothing) + "\n");
-			clothingFile.addCategoriesToClothing(addClothingToCategory.selectedClothing, newCategory);
+			clothing.addCategoriesToClothing(addClothingToCategory.selectedClothing, newCategory);
 			/*trace("newCategory.clothing = " + newCategory.clothing + "\n");
 			for (var i = 0; i < newCategory.clothing.length; i++) {
 				trace("newCategory.clothing = " + newCategory.clothing[i].name + "\n");
@@ -97,6 +109,8 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
 			category.categories.push(newCategory);
 			categoriesScreen.ListBuilder(newCategory);
+			
+			setNextCategoryColor();
             
             titleField.first.first.string = '';
             application.remove(modal);

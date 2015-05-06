@@ -3,6 +3,7 @@
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
 var BUTTONS = require('controls/buttons');
+
 /*var categoryDetailView = require('categoryDetailView.js');
 var hangerManager = require('hangerManager.js');*/
 
@@ -13,10 +14,18 @@ var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
 var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
 var addTexture = new Texture('../assets/okayButtonGraphic.png');
+var deleteTexture = new Texture('../assets/deleteButton.png');
 var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
 var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
 var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 70, aspect: 'fit', });
+var deleteButtonSkin = new Skin({ texture: deleteTexture, top: 10, height:55, width: 100, aspect: 'fit', });
 
+
+var currentCategorySelected;
+
+var storeToggledOnCategoryObject = function($) {
+	currentCategorySelected = $;
+}
 
 var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	top:0, bottom:0, left:0, right:0, height: 50, width: 10,
@@ -34,13 +43,21 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					application.add(addCategory.modal);
 					application.remove(categoriesScreen.screen);
 				}*/
-				trace("HAY 1\n");
 				application.remove(navBar);
-				trace("HAY 2\n");
 				application.remove(categoryDetailView.screen);
-				trace("HAY 3\n");
 				application.remove(categoryDetailView.bg);
 				hangerManager.dimAll();
+			}
+			
+			if (content == deleteButton) {
+				var index = category.categories.indexOf(currentCategorySelected);
+				category.categories.splice(index,1);
+	            application.replace(categoryScreen.screen, categoryScreen.listRefresh());
+				application.remove(navBar);
+				application.remove(categoryDetailView.screen);
+				application.remove(categoryDetailView.bg);
+				hangerManager.dimAll();
+				
 			}
 			
 			if (content == switchIcon) {
@@ -73,16 +90,21 @@ backButton.skin = addButtonSkin;
 var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
 switchIcon.skin = briefcaseIconSkin;
 
+var deleteButton = new buttonTemplate({top: 5, textForLabel:'', name: 'backButton'});
+deleteButton.skin = deleteButtonSkin;
+
+
 var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
 	//new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
-	backButton, 
+	backButton,
+	deleteButton, 
 	]
 });
 
 
 //External Items
-
+exports.storeToggledOnCategoryObject = storeToggledOnCategoryObject;
 exports.navBar = navBar;
 exports.backButton = backButton;
 exports.switchIcon = switchIcon;

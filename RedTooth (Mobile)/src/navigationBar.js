@@ -110,7 +110,9 @@ var goToCategoriesPage = {
 		if (categoriesTab.skin == tabDownSkin) {
 			return;
 		} else {
+			trace("in here\n");
 			navBar.add(addButton);
+			trace("ended\n");
 			categoriesTab.skin = tabDownSkin;
 			clothingTab.skin = tabUpSkin;
 			application.replace(clothingScreen.screen, categoryScreen.screen);

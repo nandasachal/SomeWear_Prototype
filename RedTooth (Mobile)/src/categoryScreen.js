@@ -35,7 +35,6 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
 var toggledOnCategory = null;
 var detailViewStatus = false;
 
-
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
 var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin: THEME.lineSkin, 
@@ -50,6 +49,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
     	 * container.Column.Container.Label.string.  This pattern can
     	 * be seen reading down the contents of this object below */
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
+    		categoryDetailViewNavBar.storeToggledOnCategoryObject($);
 			toggledOnCategory = $.name; //name of the category that is toggled on
 			//application.remove(screen);
 			detailViewStatus = true
@@ -118,7 +118,16 @@ function detailViewOn() {
 	return detailViewStatus;
 }
 
+function listRefresh() {
+	//application.remove(screen);
+	var data = new Object();
+	screen = new ScreenContainer(data);
+	category.categories.forEach(ListBuilder);
 
+	exports.screen = screen;
+	
+	return screen;
+}
 
 /*application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
@@ -129,6 +138,7 @@ function detailViewOn() {
 	}}
 });*/
 
+exports.listRefresh = listRefresh;
 exports.ListBuilder = ListBuilder;
 //exports.menuItems = menuItems;
 //exports.categories = categories;
