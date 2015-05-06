@@ -1,12 +1,11 @@
-// KPR Script file
-//@program
+//@module
 
 // testing scroller
 
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var clothing = require("clothing.js");
+//var clothing = require("clothing.js");
 
 /* ASSETS */
 
@@ -32,9 +31,6 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
  * entry in our scrollable list. */
 
 //skins
-
-
-var clothing = clothing.clothingInCloset;
 
 var selectedClothing = [];
 
@@ -133,14 +129,14 @@ function initialize() {
 	exports.selectedClothing = selectedClothing;
 	data = new Object();
 	screen = new ScreenContainer(data);
-	clothing.forEach(ListBuilder);
+	clothing.clothingInCloset.forEach(ListBuilder);
 	exports.screen = screen;
 	return screen;
 }
 
 exports.ListBuilder = ListBuilder;
 //exports.menuItems = menuItems;
-exports.clothing = clothing;
+//exports.clothing = clothing;
 exports.screen = screen;
 exports.blankScreen = new Container({});
 exports.initialize = initialize;

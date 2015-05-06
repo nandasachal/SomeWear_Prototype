@@ -3,7 +3,7 @@
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var clothing = require("clothing.js");
+//var clothing = require("clothing.js");
 
 /* ASSETS */
 var onColor = "#FFD599";

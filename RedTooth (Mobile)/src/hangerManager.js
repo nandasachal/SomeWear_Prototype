@@ -1,7 +1,7 @@
 //@module
-var clothing = require("clothing.js");
+/*var clothing = require("clothing.js");
 var addClothingModal = require("addClothingModal.js");
-var addCategoryToClothing = require("addCategoryToClothing.js"); 
+var addCategoryToClothing = require("addCategoryToClothing.js"); */
 
 var bigText = new Style({font:"bold 30px", color:"white"});
 var largeText = new Style({font:"bold 30px", color:"white"});
