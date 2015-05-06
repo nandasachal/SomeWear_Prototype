@@ -18,7 +18,7 @@ var fieldHintStyle = new Style({ color: '#aaa', font: 'Roboto 20px', horizontal:
 var whiteSkin = new Skin({fill:tealColor});
 var labelStyle = new Style( { font: "bold 30px", color:"white" } );*/
 
-var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: lightestTealColor,});
+var nameInputSkin = new Skin({ borders: { left:4, right:4, top:4, bottom:4 }, stroke: "white",});
 var fieldStyle = new Style({ color: 'black', font: 'Roboto bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var fieldHintStyle = new Style({ color: lighterTealColor, font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
@@ -55,6 +55,16 @@ var TitleField = Container.template(function($) { return {
                     data.name = label.string;
                     label.container.titleHint.visible = ( data.name.length == 0 );
                     categoryName = label.string;
+                }},
+                onKeyDown: { value:  function(label, key, repeat, ticks) {
+                    if (key) {
+                        var code = key.charCodeAt(0);
+                        if (code == 3 /* enter */ || code == 13 /* return */) {
+                            KEYBOARD.hide();
+                        } else {
+                            CONTROL.FieldLabelBehavior.prototype.onKeyDown.call(this, label, key, repeat, ticks);
+                        }
+                    }
                 }}
             }),
          }),

@@ -14,7 +14,7 @@ var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill:lightestTealColor});
-var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 0.5, right: 0.5, bottom: 2, top: 2}, stroke: greyBorderColor});
+var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 0.5, right: 2, bottom: 2, top: 0.5}, stroke: greyBorderColor});
 
 var categoryNameStyle = new Style({font: 'Roboto bold 15px', color: 'black'});
 

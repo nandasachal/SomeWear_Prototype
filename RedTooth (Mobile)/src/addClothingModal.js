@@ -11,12 +11,13 @@ var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
 
-var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: lightestTealColor,});
+var nameInputSkin = new Skin({ borders: { left:4, right:4, top:4, bottom:4 }, stroke: "white",});
 var fieldStyle = new Style({ color: 'black', font: 'Roboto bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var fieldHintStyle = new Style({ color: lighterTealColor, font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
 var titleStyle = new Style( { font: "bold 30px", color:"white" } );
-var whiteSkin = new Skin({fill:tealColor});
+var tealSkin = new Skin({fill:tealColor});
+var whiteSkin = new Skin({fill: "white"});
 
 var addCategoriesTexture = new Texture('../assets/new_addCategoriesButtonGraphic.png');
 var addCategoriesButtonSkin = new Skin({ texture: addCategoriesTexture, width: 252.5, height: 41.75});//height:55, width: 70, aspect: 'fit', });
@@ -67,7 +68,19 @@ var TitleField = Container.template(function($) { return {
                     data.name = label.string;
                     label.container.titleHint.visible = ( data.name.length == 0 );
                     title = label.string;
+                }},
+                onKeyDown: { value:  function(label, key, repeat, ticks) {
+                    if (key) {
+                        var code = key.charCodeAt(0);
+                        if (code == 3 /* enter */ || code == 13 /* return */) {
+                            KEYBOARD.hide();
+                        } else {
+                            CONTROL.FieldLabelBehavior.prototype.onKeyDown.call(this, label, key, repeat, ticks);
+                        }
+                    }
                 }}
+                
+
             }),
          }),
          Label($, {
@@ -117,7 +130,8 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
            	if (title == "") {
 	           	var oldScreen = clothingScreen.blankScreen;
-	            application.replace(oldScreen, clothingScreen.listRefresh());
+	            //application.replace(oldScreen, clothingScreen.listRefresh());
+	            application.replace(oldScreen, clothingScreen.refreshClothingScreen());
 	            application.remove(modal);
 	            application.invoke(new Message("/skipClothing?" + serializeQuery({
 		    		hanger: hanger_name
@@ -200,7 +214,7 @@ cancelButton.skin = cancelButtonSkin;
 var okayButton = new OkayButtonTemplate();
 okayButton.skin = okayButtonSkin;
 
-var addCategoriesButtonLine = new Line({
+var addCategoriesButtonLine = new Line({ bottom: 20,
 	contents: [
 		addCategoriesButton
 	]
@@ -214,18 +228,23 @@ var buttons = new Line({
     ]
 });
 
+
+var photographTexture = new Texture("../assets/takePictureGraphic.png");
+var photographSkin = new Skin({ texture: photographTexture, width: 200, height: 160});
+var photograph = new Container({width: 200, height: 160, top: 20, skin: photographSkin});
+
 var modal = new Column({
-    left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
+    left: 0, right: 0, top: 0, bottom: 0, skin: tealSkin,
     contents: [
         new Label({string:"Add Clothing", style: titleStyle, top: 20}),
-        new Container({ height: 50 }),
+        photograph,
+        new Container({ height: 20 }),
         titleField,
         new Container({ height: 10 }),
         //categoriesField,
         addCategoriesButtonLine,
-        new Container({ height: 40 }),
         buttons,
-    ]
+    ],
 });
 
 exports.modal = modal;

@@ -11,8 +11,8 @@ var grayS = new Skin({fill:"gray"});
 var blueS = new Skin({fill:"blue"});
 
 //common colors
-var darkerTealColorLightOpacity = "#bb144644";
-var darkerTealColorHeavy = "#bb347A75";
+var darkerTealColorLightOpacity = "#DD144644";
+var darkerTealColorHeavy = "#DD347A75";
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
