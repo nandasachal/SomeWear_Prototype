@@ -3,7 +3,7 @@
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
 var BUTTONS = require('controls/buttons');
-var addClothingToCategory = require('addClothingToCategory.js');
+//var addClothingToCategory = require('addClothingToCategory.js');
 
 /*var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothingScreen.js");

@@ -5,12 +5,12 @@
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var detailView = require('categoryDetailView');
-var detailViewNavBar = require('categoryDetailViewNavBar.js');
+//var detailView = require('categoryDetailView');
+//var detailViewNavBar = require('categoryDetailViewNavBar.js');
 
-var category = require('category.js');
+/*var category = require('category.js');
 var clothing = require('clothing.js');
-var hangerManager = require('hangerManager.js');
+var hangerManager = require('hangerManager.js');*/
 
 /* ASSETS */
 var onColor = "#FFD599";
@@ -53,9 +53,9 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			toggledOnCategory = $.name; //name of the category that is toggled on
 			//application.remove(screen);
 			detailViewStatus = true
-			detailView.setCategory(toggledOnCategory);
-			detailView.refresh();
-			application.add(detailViewNavBar.navBar);
+			categoryDetailView.setCategory(toggledOnCategory);
+			categoryDetailView.refresh();
+			application.add(categoryDetailViewNavBar.navBar);
 		}}
     }),
 	contents: [

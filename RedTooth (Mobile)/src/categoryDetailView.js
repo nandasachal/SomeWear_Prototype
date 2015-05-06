@@ -3,8 +3,8 @@
 var THEME = require('themes/sample/theme');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
-var clothing = require('clothing.js');
-var category = require('category.js');
+/*var clothing = require('clothing.js');
+var category = require('category.js');*/
 
 /* ASSETS */
 var blackSkin = new Skin({ fill: 'black',});

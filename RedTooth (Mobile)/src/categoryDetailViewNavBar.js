@@ -3,13 +3,8 @@
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
 var BUTTONS = require('controls/buttons');
-var categoryDetailView = require('categoryDetailView.js');
-var hangerManager = require('hangerManager.js');
-
-/*var addClothingModal = require("addClothingModal.js");
-var clothingScreen = require("clothingScreen.js");
-var categoriesScreen = require("categoryScreen.js");
-var addCategory = require("addCategory.js");*/
+/*var categoryDetailView = require('categoryDetailView.js');
+var hangerManager = require('hangerManager.js');*/
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});

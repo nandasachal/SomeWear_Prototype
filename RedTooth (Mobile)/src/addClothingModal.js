@@ -3,9 +3,9 @@
 var THEME = require('themes/sample/theme');
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
-var addCategoryToClothing = require("addCategoryToClothing.js");
+/*var addCategoryToClothing = require("addCategoryToClothing.js");
 var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar.js");
-var category = require("category.js");
+var category = require("category.js");*/
 
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";

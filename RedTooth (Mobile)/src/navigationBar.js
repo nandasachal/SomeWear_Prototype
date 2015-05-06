@@ -4,13 +4,13 @@
 
 var BUTTONS = require('controls/buttons');
 
-var addClothingModal = require("addClothingModal.js");
+/*var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothingScreen.js");
 var categoriesScreen = require("categoryScreen.js");
 var addCategory = require("addCategory.js");
 var addCategoryToClothing = require('addCategoryToClothing.js');
 var categoryDetailView = require("categoryDetailView.js");
-var addClothingToCategory = require('addClothingToCategory.js');
+var addClothingToCategory = require('addClothingToCategory.js');*/
 
 var tabBarSize = 30;
 
@@ -54,7 +54,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				} else {
 					addClothingToCategory.initialize();
 					application.add(addCategory.modal);
-					application.replace(categoriesScreen.screen, categoriesScreen.blankScreen);
+					application.replace(categoryScreen.screen, categoryScreen.blankScreen);
 				}
 
 			}
@@ -113,7 +113,7 @@ var goToCategoriesPage = {
 			navBar.add(addButton);
 			categoriesTab.skin = tabDownSkin;
 			clothingTab.skin = tabUpSkin;
-			application.replace(clothingScreen.screen, categoriesScreen.screen);
+			application.replace(clothingScreen.screen, categoryScreen.screen);
 		}
 	}
 }
@@ -126,7 +126,7 @@ var goToClothingPage = {
 		    navBar.remove(addButton);
 			clothingTab.skin = tabDownSkin;
 			categoriesTab.skin = tabUpSkin;
-			application.replace(categoriesScreen.screen, clothingScreen.screen);
+			application.replace(categoryScreen.screen, clothingScreen.screen);
 		}
 	}
 }

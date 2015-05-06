@@ -13,13 +13,23 @@ var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
 
 //file dependencies
-var categoryScreen = require("categoryScreen.js");
-var addClothingModal = require("addClothingModal.js");
-var navigationBar = require("navigationBar.js");
-var clothingScreen = require("clothingScreen.js");
-var category = require("category.js");
-var hangerManager = require("hangerManager.js");
-var clothing = require("clothing.js");
+
+	var category = require("category.js");
+	var clothing = require("clothing.js");
+	var clothingScreen = require("clothingScreen.js");
+
+	var editCategory = require("editCategory.js");
+	var categoryDetailView = require("categoryDetailView.js");
+	var categoryDetailViewNavBar = require("categoryDetailViewNavBar.js");
+	var addClothingModal = require("addClothingModal.js");
+	var addCategoryToClothing = require("addCategoryToClothing.js");
+	var hangerManager = require("hangerManager.js");
+	var categoryScreen = require("categoryScreen.js");
+	var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar.js");
+	var addClothingToCategory = require("addClothingToCategory.js");
+	var addClothingToCategoryNavBar = require("addClothingToCategoryNavBar.js");
+	var addCategory = require("addCategory.js");
+	var navigationBar = require("navigationBar.js");
 
 //skins
 var tealSkin = new Skin({ fill: lightestTealColor});
