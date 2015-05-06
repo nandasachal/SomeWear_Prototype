@@ -18,7 +18,7 @@ var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
 var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
-var separatorSkin = new Skin({ fill: '#515151',});
+var separatorSkin = new Skin({ fill: '#636363',});
 
 /*var tabBarSize = 35;
 var navBarSize = 45;

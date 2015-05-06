@@ -17,6 +17,7 @@ var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
 
+
 var tealSkin = new Skin({fill: darkerTealColorLightOpacity});
 
 var syncSkin = new Skin({fill: darkerTealColorHeavy });
@@ -80,6 +81,10 @@ Handler.bind("/getCloset", {
     	}
     	else{
     		application.add(finishCon);
+    		var updateClosetButtonTexture = new Texture("../assets/updateCloset_new.png");
+			var updateClosetButtonSkin = new Skin({ texture: updateClosetButtonTexture, width: 311, height: updateButtonHeight});
+			syncButton2.skin = updateClosetButtonSkin;
+   
     	}
     }
 });
@@ -126,6 +131,8 @@ Handler.bind("/newClothingDetected", {
 		syncButton2.skin = updateClosetButtonSkin;
     },
 });
+
+
 
 Handler.bind("/skipClothing", {
     onInvoke: function(handler, message){

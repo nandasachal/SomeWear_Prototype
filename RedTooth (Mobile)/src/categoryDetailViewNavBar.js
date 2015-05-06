@@ -16,12 +16,16 @@ var buttonStyle2 = new Style({font: 'Roboto bold 50px', color: 'black', align:'m
 var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
 var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
-var addTexture = new Texture('../assets/okayButtonGraphic.png');
-var deleteTexture = new Texture('../assets/deleteButton.png');
+var addTexture = new Texture('../assets/new_addButtonGraphic.png');
+var backTexture = new Texture('../assets/new_backButtonGraphic.png');
+var deleteTexture = new Texture('../assets/new_deleteButtonGraphic.png');
+var editTexture = new Texture('../assets/new_editButtonGraphic.png');
 var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
 var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
 var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 70, aspect: 'fit', });
-var deleteButtonSkin = new Skin({ texture: deleteTexture, top: 10, height:55, width: 100, aspect: 'fit', });
+var editButtonSkin = new Skin({ texture: editTexture, top: 10, height:55, width: 66, aspect: 'fit', });
+var deleteButtonSkin = new Skin({ texture: deleteTexture, top: 10, height:55, width: 66, aspect: 'fit', });
+var backButtonSkin = new Skin({ texture: backTexture, top: 10, height:55, width: 66, aspect: 'fit', });
 
 
 var currentCategorySelected;
@@ -100,17 +104,17 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 
 //UI Elements
  
-var backButton = new buttonTemplate({top: 5, textForLabel:'', name: 'backButton'});
-backButton.skin = addButtonSkin;
+var backButton = new buttonTemplate({top: 10, textForLabel:'', name: 'backButton'});
+backButton.skin = backButtonSkin;
 
-var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
+var switchIcon = new buttonTemplate({top: 10, textForLabel:'', name: 'switchIcon'});
 switchIcon.skin = briefcaseIconSkin;
 
-var deleteButton = new buttonTemplate({top: 5, textForLabel:'', name: 'backButton'});
+var deleteButton = new buttonTemplate({top: 10, textForLabel:'', name: 'backButton'});
 deleteButton.skin = deleteButtonSkin;
 
-var editButton = new buttonTemplate({top: 5, textForLabel: 'edit', name: 'editButton'});
-editButton.skin = whiteSkin;
+var editButton = new buttonTemplate({top: 10, textForLabel: '', name: 'editButton'});
+editButton.skin = editButtonSkin;
 
 var navBar = new Line({left:0, right:0, top:0, bottom:412, height: 42, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,

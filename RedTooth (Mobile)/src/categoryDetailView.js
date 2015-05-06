@@ -14,6 +14,7 @@ var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill:lightestTealColor});
+var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 0.5, right: 0.5, bottom: 2, top: 2}, stroke: greyBorderColor});
 
 var categoryNameStyle = new Style({font: 'Roboto bold 15px', color: 'black'});
 
@@ -165,7 +166,7 @@ function refresh() {
 		categoryNameLabel
 	]});
 	
-	var nameLineContainer = new Column({ left: 0, right: 0, height: 35, top: 8, skin: whiteSkin, contents: [
+	var nameLineContainer = new Column({ left: 0, right: 0, height: 35, top: 8, skin: borderWhiteSkin, contents: [
 		nameLine,
 	]});
 	//nameLine.skin = categorySkin;
@@ -229,7 +230,7 @@ function update(newCategory) {
 		categoryNameLabel
 	]});
 	
-	var nameLineContainer = new Container({ left: 0, right: 0, height: 35, top: 8, skin: whiteSkin, contents: [
+	var nameLineContainer = new Container({ left: 0, right: 0, height: 35, top: 8, skin: borderWhiteSkin, contents: [
 		nameLine
 	]});
 	//nameLine.skin = categorySkin;
@@ -271,7 +272,6 @@ function ListBuilder(element, index, array) {
 
 /* GRID VIEW COPY PASTED FROM CLOTHING SCREEN */
 
-var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 2, right: 2, bottom: 2, top: 2}, stroke: greyBorderColor});
 
 var clothingGridItemTemplate = Container.template(function($) {
 	return {

@@ -20,7 +20,7 @@ var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
 var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
-var separatorSkin = new Skin({ fill: '#515151',});
+var separatorSkin = new Skin({ fill: '#636363',});
 var tealSkin = new Skin({ fill: lightestTealColor});
 
 /* STYLES */
@@ -55,7 +55,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			/*container.skin = whiteSkin;
 			trace(container.first.first.first.string+"\n");*/
 			if (!$.toggleOn) {
-				onSkin = new Skin({fill: $.color, borders: {top: 6, bottom: 6, right: 5, left: 5}, stroke: "#444444"});
+				onSkin = new Skin({fill: $.color, borders: {top: 6, bottom: 6, right: 5, left: 5}, stroke: "#636363"});
 				container.first.skin = onSkin;
 				trace("toggled on!\n");
 				$.toggleOn = true;

@@ -35,10 +35,10 @@ var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'mi
 var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
 var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
-var addTexture = new Texture('../assets/addButtonGraphic.png');
+var addTexture = new Texture('../assets/new_addButtonGraphic.png');
 var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
 var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
-var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 70, aspect: 'fit', });
+var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 66, aspect: 'fit', });
 
 
 var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
