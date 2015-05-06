@@ -80,7 +80,7 @@ var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tea
 	]
 });
 
-navBar.titleWords.string = "ADD CLOTHING";
+navBar.titleWords.string = "EDIT CLOTHING";
 
 //External Items
 

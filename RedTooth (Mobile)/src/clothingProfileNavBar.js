@@ -6,12 +6,12 @@ var bigText = new Style({font:"bold 30px", color:"black"});
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});
 var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'middle'});
-var deleteTexture = new Texture('../assets/delete-icon.png');
-var editTexture = new Texture('../assets/edit-icon.png');
-var backTexture = new Texture('../assets/okayButtonGraphic.png');
-var editIconSkin = new Skin({ texture: editTexture, height: 55, width:70, aspect: 'fit', });
-var deleteIconSkin = new Skin({ texture: deleteTexture, height: 55, width: 70, aspect: 'fit', });
-var backButtonSkin = new Skin({ texture: backTexture, top: 10, height:55, width: 70, aspect: 'fit', });
+var deleteTexture = new Texture('../assets/new_deleteButtonGraphic.png');
+var editTexture = new Texture('../assets/new_editButtonGraphic.png');
+var backTexture = new Texture('../assets/new_backButtonGraphic.png');
+var editIconSkin = new Skin({ texture: editTexture, height: 55, width:66, aspect: 'fit', });
+var deleteIconSkin = new Skin({ texture: deleteTexture, height: 55, width: 66, aspect: 'fit', });
+var backButtonSkin = new Skin({ texture: backTexture, top: 10, height:55, width: 66, aspect: 'fit', });
 
 
 //common colors
@@ -73,7 +73,7 @@ var editIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'editIcon'});
 editIcon.skin = editIconSkin;
 
 
-var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
+var navBar = new Line({left:0, right:0, top:0, bottom:418, height: 42, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
 	//new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	backButton,

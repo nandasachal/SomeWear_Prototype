@@ -18,13 +18,13 @@ var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
 var titleStyle = new Style( { font: "bold 30px", color:"white" } );
 var whiteSkin = new Skin({fill:tealColor});
 
-var addCategoriesTexture = new Texture('../assets/addToCategoriesButtonGraphic.png');
+var addCategoriesTexture = new Texture('../assets/new_addCategoriesButtonGraphic.png');
 var addCategoriesButtonSkin = new Skin({ texture: addCategoriesTexture, width: 252.5, height: 41.75});//height:55, width: 70, aspect: 'fit', });
 
-var cancelTexture = new Texture('../assets/cancelButtonGraphic.png');
-var okayTexture = new Texture('../assets/okayButtonGraphic.png');
-var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 66, height: 43});
-var okayButtonSkin = new Skin({ texture: okayTexture, width: 66, height: 43});
+var cancelTexture = new Texture('../assets/newlarge_backButtonGraphic.png');
+var okayTexture = new Texture('../assets/newlarge_doneButtonGraphic.png');
+var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 74.11, height: 50});
+var okayButtonSkin = new Skin({ texture: okayTexture, width: 74.11, height: 50});
 
 var add_queue={};
 var id= 0;

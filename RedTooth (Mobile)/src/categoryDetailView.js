@@ -166,7 +166,7 @@ function refresh() {
 		categoryNameLabel
 	]});
 	
-	var nameLineContainer = new Column({ left: 0, right: 0, height: 35, top: 8, skin: borderWhiteSkin, contents: [
+	var nameLineContainer = new Column({ left: 0, right: 0, height: 35, top: 1, skin: borderWhiteSkin, contents: [
 		nameLine,
 	]});
 	//nameLine.skin = categorySkin;
@@ -230,7 +230,7 @@ function update(newCategory) {
 		categoryNameLabel
 	]});
 	
-	var nameLineContainer = new Container({ left: 0, right: 0, height: 35, top: 8, skin: borderWhiteSkin, contents: [
+	var nameLineContainer = new Container({ left: 0, right: 0, height: 35, top: 1, skin: borderWhiteSkin, contents: [
 		nameLine
 	]});
 	//nameLine.skin = categorySkin;

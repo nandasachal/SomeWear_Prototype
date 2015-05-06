@@ -116,7 +116,7 @@ deleteButton.skin = deleteButtonSkin;
 var editButton = new buttonTemplate({top: 10, textForLabel: '', name: 'editButton'});
 editButton.skin = editButtonSkin;
 
-var navBar = new Line({left:0, right:0, top:0, bottom:412, height: 42, skin: tealVariantSkin, name: 'titleBar', contents:[
+var navBar = new Line({left:0, right:0, top:0, bottom:418, height: 42, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
 	//new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	backButton,
