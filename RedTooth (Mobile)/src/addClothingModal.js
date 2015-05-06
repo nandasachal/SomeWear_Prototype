@@ -18,9 +18,12 @@ var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
 var titleStyle = new Style( { font: "bold 30px", color:"white" } );
 var tealSkin = new Skin({fill:tealColor});
 var whiteSkin = new Skin({fill: "white"});
+var blackSkin = new Skin({fill: "black"});
 
 var addCategoriesTexture = new Texture('../assets/new_addCategoriesButtonGraphic.png');
 var addCategoriesButtonSkin = new Skin({ texture: addCategoriesTexture, width: 252.5, height: 41.75});//height:55, width: 70, aspect: 'fit', });
+
+var shutterSound = new Sound( mergeURI( application.url, "../assets/shutter-02.wav" ) );
 
 var cancelTexture = new Texture('../assets/newlarge_backButtonGraphic.png');
 var okayTexture = new Texture('../assets/newlarge_doneButtonGraphic.png');
@@ -52,6 +55,8 @@ function update(hanger,id_num) {
 	hanger_name=hanger;
 	id=id_num;
 }
+
+var counter = 0;
 
 var title = '';
 var TitleField = Container.template(function($) { return { 
@@ -127,7 +132,11 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
         onTap: { value: function(content) {
             KEYBOARD.hide();
+            
+            photographScreen.photographImage.url = clothing.sampleAddedClothesPhotos[counter];
+            trace("current image = " + clothing.sampleAddedClothesPhotos[counter] + "\n");
             trace('Title: ' + title + '\n' + 'Categories: ' + categories + '\n');
+
            	if (title == "") {
 	           	var oldScreen = clothingScreen.blankScreen;
 	            //application.replace(oldScreen, clothingScreen.listRefresh());
@@ -147,7 +156,21 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
            	//newAddedClothing.hangerId = 'hanger1';
 
-           	newAddedClothing.photo = "../assets/shirt-lighter.png";
+
+           	clothing.sampleAddedClothesPhotos.splice(clothing.sampleAddedClothesCounter, -1);
+           	
+           	trace(clothing.sampleAddedClothesPhotos + "\n");
+           	
+           	if (clothing.sampleAddedClothesCounter == clothing.sampleAddedClothesPhotos.length - 1) {
+           		newAddedClothing.photo = "../assets/shirt-lighter.png";
+           	} else {
+          		newAddedClothing.photo = clothing.sampleAddedClothesPhotos[clothing.sampleAddedClothesCounter];
+          		clothing.sampleAddedClothesCounter++;
+          		counter++;
+          	}
+           	//photographTexture = new Texture(clothing.sampleAddedClothesPhotos[counter]);
+           	photographScreen.first.url = clothing.sampleAddedClothesPhotos[counter];
+           	
            	newAddedClothing.toggleOn = false;
            	newAddedClothing.categories = [];
            	for (var i = 0; i < addCategoryToClothing.selectedCategories.length; i++) {
@@ -229,9 +252,67 @@ var buttons = new Line({
 });
 
 
+var photographButtonTemplate = BUTTONS.Button.template(function($) { return {
+    left: 0, right: 0, //height: 50, width: 100,
+    contents: [
+        new Label({left:0, right:0, height:40, string: "", style: labelStyle})
+    ],
+    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+        onTap: { value: function(content) {
+            application.remove(photographScreen);
+            trace("is it erroring here?\n");
+            shutterSound.play();
+        
+            //photographSkin = new Skin({texture: photographTexture, x: 100, y: 100, width: 200, height: 160, aspect: 'fit'});
+            //photograph.skin = photographSkin;
+            
+            
+            
+            /*photographScreen = new Column({left:0, right:0, top:0, bottom: 0, skin: blackSkin, contents: [
+	 			new Picture({top: 0, left: 0, right:0, width: 300, height: 400, url: clothing.sampleAddedClothesPhotos[counter]}),
+				photographButton,
+			]});*/
+			
+            //if (counter < clothing.sampleAddedClothesPhotos.length - 1) {
+            //photographScreen.photographImage.url = clothing.sampleAddedClothesPhotos[counter];
+            	//counter++;
+            	//takenPicture = false;
+            /*} else {
+            	photographScreen.photographImage.url = clothing.sampleAddedClothesPhotos[counter];
+            }*/
+            trace(photographScreen.first.url+"\n");
+
+        }},
+    })
+}});
+
 var photographTexture = new Texture("../assets/takePictureGraphic.png");
-var photographSkin = new Skin({ texture: photographTexture, width: 200, height: 160});
-var photograph = new Container({width: 200, height: 160, top: 20, skin: photographSkin});
+//var photographSkin = new Skin({ texture: photographTexture, width: 200, height: 160});
+
+var shutterTexture = new Texture('../assets/shutter-button.png');
+var shutterButtonSkin = new Skin({ texture: shutterTexture, width: 62.8, height: 62.8});
+var photographButton = new photographButtonTemplate();
+photographButton.skin = shutterButtonSkin;
+
+var photograph = new Container({width: 200, height: 160, top: 20, active: true, //skin: photographSkin, 
+
+	contents: [
+		new Picture( {width: 200, height: 160, url: "../assets/takePictureGraphic.png"}),
+	],
+	behavior: {
+		onTouchEnded: function(){
+			trace("tapped photograph option!\n");
+			application.add(photographScreen);
+			
+			}
+	}	
+});
+
+var photographScreen = new Column({left:0, right:0, top:0, bottom: 0, skin: blackSkin, contents: [
+	 new Picture({top: 0, left: 0, right:0, width: 300, height: 400, name: "photographImage", url: clothing.sampleAddedClothesPhotos[counter]}),
+	 photographButton,
+]});
+
 
 var modal = new Column({
     left: 0, right: 0, top: 0, bottom: 0, skin: tealSkin,
