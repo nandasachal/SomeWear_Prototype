@@ -53,8 +53,10 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
 			toggledOnCategory = $.name; //name of the category that is toggled on
 			//application.remove(screen);
 			detailViewStatus = true
+			application.add(categoryDetailView.bg);
 			categoryDetailView.setCategory(toggledOnCategory);
 			categoryDetailView.refresh();
+			application.add(categoryDetailView.screen);
 			application.add(categoryDetailViewNavBar.navBar);
 		}}
     }),
@@ -118,15 +120,16 @@ function detailViewOn() {
 	return detailViewStatus;
 }
 
-function listRefresh() {
-	//application.remove(screen);
+function refreshCategoryScreen() {
 	var data = new Object();
 	screen = new ScreenContainer(data);
+	//gridBuilder(clothingList);
 	category.categories.forEach(ListBuilder);
 
 	exports.screen = screen;
 	
 	return screen;
+
 }
 
 /*application.behavior = Object.create(Object.prototype, {
@@ -138,7 +141,6 @@ function listRefresh() {
 	}}
 });*/
 
-exports.listRefresh = listRefresh;
 exports.ListBuilder = ListBuilder;
 //exports.menuItems = menuItems;
 //exports.categories = categories;
@@ -146,3 +148,4 @@ exports.ListBuilder = ListBuilder;
 exports.screen = screen;
 exports.blankScreen = new Container({});
 exports.detailViewOn = detailViewOn;
+exports.refreshCategoryScreen = refreshCategoryScreen;

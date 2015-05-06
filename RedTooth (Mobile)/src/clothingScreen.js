@@ -6,10 +6,10 @@ var SCREEN = require('mobile/screen');
 //var clothing = require("clothing.js");
 
 /* ASSETS */
-var onColor = "#FFD599";
+var onColor = brightestTealColor;
 var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
-var onSkin	= new Skin({ fill: onColor});
+var onSkin	= new Skin({ fill: 'white', borders: { left:5, right:5, top:5, bottom:5 }, stroke: onColor});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
 
@@ -60,7 +60,7 @@ var nextIdNum = 8;
 var clothingList = clothing.clothingInCloset;
 var imageDimension = 120;
 
-/* test test */
+/* GRID VIEW IMPLEMENTED */
 
 var clothingGridItemTemplate = Container.template(function($) {
 	return {
@@ -145,6 +145,8 @@ function refreshClothingScreen() {
 }
 
 
+/* end grid view */ 
+
 
 /* This is a template that will be used to for each entry populating the list. 
  * Note that it is anticipating an object each time in is instanciated */
@@ -173,9 +175,10 @@ var ClothingSubContainer = Container.template(function($) { return { left: 0, ri
     }),
 	contents: [
      	Column($, { left: 0, right: 0, contents: [
-     		Container($, { left: 0, right: 0, height: 100, width: 100, skin: whiteSkin,
+     		Column($, { left: 0, right: 0, skin: whiteSkin,
      			contents: [
-     			           new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+     					   new Container({ height: 10 , left: 0, right: 0, top: 0}),
+     			           new Picture( {width: 100, height: 100, name: 'picture', url: $.photo,}),
      			           Label($, { style: productNameStyle, string: $.name,}),
  			           ], 
 	           }),

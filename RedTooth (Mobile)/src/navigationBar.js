@@ -52,7 +52,8 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				if (clothingTab.skin == tabDownSkin) {
 					application.invoke(new Message("/getCloset"));
 				} else {
-					addClothingToCategory.initialize();
+					//addClothingToCategory.initialize();
+					addClothingToCategory.refreshClothingScreen();
 					application.add(addCategory.modal);
 					application.replace(categoryScreen.screen, categoryScreen.blankScreen);
 				}
