@@ -27,6 +27,7 @@ var clothes=[0];
 var count=0;
 var hanger_names=[];
 var id_nums=[];
+var itemsToBeAdded = 0;
 			          
 Handler.bind("/getCloset", {
     onInvoke: function(handler, message){
@@ -71,7 +72,8 @@ Handler.bind("/getCloset", {
 			}
 		});
     	if (count>0){
-    		addText.string=count+" new";
+    		addText.string= "         " +count+" new";
+    		itemsToBeAdded = count;
     		application.add(addCon);
     	}
     	else{
@@ -101,6 +103,7 @@ var closeBehavior = Object.create(Behavior.prototype, {
 Handler.bind("/newClothingDetected", {
     onInvoke: function(handler, message){
     	if (count > 0) {
+    	
 			addClothingModal.clear();
 			addClothingModal.update(hanger_names[count-1],id_nums[count-1]);
 			lightUp(hanger_names[count-1],"#FFFF00");
@@ -110,6 +113,14 @@ Handler.bind("/newClothingDetected", {
 			application.replace(clothingScreen.screen, clothingScreen.blankScreen);
 			count=count-1;
 		}
+		if (itemsToBeAdded > 0) {
+			var path = '../assets/updateCloset_Badge_' + itemsToBeAdded + '.png';
+		} else {
+			var path = '../assets/updateCloset.png';
+		}
+		var updateClosetButtonTexture = new Texture(path);
+		var updateClosetButtonSkin = new Skin({ texture: updateClosetButtonTexture, width: 311, height: 60});
+		syncButton2.skin = updateClosetButtonSkin;
     },
 });
 
@@ -128,7 +139,7 @@ Handler.bind("/newClothingAdded", {
     	var query = parseQuery(message.query);
         var id = parseInt(query['id']);
         var hanger = query['hanger'];
-
+		itemsToBeAdded = itemsToBeAdded - 1;
     	clothes.push(id);
     	dim(hanger);
     	application.invoke(new Message("/newClothingDetected"));
@@ -140,7 +151,17 @@ var addBehavior = Object.create(Behavior.prototype, {
 	onTouchBegan: { value: function(container){
    }},
    	onTouchEnded: { value: function(container){
-   		container.invoke(new Message("/newClothingDetected"));
+   		if (container.name === 'addNow') {
+   			trace("adding now!\n");
+   			container.invoke(new Message("/newClothingDetected"));
+   		} else {
+   			//change closet badge value based on number of new items
+   			var path = '../assets/updateCloset_Badge_' + count + '.png';
+   			var updateClosetButtonTexture = new Texture(path);
+			var updateClosetButtonSkin = new Skin({ texture: updateClosetButtonTexture, width: 311, height: 60});
+			syncButton2.skin = updateClosetButtonSkin;
+   			
+   		}
    		application.remove(addCon);
    }},
 });
@@ -156,7 +177,8 @@ var syncCon = new Container({
 });
 
 var addButtonTemplate = BUTTONS.Button.template(function($) { return {
-    left: 0, right: 0,
+    left: 0, right: 0, top: 20,
+    name: $.name,
     behavior: addBehavior
 }});
 
@@ -176,14 +198,29 @@ var syncButtonTemplate = BUTTONS.Button.template(function($) { return {
 var syncTexture = new Texture("../assets/syncButtonGraphic.png");
 var syncButtonSkin = new Skin({ texture: syncTexture, width: 311, height: 42});
 
+var syncTexture2 = new Texture("../assets/updateCloset.png");
+var syncButtonSkin2 = new Skin({ texture: syncTexture2, width: 311, height: 60});
+
+syncButton2 = new syncButtonTemplate();
+syncButton2.skin = syncButtonSkin2;
+
+
 syncButton = new syncButtonTemplate();
 syncButton.skin = syncButtonSkin;
 
-var addTexture = new Texture('../assets/largeAddButtonGraphic.png');
-var addButtonSkin = new Skin({ texture: addTexture, width: 90, height: 51});
+//var addTexture = new Texture('../assets/largeAddButtonGraphic.png');
+var addTexture = new Texture('../assets/AddNow.png');
+var addButtonSkin = new Skin({ texture: addTexture, width: 180, height: 51});
 
-var addButton = new addButtonTemplate();
+var addButton = new addButtonTemplate({name: "addNow"});
 addButton.skin = addButtonSkin;
+
+
+var addLaterTexture = new Texture('../assets/AddLater.png');
+var addLaterButtonSkin = new Skin({texture: addLaterTexture, width: 180, height: 51});
+var addLaterButton = new addButtonTemplate({name: "addLater"});
+addLaterButton.skin = addLaterButtonSkin;
+var addLater = addLaterButton;
 
 var okTexture = new Texture('../assets/okLargeButtonGraphic.png');
 var okButtonSkin = new Skin({ texture: okTexture, width: 90, height: 51 });
@@ -195,12 +232,12 @@ okButton.skin = okButtonSkin;
 var ok = okButton;
 //var add = new Label({left:80, right:0, bottom: 20, height: 40, string: "ADD", style: largeText}),
 var add = addButton;
-var addText = new Label({left:20, right:10, top: 10, height: 40, string: "", style: bigText}),
-var addText2 = new Text({left:20, right:10, top: 50, height: 40, string: "items detected", style: bigText}),
+var addText = new Label({left:20, right:10, top: 0, height: 40, string: "", style: bigText}),
+var addText2 = new Text({left:20, right:10, top: 0, height: 40, string: "  items detected", style: bigText}),
 
-var syncBar = new Line({left:0, right:0, bottom:0, height: 50, skin: tealVariantSkin, name: 'syncBar', contents:[
-	syncCon
-	//syncButton
+var syncBar = new Line({left:0, right:0, bottom:5, height: 50, skin: tealVariantSkin, name: 'syncBar', contents:[
+	//syncCon
+	syncButton2
 	]
 });
 
@@ -220,9 +257,16 @@ var addCon = new Container({
 	left:30, right:30, height:250, bottom:100,
 	skin: tealSkin,
 	contents:[
-		addText,
-		addText2,
-		add
+		//addText,
+		//addText2,
+		new Column({left:0, top:0, bottom:0, right:0,
+			contents: [
+				addText,
+				addText2,
+				add,
+				addLater,
+			]
+		})
 	],
 	//behavior: addBehavior,
 	active: true
