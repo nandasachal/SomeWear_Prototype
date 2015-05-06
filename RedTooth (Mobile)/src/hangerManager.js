@@ -12,7 +12,7 @@ var blueS = new Skin({fill:"blue"});
 
 //common colors
 var darkerTealColorLightOpacity = "#bb144644";
-var darkerTealColorHeavy = "#FF347A75";
+var darkerTealColorHeavy = "#bb347A75";
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
@@ -149,7 +149,7 @@ var syncCon = new Container({
 	left:0, right:0, height:40, bottom:0,
 	skin: syncSkin,
 	contents:[
-		new Text({left:100, right:0, top: 5, height: 40, string: "   SYNC", style: bigText}),
+		new Text({left:0, right:0, top: 5, height: 40, string: "      UPDATE CLOSET", style: bigText}),
 	],
 	behavior:touchBehavior,
 	active:true
@@ -199,8 +199,8 @@ var addText = new Label({left:20, right:10, top: 10, height: 40, string: "", sty
 var addText2 = new Text({left:20, right:10, top: 50, height: 40, string: "items detected", style: bigText}),
 
 var syncBar = new Line({left:0, right:0, bottom:0, height: 50, skin: tealVariantSkin, name: 'syncBar', contents:[
-	//syncCon
-	syncButton
+	syncCon
+	//syncButton
 	]
 });
 

@@ -95,7 +95,7 @@ var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 40, skin: tea
 			}
 		})
 	}),
-	addButton, 
+	//addButton,
 	],
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: function() {
