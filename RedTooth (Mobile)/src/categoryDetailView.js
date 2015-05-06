@@ -16,6 +16,9 @@ var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill:lightestTealColor});
 
 
+var currentCategory;
+
+
 /* SIZES */
 var topMargin = 40;
 
@@ -102,10 +105,13 @@ function setCategory(categoryName) {
 	for (i = 0; i < category.categories.length; i++) {
 		if (category.categories[i].name == categoryChecked) {
 			categoryColor = category.categories[i].color;
+			currentCategory = category.categories[i];
 		}
 	}
 	categorySkin = new Skin({fill:categoryColor});
+	
 	//trace(categorySkin.fill + "\n");
+	return currentCategory;
 	
 }
 
@@ -114,10 +120,19 @@ var screen = new ScreenContainer(data);
 
 //trace(categoryChecked);
 function refresh() {
-	application.add(bg);
 	screen = new ScreenContainer(data);
 	
-
+	for (var i = 0 ; i < category.categories.length; i ++ ) {
+		if (categoryChecked == category.categories[i].name) {
+			currentCategory = category.categories[i];
+			trace("called from categoryDetailView.refresh() \n and the category name is " +  currentCategory.name + "\n");
+		}
+	}
+	
+	
+	trace("currentCategory = " + currentCategory.name + "\n");
+	
+	exports.currentCategory = currentCategory;
 	
 	//var clothesLightedUp = [alertLabel];
 	var clothesLightedUp = [];
@@ -157,9 +172,59 @@ function refresh() {
 	//clothesLightedUp.forEach(ListBuilder);
 	refreshClothingScreen(clothesLightedUp);
 	
-	application.add(screen);
+	//application.add(screen);
 	exports.screen = screen;
 }
+
+function update(newCategory) {
+	screen = new ScreenContainer(data);
+	
+	currentCategory = newCategory;
+	
+	exports.currentCategory = currentCategory;
+	
+	//var clothesLightedUp = [alertLabel];
+	var clothesLightedUp = [];
+	for (i = 0; i < clothing.clothingInCloset.length; i++) {
+		tempCloth = clothing.clothingInCloset[i];
+		tempCategories = tempCloth.categories;
+		for (j = 0; j < tempCategories.length; j++) {
+			if (tempCategories[j].name == currentCategory.name) {
+				clothesLightedUp.push(tempCloth);
+				//lighting up here
+				if (tempCloth.hangerId != null && tempCloth.hangerId != '') {
+					hangerManager.lightUp(tempCloth.hangerId, tempCategories[j].color);
+				}
+			}
+		}
+	}
+	
+	alertLabel = new Label({left:0, right:0, top:0, bottom:0, string: "         Your clothes are now lit!", style:alertStyle, name:"alert"});
+	if (clothesLightedUp.length == 0) {
+		alertLabel.string = "       No clothes in this category!";
+	}
+	
+	
+	categoryNameLabel = new Label({left: 0, right:0, bottom: 0, top:0, string: currentCategory.name, name: "categoryNameLabel"});
+	var nameLine = new Line ({ left: 0, right: 0, top:0, height: 40, contents: [
+		categoryNameLabel
+	]});
+	nameLine.skin = new Skin({ fill: currentCategory.color });
+	
+	var alertLine = new Line( {left: 20, right: 20, top: 10, bottom: 10, height: 100, skin: whiteSkin, contents: [
+		alertLabel
+	]} );
+	
+	screen.first.add(nameLine);
+	screen.first.menu.add(alertLine);
+	//clothesLightedUp.forEach(ListBuilder);
+	refreshClothingScreen(clothesLightedUp);
+	
+	//application.add(screen);
+	exports.screen = screen;
+	//exports.currentCategory = currentCategory;
+}
+
 
 /* This simple function exists so we can call "forEach" on
  * our array of list entries (menuItems).  It adds a new 
@@ -243,4 +308,5 @@ exports.setCategory = setCategory;
 exports.refresh = refresh;
 exports.screen = screen;
 exports.bg = bg;
-exports.blankScreen = new Container({});
+exports.update = update;
+exports.blankScreen = new Container({active: false});

@@ -11,6 +11,7 @@ var BUTTONS = require('controls/buttons');
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";
+var brightestTealColor = "#FF4CAFB0";
 
 //file dependencies
 
@@ -19,7 +20,9 @@ var lightestTealColor = "#ffDEFCFA";
 	var clothingProfile = require("clothingProfile.js");
 	var clothingProfileNavBar = require("clothingProfileNavBar.js");
 	var clothingScreen = require("clothingScreen.js");
-
+	var editClothingInCategory = require("editClothingInCategory.js")
+	var editClothingInCategoryNavBar = require("editClothingInCategoryNavBar.js");
+	var editCategory = require("editCategory.js");
 	var categoryDetailView = require("categoryDetailView.js");
 	var categoryDetailViewNavBar = require("categoryDetailViewNavBar.js");
 	var addClothingModal = require("addClothingModal.js");
@@ -34,6 +37,7 @@ var lightestTealColor = "#ffDEFCFA";
 
 //skins
 var tealSkin = new Skin({ fill: lightestTealColor});
+var onSkin	= new Skin({ fill: 'white', borders: { left:5, right:5, top:5, bottom:5 }, stroke: brightestTealColor});
 
 
 //navigationBar.navBar.titleWords.string = " CLOTHING";
