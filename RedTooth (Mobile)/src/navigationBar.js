@@ -39,6 +39,8 @@ var addTexture = new Texture('../assets/new_addButtonGraphic.png');
 var clothingIconSkin = new Skin({ texture: clothingTexture, height: 55, width:70, aspect: 'fit', });
 var briefcaseIconSkin = new Skin({ texture: briefcaseTexture, height: 55, width: 70, aspect: 'fit', });
 var addButtonSkin = new Skin({ texture: addTexture, top: 10, height:55, width: 66, aspect: 'fit', });
+var blankButtonSkin = new Skin({ top: 10, height:55, width: 66, aspect: 'fit', });
+
 
 
 var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
@@ -86,6 +88,9 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 var addButton = new buttonTemplate({top: 5, textForLabel:'', name: 'addButton'});
 addButton.skin = addButtonSkin;
 
+var blankButton = new buttonTemplate({top: 5, textForLabel:'', name: 'blankButton'});
+blankButton.skin = blankButtonSkin;
+
 var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
 switchIcon.skin = briefcaseIconSkin;
 
@@ -99,7 +104,7 @@ var navBar = new Line({left:0, right:0, top:0, bottom:415, height: navBarSize, s
 			}
 		})
 	}),
-	//addButton,
+	blankButton,
 	],
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: function() {
@@ -115,7 +120,8 @@ var goToCategoriesPage = {
 			return;
 		} else {
 			trace("in here\n");
-			navBar.add(addButton);
+			//navBar.add(addButton);
+			navBar.replace(blankButton, addButton);
 			trace("ended\n");
 			categoriesTab.skin = tabDownSkin;
 			clothingTab.skin = tabUpSkin;
@@ -129,7 +135,8 @@ var goToClothingPage = {
 		if (clothingTab.skin == tabDownSkin) {
 			return;
 		} else {
-		    navBar.remove(addButton);
+		    //navBar.remove(addButton);
+		    navBar.replace(addButton, blankButton);
 			clothingTab.skin = tabDownSkin;
 			categoriesTab.skin = tabUpSkin;
 			application.replace(categoryScreen.screen, clothingScreen.screen);
