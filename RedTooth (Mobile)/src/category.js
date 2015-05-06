@@ -42,6 +42,7 @@ function addClothingToCategories(selectedCategoriesArray, clothingObject) {
 	}
 }
 
+
 var generateCategorySkinColor = function() {
 	return categorySkinColors[categories.length % 8];
 };
@@ -61,4 +62,5 @@ for (var i = 0; i < sampleCategories.length; i++) {
 exports.Category = Category;
 exports.categories = categories;
 exports.generateCategorySkinColor = generateCategorySkinColor;
+exports.categorySkinColors = categorySkinColors;
 exports.addClothingToCategories = addClothingToCategories;

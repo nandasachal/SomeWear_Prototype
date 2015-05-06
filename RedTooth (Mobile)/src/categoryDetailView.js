@@ -99,7 +99,6 @@ function setCategory(categoryName) {
 			categoryColor = category.categories[i].color;
 		}
 	}
-	trace(categoryColor + "\n");
 	categorySkin = new Skin({fill:categoryColor});
 	//trace(categorySkin.fill + "\n");
 	
@@ -117,7 +116,7 @@ function refresh() {
 	for (i = 0; i < clothing.clothingInCloset.length; i++) {
 		tempCloth = clothing.clothingInCloset[i];
 		tempCategories = tempCloth.categories;
-		trace('tempCloth rfid number is ' + tempCloth.id + ' with hangerId ' + tempCloth.hangerId + '\n');
+		//trace('tempCloth rfid number is ' + tempCloth.id + ' with hangerId ' + tempCloth.hangerId + '\n');
 		for (j = 0; j < tempCategories.length; j++) {
 			if (tempCategories[j].name == categoryChecked) {
 				clothesLightedUp.push(tempCloth);
