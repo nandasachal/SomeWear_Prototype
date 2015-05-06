@@ -105,15 +105,12 @@ var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 40, skin: tea
 	
 });
 
-
-
 var goToCategoriesPage = {
 	onTouchEnded: function(){
-		trace("trying to go to categories page\n");
 		if (categoriesTab.skin == tabDownSkin) {
 			return;
 		} else {
-			trace("hi\n");
+			navBar.add(addButton);
 			categoriesTab.skin = tabDownSkin;
 			clothingTab.skin = tabUpSkin;
 			application.replace(clothingScreen.screen, categoriesScreen.screen);
@@ -123,10 +120,10 @@ var goToCategoriesPage = {
 
 var goToClothingPage = {
 	onTouchEnded: function(){
-		trace("trying to go to clothing page\n");
 		if (clothingTab.skin == tabDownSkin) {
 			return;
 		} else {
+		    navBar.remove(addButton);
 			clothingTab.skin = tabDownSkin;
 			categoriesTab.skin = tabUpSkin;
 			application.replace(categoriesScreen.screen, clothingScreen.screen);
