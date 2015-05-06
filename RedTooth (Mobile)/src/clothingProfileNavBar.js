@@ -40,6 +40,10 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 			if (content == backButton) {
 				application.remove(navBar);
 				application.remove(clothingProfile.newCon);
+				application.add(clothingScreen.refreshClothingScreen());
+    			application.add(hangerManager.syncBar);
+    			application.add(navigationBar.navBar);
+    			application.add(navigationBar.tabBar);
 				hangerManager.dimAll();
 			}
 			

@@ -71,11 +71,10 @@ var okCon = new Container({ height: 40, left: 15, bottom: 30, width: 100, skin: 
     				clothing.clothingInCloset.splice(i, 1);
     			}
     		}
-    		application.remove(clothingScreen.screen);
-    		application.remove(hangerManager.syncBar);
     		application.add(clothingScreen.refreshClothingScreen());
     		application.add(hangerManager.syncBar);
-    		//application.add(hangerM)
+    		application.add(navigationBar.navBar);
+    		application.add(navigationBar.tabBar);
     		application.remove(clothingProfileNavBar.navBar);
     		holder = 1;
     		newCon.remove(deleteCon);
@@ -145,6 +144,10 @@ var screen = new ScreenContainer(data);
 var newCon = new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin, contents:[Title, Item],});
 
 function refresh() {
+	application.remove(clothingScreen.screen);
+    application.remove(hangerManager.syncBar);
+    application.remove(navigationBar.navBar);
+    application.remove(navigationBar.tabBar);
 	application.add(newCon);
 	newCon.empty();
 	newCon.add(Title);

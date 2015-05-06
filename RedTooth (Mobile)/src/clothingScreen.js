@@ -66,16 +66,13 @@ var clothingGridItemTemplate = Container.template(function($) {
 	return {
 		left: 0, right: 0, top: 0, bottom: 0, active: true,
 		behavior: Object.create(Behavior.prototype, {
-			onTouchBegan: { value : function(container, id, x, y, ticks)  {
+			onTouchEnded: { value : function(container, id, x, y, ticks)  {
 				if ($.hangerId != ''){
 					hangerManager.lightUp($.hangerId,onColor);
 				}
 				clothingProfile.store($.name,$.photo,$.categories,$.idNum);
 				clothingProfile.refresh();
 			}},
-			onTouchEnded: { value: function(container, id, y, x, ticks) {
-				//trace("clothing was toggled on!\n");
-			}}
 		}),
 		contents: [
 			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
