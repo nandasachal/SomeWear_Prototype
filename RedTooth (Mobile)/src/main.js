@@ -42,6 +42,24 @@ application.behavior = Object.create(Object.prototype, {
 	
 		application.add(new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin}))
 	
+	
+		/* adding sample clothes to sample categories */
+		
+		for (var i = 0; i < clothing.sampleClothes.length; i++ ){
+			for (var j = 0; j < category.categories.length; j++) {
+				for (var k = 0; k < clothing.sampleClothes[i].categories.length; k++) {
+					if (clothing.sampleClothes[i].categories[k].name == category.categories[j].name) {
+						for (var l = 0 ; l < clothing.clothingInCloset.length; l++ ){
+							if (clothing.sampleClothes[i].name == clothing.clothingInCloset[l].name) {
+								clothing.clothingInCloset.categories.push(category.categories[k]);
+								category.categories.clothing.push(clothing.clothingInCloset[l]);
+							}
+						}
+					}
+				}
+			}
+		
+		}
 		// Call ListBuilder for each element in our array of
 		// list items.
 		category.categories.forEach(categoryScreen.ListBuilder);

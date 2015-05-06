@@ -60,7 +60,7 @@ var nextIdNum = 8;
 var clothingList = clothing.clothingInCloset;
 var imageDimension = 120;
 
-/* test test */
+/* GRID VIEW IMPLEMENTED */
 
 var clothingGridItemTemplate = Container.template(function($) {
 	return {
@@ -144,6 +144,8 @@ function refreshClothingScreen() {
 
 }
 
+
+/* end grid view */ 
 
 
 /* This is a template that will be used to for each entry populating the list. 

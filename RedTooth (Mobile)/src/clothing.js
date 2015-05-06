@@ -75,3 +75,4 @@ trace("clothingInCloset = " + clothingInCloset+"\n");
 exports.Clothing = Clothing;
 exports.clothingInCloset = clothingInCloset;
 exports.addCategoriesToClothing = addCategoriesToClothing;
+exports.sampleClothes = sampleClothes;

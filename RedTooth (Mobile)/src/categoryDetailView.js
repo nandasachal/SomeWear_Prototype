@@ -15,10 +15,15 @@ var separatorSkin = new Skin({ fill: 'silver',});
 var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill:lightestTealColor});
 
+
+/* SIZES */
+var topMargin = 40;
+
+
 /* STYLES */
 var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
 var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'left', vertical: 'middle', left: 1, color: 'white' });
-var alertStyle = new Style({font: 'Roboto 10px', color: 'white'});
+var alertStyle = new Style({font: 'Roboto 10px', color: 'black'});
 
 var ClothingSubContainer = Container.template(function($) { return { left: 0, right: 0, top: 0, active: true, //skin: whiteSkin, //skin: THEME.lineSkin, 
     behavior: Object.create(Behavior.prototype, {
@@ -79,7 +84,7 @@ var ScreenContainer = Column.template(function($) { return {
 	   		
 	   		SCROLLER.VerticalScroller($, { 
 	   			contents: [
-              			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
+              			Column($, { left: 10, right: 10, top: 40, name: 'menu', }),
               			SCROLLER.VerticalScrollbar($, { }),
               			]
 	   		})
@@ -111,8 +116,11 @@ var screen = new ScreenContainer(data);
 function refresh() {
 	application.add(bg);
 	screen = new ScreenContainer(data);
-	alertLabel = new Label({left:0, right:0, top:0, bottom:0, string: "", style:alertStyle, name:"YOUR CLOTHES ARE NOW LIT!"});
-	var clothesLightedUp = [alertLabel];
+	
+
+	
+	//var clothesLightedUp = [alertLabel];
+	var clothesLightedUp = [];
 	for (i = 0; i < clothing.clothingInCloset.length; i++) {
 		tempCloth = clothing.clothingInCloset[i];
 		tempCategories = tempCloth.categories;
@@ -127,8 +135,27 @@ function refresh() {
 			}
 		}
 	}
-	trace("clothesLightedUp = " + clothesLightedUp + "\n");
-	clothesLightedUp.forEach(ListBuilder);
+	
+	alertLabel = new Label({left:0, right:0, top:0, bottom:0, string: "         Your clothes are now lit!", style:alertStyle, name:"alert"});
+	if (clothesLightedUp.length == 0) {
+		alertLabel.string = "       No clothes in this category!";
+	}
+	
+	
+	categoryNameLabel = new Label({left: 0, right:0, bottom: 0, top:0, string: categoryChecked, name: "categoryNameLabel"});
+	var nameLine = new Line ({ left: 0, right: 0, top:0, height: 40, contents: [
+		categoryNameLabel
+	]});
+	nameLine.skin = categorySkin;
+	
+	var alertLine = new Line( {left: 20, right: 20, top: 10, bottom: 10, height: 100, skin: whiteSkin, contents: [
+		alertLabel
+	]} );
+	
+	screen.first.add(nameLine);
+	screen.first.menu.add(alertLine);
+	//clothesLightedUp.forEach(ListBuilder);
+	refreshClothingScreen(clothesLightedUp);
 	
 	application.add(screen);
 	exports.screen = screen;
@@ -141,6 +168,76 @@ function refresh() {
 function ListBuilder(element, index, array) {
 	screen.first.menu.add(new ClothingSubContainer(element));
 }
+
+/* GRID VIEW COPY PASTED FROM CLOTHING SCREEN */
+
+var clothingGridItemTemplate = Container.template(function($) {
+	return {
+		left: 0, right: 0, top: 0, bottom: 0, active: true,
+		behavior: Object.create(Behavior.prototype, {
+			onTouchBegan: { value : function(container, id, x, y, ticks)  {
+			}},
+			onTouchEnded: { value: function(container, id, y, x, ticks) {
+				trace("clothing was toggled on!\n");
+
+			}}
+		}),
+		contents: [
+			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
+     			new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+     			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
+     			]
+     		})
+		],
+		/*effects: [
+			outer-shadow: 1;
+		]*/
+	}
+});
+
+var emptyGridItemTemplate = Container.template(function ($) {
+	return {
+		left: 10, right: 10, top: 10, bottom: 10, width: 130, active: false,
+	}
+});
+
+var clothingLineInGridTemplate = Line.template(function ($) {
+	return {
+		left: 0, right: 0, top: 0, bottom: 0,
+		contents:[],
+	}
+});
+
+	
+function gridBuilder(inputClothingList) {
+	for (var i = 0; i < inputClothingList.length; i+=2) {
+		newGridLine = new clothingLineInGridTemplate();
+		newGridLine.add(new clothingGridItemTemplate(inputClothingList[i]));
+		if (inputClothingList.length%2 == 1 && i == inputClothingList.length - 1){ // if the input clothing list length is odd, only add 1 item
+			newGridLine.add(new emptyGridItemTemplate());
+			screen.first.menu.add(newGridLine);
+			trace("added 1 item\n");
+			return;
+		} else {
+			newGridLine.add(new clothingGridItemTemplate(inputClothingList[i+1]));
+			screen.first.menu.add(newGridLine);
+			trace("added 2 item\n");
+		}
+	}
+}
+
+	
+function refreshClothingScreen(clothingList) {
+	gridBuilder(clothingList);
+
+	exports.screen = screen;
+	
+	return screen;
+
+}
+
+/* END GRID VIEW */
+
 
 exports.setCategory = setCategory;
 exports.refresh = refresh;

@@ -8,8 +8,11 @@ var BUTTONS = require('controls/buttons');
 var hangerManager = require('hangerManager.js');*/
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
+var whiteSkin = new Skin({fill: "white"});
 var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});
 var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'middle'});
+var buttonStyle2 = new Style({font: 'Roboto bold 50px', color: 'black', align:'middle'});
+
 var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
 var clothingTexture = new Texture('../assets/switchToClothingGraphic.png');
@@ -30,7 +33,7 @@ var storeToggledOnCategoryObject = function($) {
 var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 	top:0, bottom:0, left:0, right:0, height: 50, width: 10,
 	contents:[
-		new Label({left:0, right:0, top:0, bottom:0, string:$.textForLabel, style:buttonStyle})
+		new Label({left:0, right:0, top:0, bottom:0, string:$.textForLabel, style:buttonStyle2})
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content) {
@@ -48,7 +51,7 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				application.remove(categoryDetailView.bg);
 				hangerManager.dimAll();
 			}
-			
+
 			if (content == deleteButton) {
 				var index = category.categories.indexOf(currentCategorySelected);
 				category.categories.splice(index,1);
@@ -75,6 +78,10 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					navBar.first.skin = briefcaseIconSkin;
 				}*/
 			}
+
+			if (content == editButton) {
+				trace("edit button was toggled on\n");
+			}
 			
 
 		}}
@@ -93,12 +100,15 @@ switchIcon.skin = briefcaseIconSkin;
 var deleteButton = new buttonTemplate({top: 5, textForLabel:'', name: 'backButton'});
 deleteButton.skin = deleteButtonSkin;
 
+var editButton = new buttonTemplate({top: 5, textForLabel: 'edit', name: 'editButton'});
+editButton.skin = whiteSkin;
 
 var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
 	//new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	backButton,
 	deleteButton, 
+	editButton
 	]
 });
 
