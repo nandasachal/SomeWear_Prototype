@@ -233,7 +233,7 @@ var addLaterButton = new addButtonTemplate({name: "addLater"});
 addLaterButton.skin = addLaterButtonSkin;
 var addLater = addLaterButton;
 
-var okTexture = new Texture('../assets/okLargeButtonGraphic.png');
+var okTexture = new Texture('../assets/new_okButtonGraphic.png');
 var okButtonSkin = new Skin({ texture: okTexture, width: 90, height: 51 });
 
 var okButton = new okButtonTemplate();

@@ -20,7 +20,8 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
 
 /*OG Styles*/
 var bigText = new Style({font:"bold 30px", color:"black"});
-var largeText = new Style({font:"bold 40px", color:"black"});
+var smallText = new Style({font:"bold 15px", color: "black", horizontal: "center"});
+var largeText = new Style({font:"bold 30px", color:"black", horizontal: "center"});
 var giantText = new Style({font:"bold 40px", color:"white"});
 var whiteS = new Skin({fill:"white"});
 var grayS = new Skin({fill:"gray"});
@@ -36,9 +37,8 @@ var lightestTealColor = "#ffDEFCFA";
 var tealSkin = new Skin({fill: lightestTealColor});
 var transparentTealSkin = new Skin({fill: darkerTealColorLightOpacity});
 
-
 var Title = new Text({left:30, right:30, top: 60, height: 90, string: "", style: largeText}),
-var Item = new Picture( {left:0, right:0, top:120, width: 120, height: 120, url: ""}),
+var Item = new Picture( {left:0, right:0, top:100, width: 120, height: 180, url: ""}),
 
 var holder = 0;
 var name = "";
@@ -61,7 +61,10 @@ var deleteText2 = new Text({left:20, right:10, top: 120, height: 40, string: "",
 var okText = new Text({left:25, right:25, top: 5, height: 40, string: "OK", style: bigText}),
 var cancelText = new Text({left:5, right:5, top: 5, height: 40, string: "Cancel", style: bigText}),
 
-var okCon = new Container({ height: 40, left: 15, bottom: 30, width: 100, skin: tealSkin, contents:[okText],
+
+var okTexture = new Texture("../assets/new_okButtonGraphic.png");
+var okButtonSkin = new Skin({texture: okTexture, width: 78, height: 50,});
+var okCon = new Container({ height: 50, left: 15, bottom: 30, width: 78, skin: okButtonSkin, //skin: tealSkin, //contents:[okText],
 	 behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, x,  y, ticks) {
     	    //trace("finally store id is "+id);
@@ -85,7 +88,11 @@ var okCon = new Container({ height: 40, left: 15, bottom: 30, width: 100, skin: 
     }),
     active: true,
 });
-var cancelCon = new Container({ height: 40, right: 15, bottom: 30, width: 100, skin: tealSkin, contents:[cancelText],
+
+var backTexture = new Texture("../assets/new_backBlueButtonGraphic.png");
+var backButtonSkin = new Skin({texture: backTexture, width: 78, height: 50,});
+
+var cancelCon = new Container({ height: 50, right: 15, bottom: 30, width: 78, skin: backButtonSkin, //tealSkin, //contents:[cancelText],
 	 behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, id, x,  y, ticks) {
     		holder = 1;
@@ -116,7 +123,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
     }),
 	contents: [
      	Column($, { left: 0, right: 0, skin: new Skin({fill: $.color}), contents: [
-     		Container($, { left: 4, right: 4, height: 52,
+     		Container($, { left: 4, right: 4, height: 35,
      			contents: [
      			           Label($, { left: 10, style: productNameStyle, string: $.name,}), 
  			           ], 
@@ -127,7 +134,7 @@ var ProcessorLine = Line.template(function($) { return { left: 0, right: 0, acti
  }});
 
 var ScreenContainer = Container.template(function($) { return {
-	left:0, right:0, top:270, bottom:0,
+	left:0, right:0, top:300, bottom:0,
 	contents: [
 	   		SCROLLER.VerticalScroller($, { 
 	   			contents: [
@@ -141,7 +148,11 @@ var ScreenContainer = Container.template(function($) { return {
 var data = new Object();
 var screen = new ScreenContainer(data);
 
-var newCon = new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin, contents:[Title, Item],});
+var newCon = new Container({ top: 0, right: 0, bottom: 0, left: 0, skin: tealSkin, 
+	contents:[Title, 
+		Item
+		],
+});
 
 function refresh() {
 	application.remove(clothingScreen.screen);
@@ -160,6 +171,7 @@ function refresh() {
 	for (var i = 0; i < categories.length; i++) {
 		screen.first.menu.add(new ProcessorLine(categories[i]));
 	}
+
 	newCon.add(screen);
 	application.add(clothingProfileNavBar.navBar);
 }
