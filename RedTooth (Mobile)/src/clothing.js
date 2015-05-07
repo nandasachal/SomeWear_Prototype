@@ -12,7 +12,7 @@ var sampleClothes = [
     	{name: 'red hoodie', idNum: 4, photo: "../assets/red-hoodie-photo.jpg", toggleOn: false, categories: ["Date"]},
     	{name: 'purple t-shirt', idNum: 5, photo: "../assets/purple-tshirt-photo.jpg", toggleOn: false, categories: ["Business", "Date"]},
     	{name: 'blue cal t-shirt', idNum: 5, photo: "../assets/blue-caltshirt-photo.jpg", toggleOn: false, categories: ["Business", "Date"]},
-    	{name: 'black dress pants', idNum: 5, photo: "../assets/black-dress-pants.jpg", toggleOn: false, categories: ["Business", "Date"]}
+    	{name: 'black slacks', idNum: 5, photo: "../assets/black-dress-pants.jpg", toggleOn: false, categories: ["Business", "Date"]}
 ];
 
 var sampleAddedClothesPhotos = ["../assets/biker-jacket.jpg","../assets/blue-blazer.jpg","../assets/floral-cardigan.jpg", "../assets/green-sweater.jpg", "../assets/shirt-lighter.png"];
