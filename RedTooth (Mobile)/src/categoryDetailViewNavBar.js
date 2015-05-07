@@ -115,7 +115,12 @@ var okCon = new Container({ height: 50, left: 15, bottom: 30, width: 78, skin: o
     active: true,
 });
 
-var cancelCon = new Container({ height: 50, right: 15, bottom: 30, width: 78, skin: backButtonSkin, //tealSkin, //contents:[cancelText],
+
+
+var backBlueButtonTexture = new Texture("../assets/new_backBlueButtonGraphic.png");
+var backBlueButtonSkin = new Skin({texture: backBlueButtonTexture, width: 78, height: 50,});
+
+var cancelCon = new Container({ height: 50, right: 15, bottom: 30, width: 78, skin: backBlueButtonSkin, //tealSkin, //contents:[cancelText],
 	 behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, id, x,  y, ticks) {
     		application.remove(deleteCon);
