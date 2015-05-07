@@ -18,11 +18,11 @@ var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
 var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
-var separatorSkin = new Skin({ fill: 'silver',});
+var separatorSkin = new Skin({ fill: '#636363',});
 
-var tabBarSize = 30;
-var navBarSize = 40;
-var topMargin = tabBarSize + navBarSize;
+/*var tabBarSize = 35;
+var navBarSize = 45;
+var topMargin = tabBarSize + navBarSize;*/
 
 /* STYLES */
 var productNameStyle = new Style({  font: 'Roboto bold 22px', horizontal: 'left', vertical: 'middle', lines: 1, });

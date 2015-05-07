@@ -17,6 +17,8 @@ var lightestTealColor = "#ffDEFCFA";
 var onColor = "#FFD599";
 var blackSkin = new Skin({ fill: 'black',});
 var whiteSkin = new Skin({ fill: 'white',});
+//var offColor = "#999999";
+var borderWhiteSkin = new Skin({ fill: 'white', borders: {left: 0.5, top: 0.5, right: 2, bottom: 2}, stroke: greyBorderColor});
 //var onSkin	= new Skin({ fill: onColor});
 var blueSkin = new Skin({fill: 'blue'})
 var separatorSkin = new Skin({ fill: 'silver',});
@@ -145,7 +147,7 @@ var clothingGridItemTemplate = Container.template(function($) {
 						} else if (container.first.first.next.skin == selectedClothingSkin) {
 							trace("clothing was toggled off!");
 							container.first.first.next.skin = whiteSkin;
-							container.first.skin = whiteSkin;
+							container.first.skin = borderWhiteSkin;
 							selectedClothing.splice(selectedClothing.indexOf($.data), 1);
 						}
 					}}
@@ -179,15 +181,15 @@ var clothingGridItemTemplate = Container.template(function($) {
 				} else if (container.first.first.next.skin == selectedClothingSkin) {
 					trace("clothing was toggled off!");
 					container.first.first.next.skin = whiteSkin;
-					container.first.skin = whiteSkin;
+					container.first.skin = borderWhiteSkin;
 					selectedClothing.splice(selectedClothing.indexOf($.data), 1);
 				}
 			}}
 		}),
 		contents: [
-			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
+			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: borderWhiteSkin, contents: [ 
      			new Picture( {left:0, right:0, top:5, bottom: 0, width: 100, height: 100, name: 'picture', url: $.data.photo,}),
-     			new Container({ left: 0, right: 0, top: 0, bottom: 0, skin:whiteSkin, contents: [
+     			new Container({ left: 2, right: 2, top: 2, bottom: 2, skin:whiteSkin, contents: [
      				new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.data.name,}), ]})
      			]})
      			]

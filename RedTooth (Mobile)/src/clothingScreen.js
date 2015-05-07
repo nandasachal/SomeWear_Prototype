@@ -8,15 +8,16 @@ var SCREEN = require('mobile/screen');
 /* ASSETS */
 var onColor = brightestTealColor;
 var blackSkin = new Skin({ fill: 'black',});
-var whiteSkin = new Skin({ fill: 'white',});
+//var offColor = "#999999";
+var whiteSkin = new Skin({ fill: 'white', borders: {left: 0.5, right: 2, bottom: 2, top: 0.5}, stroke: greyBorderColor});
 var onSkin	= new Skin({ fill: 'white', borders: { left:5, right:5, top:5, bottom:5 }, stroke: onColor});
 var blueSkin = new Skin({fill: 'blue'})
-var separatorSkin = new Skin({ fill: 'silver',});
+var separatorSkin = new Skin({ fill: '#515151',});
 
 /* SIZES */
-var tabBarSize = 30;
-var navBarSize = 40;
-var topMargin = tabBarSize + navBarSize;
+/*var tabBarSize = 35;
+var navBarSize = 45;
+var topMargin = tabBarSize + navBarSize;*/
 
 /* STYLES */
 var productNameStyle = new Style({  font: 'Roboto 22px', horizontal: 'left', vertical: 'middle', lines: 1, });
@@ -76,7 +77,7 @@ var clothingGridItemTemplate = Container.template(function($) {
 		}),
 		contents: [
 			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
-     			new Picture( {left:0, right:0, top:0, width: 100, height: 100, name: 'picture', url: $.photo,}),
+     			new Picture( {left:0, right:0, top:5, width: 100, height: 100, name: 'picture', url: $.photo,}),
      			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
      			]
      		})

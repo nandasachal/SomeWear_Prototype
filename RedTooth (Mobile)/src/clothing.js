@@ -15,6 +15,9 @@ var sampleClothes = [
     	{name: 'black dress pants', idNum: 5, photo: "../assets/black-dress-pants.jpg", toggleOn: false, categories: ["Business", "Date"]}
 ];
 
+var sampleAddedClothesPhotos = ["../assets/biker-jacket.jpg","../assets/blue-blazer.jpg","../assets/floral-cardigan.jpg", "../assets/green-sweater.jpg", "../assets/shirt-lighter.png"];
+
+var sampleAddedClothesCounter = 0;
 
 
 
@@ -76,3 +79,5 @@ exports.Clothing = Clothing;
 exports.clothingInCloset = clothingInCloset;
 exports.addCategoriesToClothing = addCategoriesToClothing;
 exports.sampleClothes = sampleClothes;
+exports.sampleAddedClothesPhotos = sampleAddedClothesPhotos;
+exports.sampleAddedClothesCounter = sampleAddedClothesCounter;

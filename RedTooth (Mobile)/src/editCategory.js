@@ -23,6 +23,7 @@ var fieldStyle = new Style({ color: 'black', font: 'Roboto bold 24px', horizonta
 var fieldHintStyle = new Style({ color: lighterTealColor, font: 'Roboto 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 0, bottom: 0, });
 var labelStyle = new Style( { font: "Roboto bold 30px", color:"white" } );
 var titleStyle = new Style( { font: "bold 30px", color:"white" } );
+var categoryNameStyle = new Style( { font: "bold 40px", color:"white" } );
 var whiteSkin = new Skin({fill:tealColor});
 
 var addClothingTexture = new Texture('../assets/addToClothingButtonGraphic.png');
@@ -208,7 +209,8 @@ var currentCategory;
 var modal = new Column({
     left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
     contents: [
-        new Label({name: "modalLabel", string:"", style: titleStyle, top: 20}),
+        new Label({name: "modalLabel", string:"Edit Category", style: titleStyle, top: 20}),
+        //new Label({name: "categoryNameLabel", string: "", style: categoryNameStyle, top: 20}),
         new Container({ height: 50 }),
         titleField,	
         new Container({ height: 10 }),
@@ -222,7 +224,7 @@ function refresh(inputCategory) {
 	trace("inputCategory = " + inputCategory + "\n")
 	currentCategory = inputCategory;
 	titleField.scroller.label.string = currentCategory.name;
-	modal.modalLabel.string = "Edit Category " + currentCategory.name;
+	//modal.categoryNameLabel.string = currentCategory.name;
 }
 
 
