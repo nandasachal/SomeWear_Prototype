@@ -12,8 +12,8 @@ var addCategoryToClothing = require('addCategoryToClothing.js');
 var categoryDetailView = require("categoryDetailView.js");
 var addClothingToCategory = require('addClothingToCategory.js');*/
 
-/*var tabBarSize = 35;
-var navBarSize = 45;*/
+var tabBarSize = 35;
+var navBarSize = 45;
 
 var tealVariantSkin = new Skin({fill:'#FF52b0b0'});
 var whiteSkin = new Skin({fill:'white'});
@@ -30,7 +30,7 @@ var logoSkin = new Skin({
 	texture: logoImage});
 
 var headerStyle = new Style({font: 'Roboto bold 50px', color: 'white', align: "center,right"});
-var tabStyle = new Style({font: 'Roboto 10px', color: 'black', align: "center,middle"});
+var tabStyle = new Style({font: 'Roboto 10px', color: 'black', horizontal: "center", vertical: "middle"});
 var buttonStyle = new Style({font: 'Roboto bold 50px', color: 'white', align:'middle'});
 var briefcaseTexture = new Texture('../assets/switchToCategoriesGraphic.png');
 //var clothingTexture = new Texture('../assets/tShirtMockNEW.png');
@@ -148,13 +148,13 @@ var goToClothingPage = {
 
 var categoriesTab = new Container({left: 0, right: 0, top: 0, bottom: 0, skin: tabUpSkin, name: '', behavior: goToCategoriesPage, active:true,
 	contents: [
-		new Label({left:30, right:0, top:0, bottom:0, name:"categoriesTab", string:"CATEGORIES", style:tabStyle, behavior: goToCategoriesPage})
+		new Label({left:0, right:0, top:0, bottom:0, name:"categoriesTab", string:"CATEGORIES", style:tabStyle, behavior: goToCategoriesPage})
 	],
 });
 
 var clothingTab = new Container({left: 0, right: 0, top: 0, bottom: 0, skin: tabDownSkin, name: '', behavior: goToClothingPage, active: true,
 	contents: [
-		new Label({left:40, right:0, top:0, bottom:0, name:"clothingTab", string:"CLOTHING", style:tabStyle})
+		new Label({left:0, right:0, top:0, bottom:0, name:"clothingTab", string:"CLOTHING", style:tabStyle})
 	],
 });
 
@@ -163,7 +163,7 @@ var tabBar = new Line({left: 0, right: 0, top: navBarSize, /*bottom: 390,*/ heig
 	],
 	behavior: {
 		onTouchEnded: function() {
-			trace("you touched me!\n");
+			trace("you touched me!\n"); // lol this is so sexual
 		}
 	}
 });
@@ -175,7 +175,7 @@ var tabBarColumn = new Column({top: 0, bottom: 387, left: 0, right: 0, contents:
 	new Line({left:0, right:0, height: 1, skin: new Skin({fill:"#88B5B5B5"}),})
 ]});
 
-trace("lalala\n");
+//trace("lalala\n");
 
 
 //External Items

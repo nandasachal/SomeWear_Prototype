@@ -22,7 +22,7 @@ var productDescriptionStyle = new Style({  font: 'Roboto 18px', horizontal: 'lef
 var bigText = new Style({font:"bold 30px", color:"black"});
 var smallText = new Style({font:"bold 15px", color: "black", horizontal: "center"});
 var largeText = new Style({font:"bold 30px", color:"black", horizontal: "center"});
-var giantText = new Style({font:"bold 40px", color:"white"});
+var giantText = new Style({font:"bold 40px", color:"white", horizontal: "center"});
 var whiteS = new Skin({fill:"white"});
 var grayS = new Skin({fill:"gray"});
 var blueS = new Skin({fill:"blue"});
@@ -56,7 +56,7 @@ function store(store_name, store_photo, store_categories, store_id){
 
 
 var deleteText = new Text({left:20, right:10, top: 10, height: 40, string: "Permanently delete ", style: giantText}),
-var deleteText2 = new Text({left:20, right:10, top: 120, height: 40, string: "", style: giantText}),
+var deleteText2 = new Text({left:20, right:10, top: 95, height: 40, string: "", style: giantText}),
 
 var okText = new Text({left:25, right:25, top: 5, height: 40, string: "OK", style: bigText}),
 var cancelText = new Text({left:5, right:5, top: 5, height: 40, string: "Cancel", style: bigText}),
@@ -64,6 +64,7 @@ var cancelText = new Text({left:5, right:5, top: 5, height: 40, string: "Cancel"
 
 var okTexture = new Texture("../assets/new_okButtonGraphic.png");
 var okButtonSkin = new Skin({texture: okTexture, width: 78, height: 50,});
+
 var okCon = new Container({ height: 50, left: 15, bottom: 30, width: 78, skin: okButtonSkin, //skin: tealSkin, //contents:[okText],
 	 behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, x,  y, ticks) {

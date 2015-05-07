@@ -118,7 +118,7 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 							c.categories.splice(index, 1);
 						}
 					}
-					trace("currentCategory = " + currentCategory + "\n");
+					//trace("currentCategory = " + currentCategory + "\n");
 				}
             }
 

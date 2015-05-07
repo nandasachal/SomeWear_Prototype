@@ -120,6 +120,10 @@ function setCategory(categoryName) {
 var data = new Object();
 var screen = new ScreenContainer(data);
 
+var alertLabel = new Label();
+
+var alertLine = new Line();
+
 //trace(categoryChecked);
 function refresh() {
 	screen = new ScreenContainer(data);
@@ -224,7 +228,7 @@ function update(newCategory) {
 	
 	
 	
-	categoryNameLabel = new Label({string: categoryChecked.toUpperCase(), name: "categoryNameLabel", style:categoryNameStyle});
+	categoryNameLabel = new Label({string: currentCategory.name.toUpperCase(), name: "categoryNameLabel", style:categoryNameStyle});
 	
 	var nameLine = new Line ({contents: [
 		categoryNameLabel
@@ -346,4 +350,5 @@ exports.refresh = refresh;
 exports.screen = screen;
 exports.bg = bg;
 exports.update = update;
+exports.alertLine = alertLine;
 exports.blankScreen = new Container({active: false});
