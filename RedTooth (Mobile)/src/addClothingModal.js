@@ -275,6 +275,7 @@ var photographButtonTemplate = BUTTONS.Button.template(function($) { return {
             application.remove(photographScreen);
             trace("is it erroring here?\n");
             shutterSound.play();
+            KEYBOARD.hide();
         
             //photographSkin = new Skin({texture: photographTexture, x: 100, y: 100, width: 200, height: 160, aspect: 'fit'});
             //photograph.skin = photographSkin;
