@@ -139,8 +139,12 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
            	if (title == "") {
 	           	var oldScreen = clothingScreen.blankScreen;
-	            //application.replace(oldScreen, clothingScreen.listRefresh());
-	            application.replace(oldScreen, clothingScreen.refreshClothingScreen());
+	           	if (navigationBar.currentScreen == 0) {
+	           	    clothingScreen.refreshClothingScreen()
+	                application.replace(oldScreen, categoryScreen.screen);
+	            } else if (navigationBar.currentScreen == 1) {
+	                application.replace(oldScreen, clothingScreen.refreshClothingScreen());
+	            }
 	            application.remove(modal);
 	            application.invoke(new Message("/skipClothing?" + serializeQuery({
 		    		hanger: hanger_name
@@ -185,7 +189,12 @@ var OkayButtonTemplate = BUTTONS.Button.template(function($) { return {
 
             var oldScreen = clothingScreen.blankScreen;
 
-            application.replace(oldScreen, clothingScreen.refreshClothingScreen());
+            if (navigationBar.currentScreen == 0) {
+                clothingScreen.refreshClothingScreen()
+                application.replace(oldScreen, categoryScreen.screen);
+            } else if (navigationBar.currentScreen == 1) {
+                application.replace(oldScreen, clothingScreen.refreshClothingScreen());
+            }
 
             application.remove(modal);
             title = "";
@@ -205,7 +214,11 @@ var CancelButtonTemplate = BUTTONS.Button.template(function($) { return {
         onTap: { value: function(content) {
             KEYBOARD.hide();
             application.remove(modal);
-            application.replace(clothingScreen.blankScreen, clothingScreen.screen);
+            if (navigationBar.currentScreen == 0) {
+                application.replace(clothingScreen.blankScreen, categoryScreen.screen);
+            } else if (navigationBar.currentScreen == 1) {
+                application.replace(clothingScreen.blankScreen, clothingScreen.screen);
+            }
             application.invoke(new Message("/skipClothing?" + serializeQuery({
 	    		hanger: hanger_name
 			})), Message.JSON);
