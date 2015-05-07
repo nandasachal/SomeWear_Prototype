@@ -78,7 +78,7 @@ var clothingGridItemTemplate = Container.template(function($) {
 		contents: [
 			new Column( { left: 10, right: 10, top: 10, bottom: 10, skin: whiteSkin, contents: [ 
      			new Picture( {left:0, right:0, top:5, width: 100, height: 100, name: 'picture', url: $.photo,}),
-     			new Container( { top: 10, bottom: 10, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
+     			new Container( { top: 10, bottom: 10, width: 130, contents: [ Label($, { style: productNameStyle, string: $.name,}), ]})
      			]
      		})
 		],
