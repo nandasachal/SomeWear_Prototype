@@ -117,7 +117,11 @@ Handler.bind("/newClothingDetected", {
 			addCategoryToClothing.initialize();
 			addClothingModal.clear();
 			application.add(addClothingModal.modal);
-			application.replace(clothingScreen.screen, clothingScreen.blankScreen);
+			if (navigationBar.currentScreen == 0) {
+			    application.replace(categoryScreen.screen, clothingScreen.blankScreen);
+			} else if (navigationBar.currentScreen == 1) {
+			    application.replace(clothingScreen.screen, clothingScreen.blankScreen);
+			}
 			count=count-1;
 		}
 		if (itemsToBeAdded > 0) {

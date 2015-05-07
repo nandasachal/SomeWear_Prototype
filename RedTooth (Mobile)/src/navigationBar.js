@@ -126,6 +126,7 @@ var goToCategoriesPage = {
 			categoriesTab.skin = tabDownSkin;
 			clothingTab.skin = tabUpSkin;
 			application.replace(clothingScreen.screen, categoryScreen.screen);
+			exports.currentScreen = 0;
 		}
 	}
 }
@@ -140,6 +141,7 @@ var goToClothingPage = {
 			clothingTab.skin = tabDownSkin;
 			categoriesTab.skin = tabUpSkin;
 			application.replace(categoryScreen.screen, clothingScreen.screen);
+			exports.currentScreen = 1;
 		}
 	}
 }
@@ -178,6 +180,7 @@ trace("lalala\n");
 
 //External Items
 
+exports.currentScreen = 1;
 exports.navBar = navBar;
 exports.addButton = addButton;
 exports.switchIcon = switchIcon;
