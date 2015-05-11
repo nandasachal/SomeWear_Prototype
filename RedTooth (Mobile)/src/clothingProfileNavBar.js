@@ -1,4 +1,5 @@
-// KPR Script file
+// @module
+
 var BUTTONS = require('controls/buttons');
 
 var bigText = new Style({font:"bold 30px", color:"black"});

@@ -1,4 +1,4 @@
-//@program
+//@module
 
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 

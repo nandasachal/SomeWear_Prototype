@@ -1,4 +1,4 @@
-//@program
+//@module
 
 // testing scroller
 

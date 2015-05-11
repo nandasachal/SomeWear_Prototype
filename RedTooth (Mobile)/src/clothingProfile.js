@@ -1,4 +1,4 @@
-// KPR Script file
+// @module
 
 
 /* ASSETS */

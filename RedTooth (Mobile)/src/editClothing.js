@@ -1,6 +1,3 @@
-// KPR Script file
-
-// KPR Script file
 //@module
 
 var THEME = require('themes/sample/theme');

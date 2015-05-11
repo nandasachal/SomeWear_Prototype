@@ -35,8 +35,7 @@ var id= 0;
 var hanger_name="hanger1";
 var title = ''
 
-var clothingScreen = require("clothingScreen.js");
-var clothing = require("clothing.js");
+
 //var navigationBar = require("navigationBar.js");
 
 function getClothingInfo() {

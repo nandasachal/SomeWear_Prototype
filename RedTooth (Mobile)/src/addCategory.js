@@ -1,4 +1,3 @@
-// KPR Script file
 //@module
 
 var THEME = require('themes/sample/theme');
@@ -27,9 +26,6 @@ var whiteSkin = new Skin({fill:tealColor});
 
 var addClothingTexture = new Texture('../assets/new_addClothingButtonGraphic.png');
 var addClothingButtonSkin = new Skin({ texture: addClothingTexture, width: 252.5, height: 41.75});//height:55, width: 70, aspect: 'fit', });
-
-var categoriesScreen = require("categoryScreen.js");
-var category = require("category.js");
 
 var categoryName = '';
 var categoryColor = '';

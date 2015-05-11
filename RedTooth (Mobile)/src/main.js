@@ -30,28 +30,28 @@ var topMargin = navBarSize + tabBarSize;
 
 //file dependencies
 
-	var category = require("category.js");
-	var clothing = require("clothing.js");
-	var clothingProfile = require("clothingProfile.js");
-	var clothingProfileNavBar = require("clothingProfileNavBar.js");
-	var clothingScreen = require("clothingScreen.js");
-	var editClothingInCategory = require("editClothingInCategory.js")
-	var editClothingInCategoryNavBar = require("editClothingInCategoryNavBar.js");
-	var editCategory = require("editCategory.js");
-	var categoryDetailView = require("categoryDetailView.js");
-	var categoryDetailViewNavBar = require("categoryDetailViewNavBar.js");
-	var addClothingModal = require("addClothingModal.js");
-	var addCategoryToClothing = require("addCategoryToClothing.js");
-	var hangerManager = require("hangerManager.js");
-	var categoryScreen = require("categoryScreen.js");
-	var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar.js");
-	var addClothingToCategory = require("addClothingToCategory.js");
-	var addClothingToCategoryNavBar = require("addClothingToCategoryNavBar.js");
-	var addCategory = require("addCategory.js");
-	var navigationBar = require("navigationBar.js");
-	var editClothing = require("editClothing.js");
-	var editCategoryInClothing = require("editCategoryInClothing.js");
-	var editCategoryInClothingNavBar = require("editCategoryInClothingNavBar.js");
+	var category = require("category");
+	var clothing = require("clothing");
+	var clothingProfile = require("clothingProfile");
+	var clothingProfileNavBar = require("clothingProfileNavBar");
+	var clothingScreen = require("clothingScreen");
+	var editClothingInCategory = require("editClothingInCategory")
+	var editClothingInCategoryNavBar = require("editClothingInCategoryNavBar");
+	var editCategory = require("editCategory");
+	var categoryDetailView = require("categoryDetailView");
+	var categoryDetailViewNavBar = require("categoryDetailViewNavBar");
+	var addClothingModal = require("addClothingModal");
+	var addCategoryToClothing = require("addCategoryToClothing");
+	var hangerManager = require("hangerManager");
+	var categoryScreen = require("categoryScreen");
+	var addCategoryToClothingNavBar = require("addCategoryToClothingNavBar");
+	var addClothingToCategory = require("addClothingToCategory");
+	var addClothingToCategoryNavBar = require("addClothingToCategoryNavBar");
+	var addCategory = require("addCategory");
+	var navigationBar = require("navigationBar");
+	var editClothing = require("editClothing");
+	var editCategoryInClothing = require("editCategoryInClothing");
+	var editCategoryInClothingNavBar = require("editCategoryInClothingNavBar");
 
 //var tabBarBottom = 387;
 

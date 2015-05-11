@@ -1,9 +1,9 @@
-//@program
+//@module
 
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
 
 var BUTTONS = require('controls/buttons');
-var addCategoryToClothing = require('addCategoryToClothing.js');
+
 
 /*var addClothingModal = require("addClothingModal.js");
 var clothingScreen = require("clothingScreen.js");
