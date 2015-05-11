@@ -1,3 +1,5 @@
+// KPR Script file
+
 //@program
 
 //NAVIGATION BAR FOR CLOTHING AND CATEGORIES PAGES
@@ -38,13 +40,17 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 					application.add(addCategory.modal);
 					application.remove(categoriesScreen.screen);
 				}*/
+				editClothing.holder=0;
 				application.remove(navBar);
-				application.remove(editClothingInCategory.screen);
-				application.remove(editClothingInCategory.bg);
+				application.remove(editCategoryInClothing.screen);
+				application.remove(editCategoryInClothing.bg);
 			}
 			
 			if (content == cancelButton) {
-				
+				editClothing.holder = 1;
+				application.remove(navBar);
+				application.remove(editCategoryInClothing.screen);
+				application.remove(editCategoryInClothing.bg);
 			}
 			
 
@@ -54,10 +60,12 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 }});
 
 //UI Elements
-
-
+ 
 var addButton = new buttonTemplate({top: 5, textForLabel:'', name: 'addButton'});
 addButton.skin = addButtonSkin;
+
+var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
+switchIcon.skin = briefcaseIconSkin;
 
 var cancelTexture = new Texture('../assets/cancelButtonGraphic.png');
 var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 66, height: 43});
@@ -65,18 +73,15 @@ var cancelButtonSkin = new Skin({ texture: cancelTexture, width: 66, height: 43}
 var cancelButton = new buttonTemplate({top: 5, textForLabel:'', name: 'cancelButton'});
 cancelButton.skin = cancelButtonSkin;
 
-var switchIcon = new buttonTemplate({top: 5, textForLabel:'', name: 'switchIcon'});
-switchIcon.skin = briefcaseIconSkin;
-
 var navBar = new Line({left:0, right:0, top:0, bottom:420, height: 50, skin: tealVariantSkin, name: 'titleBar', contents:[
 	//switchIcon,
-	new Label({left:30, width:150, top:0, bottom:0, height: 30, name:"titleWords", string:"", style:headerStyle}),
+	new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 60, name:"titleWords", string:"", style:headerStyle}),
 	addButton,
 	//cancelButton
 	]
 });
 
-navBar.titleWords.string = "EDIT CLOTHING";
+navBar.titleWords.string = "EDIT CATEGORIES";
 
 //External Items
 

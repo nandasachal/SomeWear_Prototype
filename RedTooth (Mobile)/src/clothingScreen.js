@@ -71,7 +71,7 @@ var clothingGridItemTemplate = Container.template(function($) {
 				if ($.hangerId != ''){
 					hangerManager.lightUp($.hangerId,onColor);
 				}
-				clothingProfile.store($.name,$.photo,$.categories,$.idNum);
+				clothingProfile.store($.name,$.photo,$.categories,$.idNum, $.hangerId);
 				clothingProfile.refresh();
 			}},
 		}),

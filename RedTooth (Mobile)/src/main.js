@@ -49,7 +49,9 @@ var topMargin = navBarSize + tabBarSize;
 	var addClothingToCategoryNavBar = require("addClothingToCategoryNavBar.js");
 	var addCategory = require("addCategory.js");
 	var navigationBar = require("navigationBar.js");
-
+	var editClothing = require("editClothing.js");
+	var editCategoryInClothing = require("editCategoryInClothing.js");
+	var editCategoryInClothingNavBar = require("editCategoryInClothingNavBar.js");
 
 //var tabBarBottom = 387;
 

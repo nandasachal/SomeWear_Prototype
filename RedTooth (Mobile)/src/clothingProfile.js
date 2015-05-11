@@ -45,12 +45,20 @@ var name = "";
 var photo = "";
 var categories=[];
 var id = 0;
+var hangerId = "";
 
-function store(store_name, store_photo, store_categories, store_id){
+function store(store_name, store_photo, store_categories, store_id, store_hanger){
 	name = store_name;
 	photo = store_photo;
 	categories = store_categories;
 	id = store_id;
+	hangerId = store_hanger;
+	exports.name=name;
+	exports.photo=photo;
+	exports.categories=categories;
+	exports.id = id;
+	exports.hangerId = hangerId;
+	
 }
 
 
@@ -177,7 +185,23 @@ function refresh() {
 	application.add(clothingProfileNavBar.navBar);
 }
 
+function edit_refresh() {
+	newCon.empty();
+	newCon.add(Title);
+	newCon.add(Item);
+	data = new Object();
+	screen = new ScreenContainer(data);
+	holder = 0;
+	Title.string = name;
+	Item.url = photo;
+	for (var i = 0; i < categories.length; i++) {
+		screen.first.menu.add(new ProcessorLine(categories[i]));
+	}
+	newCon.add(screen);
+}
 
+
+exports.edit_refresh = edit_refresh;
 exports.store=store;
 exports.refresh = refresh;
 exports.newCon = newCon;

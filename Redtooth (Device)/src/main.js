@@ -66,30 +66,32 @@ Handler.bind("/potResult", Object.create(Behavior.prototype, {
 //@line 27
 	onInvoke: { value: function( handler, message ){
 			result = message.requestObject;
-			var hanger1Val = Math.floor(result.hanger1.toFixed(4)*10000);
-			var hanger2Val = Math.floor(result.hanger2.toFixed(4)*10000);
-			var hanger3Val = Math.floor(result.hanger3.toFixed(4)*10000);
-			var hanger4Val = Math.floor(result.hanger4.toFixed(4)*10000);
-			var hanger5Val = Math.floor(result.hanger5.toFixed(4)*10000);
-			var hanger6Val = Math.floor(result.hanger6.toFixed(4)*10000);		
-			var hanger7Val = Math.floor(result.hanger7.toFixed(4)*10000);
-			var hanger8Val = Math.floor(result.hanger8.toFixed(4)*10000);
-			hangerClothIDPairs.hanger1 = hanger1Val;
-			hangerClothIDPairs.hanger2 = hanger2Val;
-			hangerClothIDPairs.hanger3 = hanger3Val;
-			hangerClothIDPairs.hanger4 = hanger4Val;
-			hangerClothIDPairs.hanger5 = hanger5Val;
-			hangerClothIDPairs.hanger6 = hanger6Val;
-			hangerClothIDPairs.hanger7 = hanger7Val;
-			hangerClothIDPairs.hanger8 = hanger8Val;
-			hanger1Label.string = hanger1Val;
-			hanger2Label.string = hanger2Val;
-			hanger3Label.string = hanger3Val;
-			hanger4Label.string = hanger4Val;
-			hanger5Label.string = hanger5Val;
-			hanger6Label.string = hanger6Val;
-			hanger7Label.string = hanger7Val;
-			hanger8Label.string = hanger8Val;
+			if (result){
+				var hanger1Val = Math.floor(result.hanger1.toFixed(4)*10000);
+				var hanger2Val = Math.floor(result.hanger2.toFixed(4)*10000);
+				var hanger3Val = Math.floor(result.hanger3.toFixed(4)*10000);
+				var hanger4Val = Math.floor(result.hanger4.toFixed(4)*10000);
+				var hanger5Val = Math.floor(result.hanger5.toFixed(4)*10000);
+				var hanger6Val = Math.floor(result.hanger6.toFixed(4)*10000);		
+				var hanger7Val = Math.floor(result.hanger7.toFixed(4)*10000);
+				var hanger8Val = Math.floor(result.hanger8.toFixed(4)*10000);
+				hangerClothIDPairs.hanger1 = hanger1Val;
+				hangerClothIDPairs.hanger2 = hanger2Val;
+				hangerClothIDPairs.hanger3 = hanger3Val;
+				hangerClothIDPairs.hanger4 = hanger4Val;
+				hangerClothIDPairs.hanger5 = hanger5Val;
+				hangerClothIDPairs.hanger6 = hanger6Val;
+				hangerClothIDPairs.hanger7 = hanger7Val;
+				hangerClothIDPairs.hanger8 = hanger8Val;
+				hanger1Label.string = hanger1Val;
+				hanger2Label.string = hanger2Val;
+				hanger3Label.string = hanger3Val;
+				hanger4Label.string = hanger4Val;
+				hanger5Label.string = hanger5Val;
+				hanger6Label.string = hanger6Val;
+				hanger7Label.string = hanger7Val;
+				hanger8Label.string = hanger8Val;
+			}
 		}}
 }));
 

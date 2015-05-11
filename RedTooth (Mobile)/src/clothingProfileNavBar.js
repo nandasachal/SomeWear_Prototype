@@ -51,8 +51,10 @@ var buttonTemplate = BUTTONS.Button.template(function($, name){ return{
 				clothingProfile.remover();
 			}
 			if (content == editIcon) {
-				//bring up edit page
-				application.add(editCon);
+				//application.replace(categoryDetailView.screen, categoryDetailView.blankScreen);
+				editClothing.refresh(clothingProfile.name, clothingProfile.id, clothingProfile.categories, clothingProfile.hangerId, clothingProfile.photo); 
+				application.remove(navBar);
+				application.add(editClothing.modal);
 			}
 		}}
 	}),
@@ -78,7 +80,7 @@ var navBar = new Line({left:0, right:0, top:0, bottom:418, height: 42, skin: tea
 	//new Label({left:30, right:0, top:0, bottom:0, height: 30, width: 40, name:"titleWords", string:"", style:headerStyle}),
 	backButton,
 	deleteIcon,
-	//editIcon,
+	editIcon,
 	]
 });
 
