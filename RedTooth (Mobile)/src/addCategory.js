@@ -6,7 +6,7 @@ var KEYBOARD = require('mobile/keyboard');
 /*var addClothingToCategory = require("addClothingToCategory.js");
 var addClothingToCategoryNavBar = require("addClothingToCategoryNavBar.js");
 var clothingFile = require("clothing.js");*/
-
+var categoriesScreen = categoryScreen;
 var tealColor = "#FF52b0b0";
 var lighterTealColor = "#ff84D3D1";
 var lightestTealColor = "#ffDEFCFA";

@@ -1,4 +1,3 @@
-// KPR Script file
 //@module
 
 // testing scroller

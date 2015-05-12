@@ -15,7 +15,7 @@ var sampleClothes = [
     	{name: 'black slacks', idNum: 5, photo: "../assets/black-dress-pants.jpg", toggleOn: false, categories: ["Business", "Date"]}
 ];
 
-var sampleAddedClothesPhotos = ["../assets/biker-jacket.jpg","../assets/blue-blazer.jpg","../assets/floral-cardigan.jpg", "../assets/green-sweater.jpg", "../assets/shirt-lighter.png"];
+var sampleAddedClothesPhotos = ["../assets/red_leather_jacket.png","../assets/blue-blazer.jpg","../assets/floral-cardigan.jpg", "../assets/green-sweater.jpg", "../assets/shirt-lighter.png"];
 
 var sampleAddedClothesCounter = 0;
 
